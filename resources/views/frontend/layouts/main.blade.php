@@ -41,9 +41,9 @@
                   <li><a href="{{ route('partners') }}">Партнеры</a></li>
                   <li><a href="{{ route('contacts') }}">Контакты</a></li>
                   <li><a href="{{ route('login') }}">Вход <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 14px;"></i></a></li>
-                  
+
                 </ul>
-                
+
               </nav>
             </div>
           </div>
@@ -249,5 +249,8 @@
     <script src="/assets/js/vendor/jquery.countdown.min.js"></script>
     <!--Custom script for this template-->
     <script src="/assets/js/main.js?v=1.0.0"></script>
+
+
+
   </body>
 </html>
