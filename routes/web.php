@@ -43,7 +43,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MainController as AdminMainController;
 
 //client controller
-use App\Http\Controllers\client\auth\ClientLoginController;
+use App\Http\Controllers\client\auth\LoginController as ClientLoginController;
+use App\Http\Controllers\client\PageController as ClientPageController;
 
 //frontend controller
 use App\Http\Controllers\frontend\auth\ManageController;
@@ -175,8 +176,18 @@ Route::prefix('partner')->namespace('App\Http\Controllers')->group(function () {
     Route::get('/login', [ClientLoginController::class, 'showClientLoginForm'])->name('login.client');
     Route::post('/login', [ClientLoginController::class, 'clientLogin'])->name('client.login');
 
-    // Client uchun boshqa yo'nalishlar (agar mavjud bo'lsa, qo'shing)
+    // Client register
+    Route::get('/register', [ClientLoginController::class, 'showRegistrationForm'])->name('register.client');
+    Route::post('/register', [ClientLoginController::class, 'register'])->name('client.register');
+
+    Route::middleware(['checkClient:client', 'auth'])->group(function () {
+        Route::get('/dashboard', [ClientPageController::class, 'dashboard'])->name('client.dashboard');
+        Route::get('/profile', [ClientPageController::class, 'profile'])->name('client.profile');
+        Route::put('/profile/update', [ClientPageController::class, 'updateProfile'])->name('client.profile.update');
+        Route::resource('lots', \App\Http\Controllers\client\ServiceController::class);
+    });
 });
+
 
 
  Route::middleware(['checkAdmin:admin', 'auth'])->group(function () {
