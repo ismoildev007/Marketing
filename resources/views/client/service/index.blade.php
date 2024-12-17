@@ -49,7 +49,7 @@
                                             <td>{{ $lot->id }}</td>
                                             <td>{{ $lot->title }}</td>
                                             <td>{{ $lot->description }}</td>
-                                            <td>{{ $lot->budget_min }} - {{ $lot->budget_max }}</td>
+                                            <td>{{ $lot->price }}</td>
                                             <td>{{ $lot->status }}</td>
                                             <td class=" d-flex justify-content-end">
                                                 <div class="hstack gap-2">

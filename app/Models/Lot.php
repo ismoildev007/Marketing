@@ -17,6 +17,7 @@ class Lot extends Model
         'budget_max',
         'deadline',
         'service_sub_category_id',
+        'price',
         'type',
         'status',
     ];

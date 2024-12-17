@@ -79,9 +79,13 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="mb-4 col-md-8">
+                                    <div class="mb-4 col-md-4">
                                         <label for="descriptionInput" class="fw-semibold">Описание:</label>
                                         <textarea class="form-control" id="descriptionInput" placeholder="Описание" name="description">{{ old('description') }}</textarea>
+                                    </div>
+                                    <div class="mb-4 col-md-4">
+                                        <label for="price" class="fw-semibold">Цена:</label>
+                                        <input type="number" class="form-control" id="price" placeholder="Цена" name="price" value="{{ old('price') }}">
                                     </div>
 
                                     <div class="mb-4 col-md-4">

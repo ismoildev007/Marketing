@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('budget_max', 10, 2)->nullable();
             $table->date('deadline');
             $table->foreignId('sub_category_id')->constrained('service_sub_categories')->onDelete('set null');
+            $table->decimal('price', 15, 2)->nullable();
             $table->string('type')->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();
