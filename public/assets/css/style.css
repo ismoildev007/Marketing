@@ -4154,7 +4154,7 @@ label {
 }
 
 .sticky-bar.stick .burger-icon {
-    top: 15px;
+    top: 5px;
 }
 
 .sticky-bar.stick.header-style-2 {
@@ -4599,7 +4599,7 @@ label {
     .mobile-menu
     li:hover
     > a {
-    color: #d280e5;
+    color: #db1823;
     padding-left: 3px;
     transition-duration: 0.2s;
 }
@@ -4767,7 +4767,7 @@ label {
     height: 20px;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-    top: 15px;
+    top: 5px;
     right: 15px;
     z-index: 999999;
     display: none;
@@ -5142,7 +5142,12 @@ label {
     background-color: #434445;
     display: flex;
     justify-content: center;
+    transition: all .1s ease-in-out;
     align-items: center;
+}
+.footer.footer-style-3 a.icon-socials:hover {
+    background-color: #db1823;
+
 }
 .footer.footer-style-3 a.icon-socials i {
     color: #ffffff;

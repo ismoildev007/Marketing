@@ -281,14 +281,14 @@ class PageController extends Controller
 
 public function filter(Request $request)
 {
-    $companyAddress = $request->input('company_address'); 
+    $companyAddress = $request->input('company_address');
     $languageId = $request->input('language_id'); // Til ID-si
     $description = $request->input('description'); // Qo'shimcha kalit so'zlar (description)
     $numberOfTeam = $request->input('number_of_team'); // Komanda hajmi
 
     // Foydalanuvchilarni olish
     $query = User::query()
-        ->with('companies') 
+        ->with('companies')
         ->where('role_id', 2); // Faqat role_id = 2 bo'lgan foydalanuvchilarni olish
 
     // Description bo'yicha filtr (Agar description berilgan bo'lsa)
