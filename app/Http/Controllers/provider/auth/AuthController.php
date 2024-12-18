@@ -34,7 +34,7 @@ class AuthController extends Controller
         ([
             'email' => $request->manager_email,
             'password' => $request->manager_password,])) {
-                
+
             // If successful, regenerate session to prevent session fixation attacks
             $request->session()->regenerate();
                 if (auth()->user()->role_id == 2 || auth()->user()->role_id == 5){
@@ -52,9 +52,8 @@ class AuthController extends Controller
     // Logout qilish
     public function logout()
     {
-        dd('ok');
         Auth::logout();
 
-        return redirect('/');
+        return redirect('/auth/login');
     }
 }

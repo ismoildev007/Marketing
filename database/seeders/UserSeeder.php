@@ -16,13 +16,21 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // admin user 
+        // admin user
         User::create([
             'language_id' => 1, // English role
             'name' => 'Administrator',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
             'role_id' => 1, // admin role
+        ]);
+        // admin user
+        User::create([
+            'language_id' => 1,
+            'name' => 'Ismoil Usmonov',
+            'email' => 'ismoil_007u@gmail.com',
+            'password' => Hash::make('ismoil_007u@gmail.com'),
+            'role_id' => 1,
         ]);
 
         // Create 10 providers

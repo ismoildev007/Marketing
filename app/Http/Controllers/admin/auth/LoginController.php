@@ -20,15 +20,15 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
- 
+
         if (Auth::attempt($credentials)) {
-            
+
             $request->session()->regenerate();
             if(auth()->user()->role_id == 1){
                 return redirect()->intended('admin/dashboard');
             }
         }
- 
+
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
@@ -37,7 +37,7 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-       return redirect('/');
+       return redirect('/auth/login');
     }
 
     public function changePassword(){
@@ -67,5 +67,5 @@ class LoginController extends Controller
         $user->save();
 
         return redirect()->back()->with('success', 'Password changed successfully');
-    }   
+    }
 }

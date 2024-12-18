@@ -1123,7 +1123,7 @@ if ($providerCompany) {
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="nxl-h-item dark-light-theme">
                     <a href="javascript:void(0);" class="nxl-head-link me-0 dark-button">
                         <i class="feather-moon"></i>
@@ -1158,7 +1158,7 @@ if ($providerCompany) {
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -1184,7 +1184,7 @@ if ($providerCompany) {
                                         <span>Russian</span>
                                     </a>
                                 </div>
-                                
+
                                 <div class="col-sm-4 col-6 language_select">
                                     <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
                                         <div class="avatar-image avatar-sm"><img src="/admin/assets/vendors/img/flags/1x1/sa.svg" alt="" class="img-fluid"></div>
@@ -1255,7 +1255,7 @@ if ($providerCompany) {
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="nxl-h-item">
                     <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nxl-head-link me-0">
                         <i class="feather-log-out"></i>
@@ -1265,7 +1265,7 @@ if ($providerCompany) {
             </div>
         </div>
 
-        <form id="logout-form" action="{{ route('admin_logout') }}" method="POST" style="display: none;">
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
         <!--! [End] Header Right !-->

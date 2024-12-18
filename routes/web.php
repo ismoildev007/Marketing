@@ -28,6 +28,9 @@ use App\Http\Controllers\provider\ManagerController as ProviderManagerController
 use Illuminate\Support\Facades\Route;
 
 
+//client controller
+use App\Http\Controllers\client\auth\LoginController as ClientLoginController;
+use App\Http\Controllers\client\PageController as ClientPageController;
 
 //frontend controller
 use App\Http\Controllers\frontend\auth\ManageController;
@@ -124,6 +127,27 @@ Route::prefix('marketer')->namespace('App\Http\Controllers')->group(function () 
     Route::post('/login', [MarketerLoginController::class, 'marketerLogin'])->name('marketer.login');
 
     // Marketer uchun boshqa yo'nalishlar (agar mavjud bo'lsa, qo'shing)
+});
+
+/*****************************************************************************
+ * Display Partner routes
+ * @author Doniyor Rajapov
+ *****************************************************************************/
+Route::prefix('partner')->namespace('App\Http\Controllers')->group(function () {
+    // Client login
+    Route::get('/login', [ClientLoginController::class, 'showClientLoginForm'])->name('login.client');
+    Route::post('/login', [ClientLoginController::class, 'clientLogin'])->name('client.login');
+
+    // Client register
+    Route::get('/register', [ClientLoginController::class, 'showRegistrationForm'])->name('register.client');
+    Route::post('/register', [ClientLoginController::class, 'register'])->name('client.register');
+
+    Route::middleware(['checkClient:client', 'auth'])->group(function () {
+        Route::get('/dashboard', [ClientPageController::class, 'dashboard'])->name('client.dashboard');
+        Route::get('/profile', [ClientPageController::class, 'profile'])->name('client.profile');
+        Route::put('/profile/update', [ClientPageController::class, 'updateProfile'])->name('client.profile.update');
+        Route::resource('lots', \App\Http\Controllers\client\ServiceController::class);
+    });
 });
 
 
