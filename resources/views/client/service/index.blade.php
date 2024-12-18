@@ -37,7 +37,6 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Название лота</th>
-                                        <th>Описание</th>
                                         <th>Цена</th>
                                         <th>Статус</th>
                                         <th class="text-end">Настройки</th>
@@ -48,7 +47,6 @@
                                         <tr>
                                             <td>{{ $lot->id }}</td>
                                             <td>{{ $lot->title }}</td>
-                                            <td>{{ $lot->description }}</td>
                                             <td>{{ $lot->price }}</td>
                                             <td>{{ $lot->status }}</td>
                                             <td class=" d-flex justify-content-end">
@@ -56,11 +54,13 @@
                                                     <a href="{{ route('lots.edit', $lot->id) }}" class="avatar-text avatar-md">
                                                         <i class="feather-edit"></i>
                                                     </a>
-                                                    <form class="dropdown-item" action="{{ route('lots.destroy', $lot->id) }}" method="POST" onsubmit="event.preventDefault(); showDeleteModal(this);">
+                                                    <form method="POST"
+                                                          onsubmit="confirmDelete(event)"
+                                                          action="{{ route('lots.destroy', $lot->id) }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn" style="background: none; border: none; padding: 0; color: black;">
-                                                            <i class="feather feather-trash-2 me-3"></i>
+                                                        <button type="submit" class="btn text-dark p-0 border-0" style="background: none;">
+                                                            <i class="feather feather-trash-2"></i>
                                                         </button>
                                                     </form>
                                                 </div>
