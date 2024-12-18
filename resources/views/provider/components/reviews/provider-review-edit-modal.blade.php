@@ -24,6 +24,7 @@ $languages = App\Models\Language::all();
                 </div>
                 <span class="vr text-muted mx-4"></span>
             </div>
+            <button type="submit" class="btn btn-primary">Обновить отзыв</button>
         </div>
         <div class="offcanvas-body">
             <div class="row">
@@ -53,8 +54,8 @@ $languages = App\Models\Language::all();
                     </div>
                 </div>
             @endforeach
-            
-                
+
+
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {
                         // Initialize star ratings for each review category
@@ -62,19 +63,19 @@ $languages = App\Models\Language::all();
                             initializeStarReview('{{ $key }}-review', '{{ $key }}_score');
                         @endforeach
                     });
-                
+
                     function initializeStarReview(reviewId, inputId) {
                         const reviewElement = document.getElementById(reviewId);
                         const buttons = reviewElement.querySelectorAll('.star-button');
                         const input = document.getElementById(inputId);
                         const score = parseInt(input.value) || 0; // Get the score
-                
+
                         // Set initial active stars based on saved score
                         buttons.forEach((button, index) => {
                             if (index < score) {
                                 button.classList.add('active'); // Add active class if index is less than score
                             }
-                
+
                             // Attach click event to each button
                             button.addEventListener('click', () => {
                                 buttons.forEach((btn) => btn.classList.remove('active')); // Remove active class from all buttons
@@ -87,7 +88,7 @@ $languages = App\Models\Language::all();
                         });
                     }
                 </script>
-                
+
                 <style>
                     .star-button {
                         background: transparent;
@@ -99,8 +100,8 @@ $languages = App\Models\Language::all();
                         color: yellow; /* Active star color */
                     }
                 </style>
-                
-            
+
+
 
 
                 <!-- Description -->
@@ -194,13 +195,6 @@ $languages = App\Models\Language::all();
 
                 <!-- Hidden Provider ID -->
                 <input type="hidden" name="provider_id" value="{{ $review->provider_id }}">
-
-                <!-- Submit Button -->
-                <div class="col-12">
-                    <div class="form-group mb-4">
-                        <button type="submit" class="btn btn-primary">Обновить отзыв</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

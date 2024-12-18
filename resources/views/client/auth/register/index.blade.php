@@ -66,12 +66,12 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <label>полное имя <span class="brand-1">*</span></label>
-                                        <input type="text" name="name" id="organization-name" class="form-control text-center" required>
+                                        <input type="text" name="responsible_person_name" id="responsible_person_name" class="form-control text-center" required>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Укажите название вашей компании <span class="brand-1">*</span></label>
-                                            <input type="text" name="organization_name" id="organization-name" class="form-control text-center" required>
+                                            <input type="text" name="name" id="name" class="form-control text-center" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

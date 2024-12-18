@@ -14,7 +14,7 @@
               <div class="swiper-slide">
                 <div class="row">
                   <div class="col-lg-4">
-                    <div class="card-features-6">
+                    <div class="card-features-6 text-center">
                         <div class="card-image">
                             <i style="font-size: 44px; color: #C5FF41;" class="fa-solid fa-users"></i>
                         </div>
