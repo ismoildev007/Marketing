@@ -30,16 +30,14 @@
                             <div class="filter-block mb-30">
                                 <h5 class="medium-heading mb-15" style="font-size: 20px;">Ключевые слова</h5>
                                 <div class="form-group">
-                                    <input type="text" name="description" class="form-control form-icons"
-                                        placeholder="" />
-                                    <i class="fi-rr-search"></i>
+                                    <input type="text" name="description" class="form-control"
+                                        placeholder="Введите ключевые слова, навыки ..." />
                                 </div>
                             </div>
                             <div class="filter-block mb-30">
                                 <h5 class="medium-heading mb-15" style="font-size: 20px;">Местоположение</h5>
                                 <div class="form-group">
-                                    <input type="text" name="company_address" class="form-control form-icons"
-                                        placeholder="" />
+                                    <input type="text" name="company_address" class="form-control form-icons" placeholder="Местоположение"/>
                                     <i class="fi-rr-marker"></i>
                                 </div>
                             </div>
@@ -49,10 +47,9 @@
                                 <h5 class="medium-heading mb-15" style="font-size: 20px;">Опыт в отрасли</h5>
                                 <div class="form-group select-style select-style-icon">
                                     <select class="form-control form-icons select-active" name="sub_category_id">
-                                        @foreach ($sub_categories as $key => $sub_category)
-                                            <option value="{{ $sub_category->id }}" {{ $key === 0 ? 'selected' : '' }}>
-                                                {{ $sub_category->name_ru }}
-                                            </option>
+                                        <option value="">Выберите услугу</option>
+                                        @foreach($sub_categories as $sub_category)
+                                            <option value="{{$sub_category->id}}">{{$sub_category->name_ru}}</option>
                                         @endforeach
                                     </select>
 
@@ -64,33 +61,27 @@
                             <div class="filter-block mb-40">
                                 <h5 class="medium-heading mb-25" style="font-size: 20px;">Диапазон зарплаты</h5>
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <label class="lb-slider">От</label>
-                                        <div class="form-group minus-input">
-                                            <input type="text" name="price_range[min]"
-                                                class="input-disabled form-control min-value-money"
-                                                placeholder="Minimal narx" value="735"
-                                                oninput="updateMinValueFromInput(this.value)">
+                                        <div class="col-lg-6">
+                                            <label class="lb-slider">От</label>
+                                            <div class="form-group minus-input">
+                                                <input type="text" name="price_range[min]" class="input-disabled form-control min-value-money" placeholder="Minimal narx" value="735">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label class="lb-slider">До</label>
+                                            <div class="form-group">
+                                                <input type="text" name="price_range[max]" class="input-disabled form-control max-value-money" placeholder="Maksimal narx" value="6000000">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <label class="lb-slider">До</label>
-                                        <div class="form-group">
-                                            <input type="text" name="price_range[max]"
-                                                class="input-disabled form-control max-value-money"
-                                                placeholder="Maksimal narx" value="6000000"
-                                                oninput="updateMaxValueFromInput(this.value)">
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="card-conteiner">
                                     <div class="card-content">
                                         <div class="rangeslider">
-                                            <input class="min input-ranges" name="range_1_min" type="range" min="200"
-                                                max="10000000" value="735" oninput="updateMinValue(this.value)">
-                                            <input class="max input-ranges" name="range_1_max" type="range" min="300"
-                                                max="10000000" value="6000000" oninput="updateMaxValue(this.value)">
+                                            <input class="min input-ranges" name="range_1_min" type="range" min="200" max="10000" value="735"
+                                                   oninput="updateMinValue(this.value)">
+                                            <input class="max input-ranges" name="range_1_max" type="range" min="300" max="10000000" value="6000000"
+                                                   oninput="updateMaxValue(this.value)">
                                         </div>
                                     </div>
                                 </div>
@@ -216,7 +207,8 @@
                             </button>
 
                             @if ($providers->isNotEmpty())
-                                @foreach ($providers as $provider)
+                                @foreach($providers as $provider)
+
                                     @if ($provider->companies->isNotEmpty())
                                         <div class="col-lg-6 col-md-6 card-integration-big">
                                             <div class="card-integration">
@@ -260,6 +252,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     @endif
                                 @endforeach
                             @endif
