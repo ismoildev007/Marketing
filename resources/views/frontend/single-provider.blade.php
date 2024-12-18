@@ -32,10 +32,10 @@
                     <div class="heading-main-info">
                         <h4>{{$provider->companies->first()->name}}</h4>
                         <div class="head-info-profile">
-                            
+
                             <span class="text-small mr-20"><i class="fi-rr-marker text-mutted"></i>{{$provider->companies->first()->address}}</span>
                             <span class="text-small"><i class="fi-rr-clock text-mutted"></i> Since {{ \Carbon\Carbon::parse($provider->companies->first()->created_at)->format('Y') }}</span>
-                        
+
                             <div class="row align-items-end">
                                 <div class="col-lg-6 mt-3">
                                     @foreach($services as $service)
@@ -55,7 +55,7 @@
         <section class="section-box">
             <div class="container">
                 <div class="row" style="display:flex;">
-                    
+
                     <div class="col-sm-12 col-lg-8">
 
                         <div class="links-box"
@@ -100,17 +100,17 @@
                         <section id="services" class="services-section">
                             <div class="box-faqs-inner-4">
                                 <h2 class="title" style="font-size: 30px; margin-bottom: 15px;">Услуги</h2>
-                                
+
                                 <div class="accordion accordion-flush accordion-style-2" id="accordionFAQS"
                                      style="border: 1px solid #D1D3D4; border-radius: 16px">
-                                    
+
                                     @foreach($services as $service)
                                         <div class="accordion-item">
-                                           
+
                                             <h2 class="accordion-header" id="flush-headingOne">
-                                                <button class="accordion-button collapsed" type="button"
+                                                <button class="accordion-button" type="button"
                                                         data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-                                                        aria-expanded="false" aria-controls="flush-collapseOne"
+                                                        aria-expanded="true" aria-controls="flush-collapseOne"
                                                         style="display:flex; justify-content: space-between;">
                                                     {{$service->subCategory->name_ru ?? null}}
                                                     <div style="display: flex; align-items: center;">
@@ -131,7 +131,7 @@
                                                 </button>
                                             </h2>
 
-                                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                            <div id="flush-collapseOne" class="accordion-collapse collapse show"
                                                  aria-labelledby="flush-headingOne" data-bs-parent="#accordionFAQS">
                                                 <div class="accordion-body">
 
@@ -158,7 +158,7 @@
 
                                                     <div class="reviews-box" style="margin-top: 25px;">
                                                         <h6 style="margin-bottom: 15px; padding: 5px;">Отзывы</h6>
-                                                        
+
                                                         <div class="card-testimonial col-lg-4">
                                                             <div class="card-rates">
                                                                 <img src="/assets/imgs/template/icons/star.svg"
@@ -196,7 +196,7 @@
 
                     <div class="col-sm-12 col-lg-4">
                         <div class="col-12 px-lg-15 mt-lg-30">
-                            
+
                             <div class="order-lg-first" style="margin-top: 15px;">
                                 <div class="sidebar">
 
@@ -257,7 +257,7 @@
                     </div>
 
                     <div class="col-lg-12">
-                        
+
                         <section id="portfolio" class="portfolios section" style="margin: 30px 0;">
 
                             <div class="box-list-news" style=" cursor: default;">
@@ -266,7 +266,7 @@
 
                                     @foreach($portfolios as $portfolio)
                                         <div class="col-lg-3 col-md-6" style="cursor: default;">
-                                            <div class="card-grid-2 card-employers wow animate__animated animate__fadeIn">                                             
+                                            <div class="card-grid-2 card-employers wow animate__animated animate__fadeIn">
                                                 <div class="text-center card-grid-2-image-rd online">
                                                     <img alt="jobhub" src="{{ asset('storage/' . $portfolio->image) }}" style="width: 100%;" />
                                                 </div>
@@ -275,7 +275,7 @@
                                                         <h5><a href="#!"><strong>{{$portfolio->work_title}}</strong></a></h5>
                                                         <span class="text-sm">{{ $portfolio->subCategory->name_ru }}</span>
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -570,7 +570,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
-                                        
+
                                         <a target="_blank" href="{{$provider->companies->first()->website}}"
                                             style="border-top: 1px solid #ECEEF2; border-bottom: 1px solid #ECEEF2; padding: 20px 10px; font-size: 18px; color: black; display:flex;align-items:center; justify-content:space-between;">
                                             <div>
@@ -620,7 +620,7 @@
 
             <div class="box-border-rounded p-3"
                  style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; width: 50%; max-height: 90%; overflow-y: auto; background-color: white; border-radius: 10px;">
-                
+
                 <div class="my-3 p-3">
                     <h4 class="mb-3">Отправить сообщение</h4>
                     <h6 class="mb-2" style="font-size:18px;">Кто вы?</h6>
@@ -688,22 +688,22 @@
         </div>
 
         <!-- Toast Notification -->
-        <div  id="toast" style="display: none;"> 
+        <div  id="toast" style="display: none;">
             <div  class="bg-primary" style="position: fixed; top: 100px; right: 0px; transform: translateX(-50%); color: white; padding: 10px 10px; border-radius: 5px; display: flex;  align-items: center;">
                 <i class="fas fa-check-circle" style="margin-right: 10px;  font-size: 24px;"></i>
                 Сообщение отправлено!
             </div>
         </div>
-        
+
 
         <script>
             function openModal() {
                 document.getElementById('doraModal').style.display = 'flex';
-                document.body.style.overflow = 'hidden'; 
+                document.body.style.overflow = 'hidden';
             }
             function closeModal() {
                 document.getElementById('doraModal').style.display = 'none';
-                document.body.style.overflow = ''; 
+                document.body.style.overflow = '';
             }
             window.onclick = function (event) {
                 var modal = document.getElementById('doraModal');

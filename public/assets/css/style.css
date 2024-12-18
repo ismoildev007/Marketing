@@ -793,12 +793,14 @@ h6,
 }
 
 .pagination .page-item:last-child .page-link {
+    background-color: #db1823;
     border: 0px;
     line-height: 42px;
     border-radius: 50%;
 }
 
 .pagination .page-item:first-child .page-link {
+    background-color: #db1823;
     border: 0px;
     line-height: 42px;
     border-radius: 50%;
@@ -1912,9 +1914,11 @@ body {
     margin-left: 10px;
 }
 
+.btn.btn-brand-5-new:hover * {
+    color: #fff;
+}
 .btn.btn-brand-5-new:hover {
     background: #db1823;
-    color: #191919;
 }
 
 .btn.btn-brand-6-new {
@@ -3259,7 +3263,6 @@ label {
     border: 1px solid #434445;
     padding: 32px 32px 35px 32px;
     color: #ffffff;
-    margin-bottom: 30px;
 }
 
 .card-testimonial-4 .card-author {
@@ -3341,8 +3344,8 @@ label {
     background-color: #ffffff;
     border-radius: 16px;
     border: 1px solid #eceef2;
-    padding: 32px;
-    margin-bottom: 45px;
+    padding: 25px 32px;
+    margin-bottom: 35px;
 }
 
 .card-integration:hover {
@@ -5142,12 +5145,11 @@ label {
     background-color: #434445;
     display: flex;
     justify-content: center;
-    transition: all .1s ease-in-out;
+    transition: all 0.1s ease-in-out;
     align-items: center;
 }
 .footer.footer-style-3 a.icon-socials:hover {
     background-color: #db1823;
-
 }
 .footer.footer-style-3 a.icon-socials i {
     color: #ffffff;
@@ -7045,7 +7047,6 @@ a.icon-socials:last-child {
     background-color: #eceef2;
     border-radius: 18px;
     padding: 20px;
-    margin-bottom: 30px;
     width: 300px;
 }
 
@@ -9253,7 +9254,7 @@ a.icon-socials:last-child {
 .accordion-style-2.accordion-flush .accordion-item {
     border-bottom: 1px solid #d1d3d4;
     border-radius: 0;
-    padding: 5px 20px;
+    padding: 5px 20px 20px 20px;
     background-color: transparent;
 }
 
@@ -11839,7 +11840,6 @@ section {
     .card-testimonial-2 .card-image {
         width: 100%;
         margin-right: 0px;
-        margin-bottom: 30px;
     }
 
     .card-testimonial-2 .card-info {
