@@ -47,7 +47,7 @@
                                         <tr>
                                             <td>{{ $lot->id }}</td>
                                             <td>{{ $lot->title }}</td>
-                                            <td>{{ $lot->price }}</td>
+                                            <td>{{ $lot->price }} $</td>
                                             <td>{{ $lot->status }}</td>
                                             <td class=" d-flex justify-content-end">
                                                 <div class="hstack gap-2">
