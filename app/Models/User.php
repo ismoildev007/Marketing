@@ -23,9 +23,6 @@ class User extends Authenticatable
         'language_id',
         'email',
         'name',
-        'type_of_activity',
-        'organization_name',
-        'phone_number',
         'password',
         'role_id'
     ];
