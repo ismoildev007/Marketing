@@ -19,7 +19,7 @@
 
         <section class="section-box box-all-integrations">
             <form action="{{ route('filter.providers') }}" method="GET">
-                
+
                 <div class="container" style="display: flex; gap: 30px;">
 
                     <div id="filter-box-1" class="sidebar-shadow none-shadow mb-30 filter-box"
@@ -29,13 +29,13 @@
                                 <h5 class="medium-heading mb-15" style="font-size: 20px;">Ключевые слова</h5>
                                 <div class="form-group">
                                     <input type="text" name="description" class="form-control"
-                                        placeholder="Введите ключевые слова, навыки ..." />
+                                        placeholder="Введите ключевые слова, навыки ..."  value="{{ request('description') }}"/>
                                 </div>
                             </div>
                             <div class="filter-block mb-30">
                                 <h5 class="medium-heading mb-15" style="font-size: 20px;">Местоположение</h5>
                                 <div class="form-group">
-                                    <input type="text" name="company_address" class="form-control form-icons" placeholder="Местоположение"/>
+                                    <input type="text" name="company_address" class="form-control form-icons" placeholder="Местоположение" value="{{ request('company_address') }}"/>
                                     <i class="fi-rr-marker"></i>
                                 </div>
                             </div>
@@ -47,9 +47,12 @@
                                     <select class="form-control form-icons select-active" name="sub_category_id">
                                         <option value="">Выберите услугу</option>
                                         @foreach($sub_categories as $sub_category)
-                                            <option value="{{$sub_category->id}}">{{$sub_category->name_ru}}</option>
+                                            <option value="{{$sub_category->id}}" {{ request('sub_category_id') == $sub_category->id ? 'selected' : '' }}>
+                                                {{$sub_category->name_ru}}
+                                            </option>
                                         @endforeach
                                     </select>
+
                                     <i class="fi-rr-briefcase"></i>
                                 </div>
 
@@ -62,13 +65,15 @@
                                         <div class="col-lg-6">
                                             <label class="lb-slider">От</label>
                                             <div class="form-group minus-input">
-                                                <input type="text" name="price_range[min]" class="input-disabled form-control min-value-money" placeholder="Minimal narx" value="735">
+                                                <input type="text" name="price_range[min]" class="input-disabled form-control min-value-money"
+                                                       placeholder="Minimal narx" value="{{ request('price_range.min', 735) }}">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <label class="lb-slider">До</label>
                                             <div class="form-group">
-                                                <input type="text" name="price_range[max]" class="input-disabled form-control max-value-money" placeholder="Maksimal narx" value="6000000">
+                                                <input type="text" name="price_range[max]" class="input-disabled form-control max-value-money"
+                                                       placeholder="Maksimal narx" value="{{ request('price_range.max', 600000) }}">
                                             </div>
                                         </div>
                                     </div>
@@ -76,10 +81,12 @@
                                 <div class="card-conteiner">
                                     <div class="card-content">
                                         <div class="rangeslider">
-                                            <input class="min input-ranges" name="range_1_min" type="range" min="200" max="10000" value="735"
-                                                   oninput="updateMinValue(this.value)">
-                                            <input class="max input-ranges" name="range_1_max" type="range" min="300" max="10000000" value="6000000"
-                                                   oninput="updateMaxValue(this.value)">
+                                            <input class="min input-ranges" name="range_1_min" type="range" min="200" max="10000"
+                                                   value="{{ request('range_1_min', 735) }}" oninput="updateMinValue(this.value)">
+
+                                            <input class="max input-ranges" name="range_1_max" type="range" min="300" max="10000000"
+                                                   value="{{ request('range_1_max', 6000000) }}" oninput="updateMaxValue(this.value)">
+
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +143,7 @@
                     </div>
 
                     <div style="width: 70%;" class="right-side-search-provider">
-                        
+
                         <div class="row">
 
                             <button id="change-filter-btn" class="filter-button-responsive" onClick="toggleFilter()">
@@ -145,7 +152,7 @@
 
                             @if ($providers->isNotEmpty())
                                 @foreach($providers as $provider)
-                      
+
                                     @if ($provider->companies->isNotEmpty())
                                         <div class="col-lg-6 col-md-6 card-integration-big">
                                             <div class="card-integration">
@@ -183,7 +190,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                            
+
                                     @endif
                                 @endforeach
                             @endif
@@ -275,7 +282,7 @@
 
             </form>
         </section>
-        
+
         <section class="section-box wow animate__animated animate__fadeIn box-how-it-work">
             <div class="container"><a class="btn btn-brand-4-sm text-white" href="#">Как это работает</a>
                 <h2 class="mt-15 mb-20">Простая и эффективная система для <br /> подключения лучших поставщиков услуг.</h2>
@@ -288,8 +295,8 @@
                                 </div>
                                 <div class="card-desc">
                                     <p>
-                                        Этот процесс прост и удобен. Мы создаем условия, при которых вы сможете 
-                                        быстро найти подходящие решения, разработанные специально для ваших потребностей. 
+                                        Этот процесс прост и удобен. Мы создаем условия, при которых вы сможете
+                                        быстро найти подходящие решения, разработанные специально для ваших потребностей.
                                         Зарегистрируйтесь и начните пользоваться нашими услугами уже сегодня.
                                     </p>
                                 </div>
@@ -304,8 +311,8 @@
                                 </div>
                                 <div class="card-desc">
                                     <p>
-                                        Мы тщательно изучаем ваши потребности и цели. 
-                                        На основе этого мы создаем индивидуальные стратегии и решения, 
+                                        Мы тщательно изучаем ваши потребности и цели.
+                                        На основе этого мы создаем индивидуальные стратегии и решения,
                                         чтобы обеспечить их соответствие вашим ожиданиям и задачам.
                                     </p>
                                 </div>
@@ -320,8 +327,8 @@
                                 </div>
                                 <div class="card-desc">
                                     <p>
-                                        Мы следим за производительностью, оптимизируем кампании 
-                                        и гарантируем достижение ожидаемых результатов. 
+                                        Мы следим за производительностью, оптимизируем кампании
+                                        и гарантируем достижение ожидаемых результатов.
                                         Это последний шаг на пути к успеху и увеличению дохода вашего проекта.
                                     </p>
                                 </div>
@@ -330,7 +337,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <x-join-us />
         </section>
 
