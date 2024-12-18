@@ -18,41 +18,41 @@ use NunoMaduro\Collision\Provider;
 
 class PageController extends Controller
 {
-    public function search(Request $request)
-    {
-        $query = $request->input('query');
-
-        // Barcha partnerlar va kategoriyalarni olish
-        $partners = Provider::all();
-        $categories = Category::all();
-
-        if ($query) {
-            // Kategoriyalarni qidiruv so'rovi bo'yicha filtrlash
-            $results = Category::where('name', 'LIKE', "%$query%")
-                ->orWhereHas('services', function ($q) use ($query) {
-                    $q->where('name_en', 'LIKE', "%$query%");
-                })
-                ->get();
-
-            // Providerlarni qidiruv so'rovi bo'yicha filtrlash
-            $providers = User::where('role_id', 2)->where('name', 'LIKE', "%$query%")
-                ->orWhere('description', 'LIKE', "%$query%")
-                ->orWhere('tagline', 'LIKE', "%$query%")
-                ->get();
-        } else {
-            // Qidiruv bo'yicha natijalar bo'lmasa bo'sh kolleksiya
-            $results = collect();
-            $providers = collect();
-        }
-
-        return view('pages.home-search', [
-            'results' => $results,
-            'query' => $query,
-            'partners' => $partners,
-            'categories' => $categories,
-            'providers' => $providers
-        ]);
-    }
+//    public function search(Request $request)
+//    {
+//        $query = $request->input('query');
+//
+//        // Barcha partnerlar va kategoriyalarni olish
+//        $partners = Provider::all();
+//        $categories = Category::all();
+//
+//        if ($query) {
+//            // Kategoriyalarni qidiruv so'rovi bo'yicha filtrlash
+//            $results = Category::where('name', 'LIKE', "%$query%")
+//                ->orWhereHas('services', function ($q) use ($query) {
+//                    $q->where('name_en', 'LIKE', "%$query%");
+//                })
+//                ->get();
+//
+//            // Providerlarni qidiruv so'rovi bo'yicha filtrlash
+//            $providers = User::where('role_id', 2)->where('name', 'LIKE', "%$query%")
+//                ->orWhere('description', 'LIKE', "%$query%")
+//                ->orWhere('tagline', 'LIKE', "%$query%")
+//                ->get();
+//        } else {
+//            // Qidiruv bo'yicha natijalar bo'lmasa bo'sh kolleksiya
+//            $results = collect();
+//            $providers = collect();
+//        }
+//
+//        return view('pages.home-search', [
+//            'results' => $results,
+//            'query' => $query,
+//            'partners' => $partners,
+//            'categories' => $categories,
+//            'providers' => $providers
+//        ]);
+//    }
 
     // home
     public function home()
@@ -201,142 +201,66 @@ class PageController extends Controller
         return view('frontend.contact');
     }
 
-// public function filter(Request $request)
-// {
 
+    public function filter(Request $request)
+    {
+        $companyAddress = $request->input('company_address');
+        $languageId = $request->input('language_id'); // Til ID-si
+        $description = $request->input('description'); // Qo'shimcha kalit so'zlar (description)
+        $numberOfTeam = $request->input('number_of_team'); // Komanda hajmi
 
-//     $sub_categories = ServiceSubCategory::all();
-//     $languages = Language::all();
+        // Foydalanuvchilarni olish
+        $query = User::query()
+            ->with('companies')
+            ->where('role_id', 2); // Faqat role_id = 2 bo'lgan foydalanuvchilarni olish
 
-//     // Get filter conditions from the request
-//     $skills = $request->input('skills'); // array of skill ids
-//     $companyAddress = $request->input('company_address'); // address to filter
-//     $subCategoryId = $request->input('sub_category_id'); // selected sub category id
-//     $priceRange = $request->input('price_range'); // array with min and max price
-//     $languageId = $request->input('language_id'); // selected language id
-//     $teamSize = $request->input('team_size'); // team size value
+        // Description bo'yicha filtr (Agar description berilgan bo'lsa)
+        if ($description) {
 
-//     $query = User::query()
-//         ->with(['services.subCategory.skills', 'language', 'companies']);
+            $query->WhereHas('companies', function ($query) use ($description) {
+                $query->where('description', 'like', '%' . $description . '%');
+            });
+        }
 
-//     // Filter by skills
-//     if (is_array($skills) && count($skills) > 0) {
-//         $query->whereHas('services', function ($query) use ($skills) {
-//             $query->whereHas('skills', function ($query) use ($skills) {
-//                 $query->whereIn('skills.id', $skills);
-//             });
-//         });
-//     }
+        // Manzil bo'yicha filtr (Agar company address berilgan bo'lsa)
+        if ($companyAddress) {
+            $query->WhereHas('companies', function ($query) use ($companyAddress) {
+                $query->where('address', 'like', '%' . $companyAddress . '%');
+            });
+        }
 
-//     // Filter by company address
-//     if ($companyAddress) {
-//         $query->whereHas('companies', function ($query) use ($companyAddress) {
-//             $query->where('address', 'like', '%' . $companyAddress . '%');
-//         });
-//     }
+        // Til bo'yicha filtr (Agar til berilgan bo'lsa)
+        if ($languageId) {
+            $query->WhereHas('language', function ($query) use ($languageId) {
+                $query->where('language_id', $languageId);
+            });
+        }
 
-//     // Filter by sub category
-//     if ($subCategoryId) {
-//         $query->whereHas('services', function ($query) use ($subCategoryId) {
-//             $query->where('service_sub_category_id', $subCategoryId);
-//         });
-//     }
+        // Komanda hajmi bo'yicha filtr (Agar number_of_team berilgan bo'lsa)
+        if ($numberOfTeam) {
+            $query->WhereHas('companies', function ($query) use ($numberOfTeam) {
+                if ($numberOfTeam === "50+") {
+                    // 50 va undan katta jamoalar uchun shart
+                    $query->where('number_of_team', '>=', 50);
+                } elseif (str_contains($numberOfTeam, '-')) {
+                    // Masalan, "2-10" diapazoni uchun shart
+                    [$min, $max] = explode('-', $numberOfTeam);
+                    $query->whereBetween('number_of_team', [(int)$min, (int)$max]);
+                } else {
+                    // Foydalanuvchi aniq raqam kiritgan bo'lsa
+                    $query->where('number_of_team', $numberOfTeam);
+                }
+            });
+        }
 
-//     // Filter by price range
-//     if ($priceRange && is_array($priceRange) && isset($priceRange['min'], $priceRange['max'])) {
-//         $query->whereHas('services', function ($query) use ($priceRange) {
-//             $query->whereBetween('price', [$priceRange['min'], $priceRange['max']]);
-//         });
-//     }
+        // Paginatsiya qilish
+        $sub_categories = ServiceSubCategory::all();
+        $languages = Language::all();
 
-//     // Filter by language
-//     if ($languageId) {
-//         $query->where('language_id', $languageId);
-//     }
+        $providers = $query->paginate(10);
 
-//     // Filter by team size
-//     if ($teamSize) {
-//         $query->whereHas('companies', function ($query) use ($teamSize) {
-//             if ($teamSize === '1') {
-//                 $query->where('number_of_team', 1);
-//             } elseif ($teamSize === '2-10') {
-//                 $query->whereBetween('number_of_team', [2, 10]);
-//             } elseif ($teamSize === '11-50') {
-//                 $query->whereBetween('number_of_team', [11, 50]);
-//             } elseif ($teamSize === '50+') {
-//                 $query->where('number_of_team', '>', 50);
-//             }
-//         });
-//     }
-
-//     // Get the filtered providers
-//     $providers = $query->get();
-
-//     // Debug the result (optional)
-//     dd($providers);
-
-//     // Return the filtered providers to the view
-//     return view('frontend.page-provider-filter', compact('providers', 'sub_categories', 'languages'));
-// }
-
-public function filter(Request $request)
-{
-    $companyAddress = $request->input('company_address'); 
-    $languageId = $request->input('language_id'); // Til ID-si
-    $description = $request->input('description'); // Qo'shimcha kalit so'zlar (description)
-    $numberOfTeam = $request->input('number_of_team'); // Komanda hajmi
-
-    // Foydalanuvchilarni olish
-    $query = User::query()
-        ->with('companies') 
-        ->where('role_id', 2); // Faqat role_id = 2 bo'lgan foydalanuvchilarni olish
-
-    // Description bo'yicha filtr (Agar description berilgan bo'lsa)
-    if ($description) {
-        $query->orWhereHas('companies', function ($query) use ($description) {
-            $query->where('description', 'like', '%' . $description . '%');
-        });
+        return view('frontend.page-provider', compact('providers', 'sub_categories', 'languages'));
     }
-
-    // Manzil bo'yicha filtr (Agar company address berilgan bo'lsa)
-    if ($companyAddress) {
-        $query->orWhereHas('companies', function ($query) use ($companyAddress) {
-            $query->where('address', 'like', '%' . $companyAddress . '%');
-        });
-    }
-
-    // Til bo'yicha filtr (Agar til berilgan bo'lsa)
-    if ($languageId) {
-        $query->whereHas('language', function ($query) use ($languageId) {
-            $query->where('language_id', $languageId);
-        });
-    }
-
-    // Komanda hajmi bo'yicha filtr (Agar number_of_team berilgan bo'lsa)
-    if ($numberOfTeam) {
-        $query->whereHas('companies', function ($query) use ($numberOfTeam) {
-            if ($numberOfTeam === "50+") {
-                // 50 va undan katta jamoalar uchun shart
-                $query->where('number_of_team', '>=', 50);
-            } elseif (str_contains($numberOfTeam, '-')) {
-                // Masalan, "2-10" diapazoni uchun shart
-                [$min, $max] = explode('-', $numberOfTeam);
-                $query->whereBetween('number_of_team', [(int)$min, (int)$max]);
-            } else {
-                // Foydalanuvchi aniq raqam kiritgan bo'lsa
-                $query->where('number_of_team', $numberOfTeam);
-            }
-        });
-    }
-
-    // Paginatsiya qilish
-    $sub_categories = ServiceSubCategory::all();
-    $languages = Language::all();
-
-    $providers = $query->paginate(8);
-
-    return view('frontend.page-provider', compact('providers', 'sub_categories', 'languages'));
-}
 
 
 
