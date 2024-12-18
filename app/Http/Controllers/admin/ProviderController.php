@@ -45,19 +45,19 @@ class ProviderController extends Controller
         return view('admin.providers.index', compact('providers'));
     }
 
-    
+
     public function create()
     {
         //
     }
 
-    
+
     public function store(Request $request)
     {
         //
     }
 
-    
+
     public function show(string $id)
     {
         $provider = User::find($id);
@@ -87,7 +87,7 @@ class ProviderController extends Controller
     {
         $provider = User::findOrFail($id);
         $provider->delete();
-    
+
         return redirect()->route('providers.index')->with('success', 'Provider deleted successfully');
     }
 }

@@ -14,7 +14,7 @@ class PortfolioRequest extends FormRequest
         return true;
     }
 
-  
+
     public function rules(): array
     {
         $actionMethod = $this->route()->getActionMethod();

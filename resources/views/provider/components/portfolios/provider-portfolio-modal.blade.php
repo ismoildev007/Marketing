@@ -1,4 +1,6 @@
+<form action="{{ route('portfolios.store')}}" enctype='multipart/form-data' method="POST">
 
+    @csrf
     <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="portfolioProviderOffcanvas">
         <div class="offcanvas-header border-bottom" style="padding-top: 20px; padding-bottom: 20px">
             <div class="d-flex align-items-center">
@@ -8,6 +10,9 @@
                     <h2 class="fs-14 fw-bold text-truncate-1-line">Портфель</h2>
                 </a>
             </div>
+            <button class="btn btn-primary btn-sm d-inline-block mt-2" type="submit">
+                Отправить <i class="feather-arrow-right"></i>
+            </button>
         </div>
         @if($errors->has('error'))
             <div class="alert alert-danger">
@@ -15,8 +20,7 @@
             </div>
         @endif
         <div class="offcanvas-body">
-            <form action="{{ route('portfolios.store')}}" enctype='multipart/form-data' method="POST">
-            @csrf
+
             <div class="row">
                 <div class="col-md-7">
                   <div class="row">
@@ -119,7 +123,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-12">
                             <h5>Экспертиза</h5>
                             <div class="form-group mb-4">
@@ -140,7 +144,7 @@
                                 <select class="form-control max-select" id="skillsSelect" name="skills[]" multiple></select>
                             </div>
                         </div>
-                        
+
                         <script>
                             $(document).ready(function() {
                                 // Select2ni o'rnatish
@@ -202,13 +206,13 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 mt-3">
+                        <div class="col-md-6 mt-3">
                            <h5> Дата начала </h5>
                             <div class="mb-4">
                                 <input type="date" class="form-control" name="start_date" placeholder="Введите бюджет...">
                             </div>
                         </div>
-                        <div class="col-md-12 mt-3">
+                        <div class="col-md-6 mt-3">
                            <h5> Дата окончания</h5>
                             <div class="mb-4">
                                 <input type="date" class="form-control" name="end_date" placeholder="Введите бюджет...">
@@ -323,9 +327,10 @@
                 <input type="hidden" name="provider_id" value="{{ auth()->user()->id }}">
                 <button class="btn btn-primary d-inline-block mt-4" type="submit">Представлять на рассмотрение</button>
             </div>
-            </form>
         </div>
     </div>
+</form>
+
     <style>
         .sticky-column {
             position: -webkit-sticky;

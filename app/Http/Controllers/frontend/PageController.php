@@ -209,29 +209,25 @@ class PageController extends Controller
         $description = $request->input('description'); // Qo'shimcha kalit so'zlar (description)
         $numberOfTeam = $request->input('number_of_team'); // Komanda hajmi
 
-        // Foydalanuvchilarni olish
-        $query = User::query()
-            ->with('companies')
-            ->where('role_id', 2); // Faqat role_id = 2 bo'lgan foydalanuvchilarni olish
+        $query = User::where('role_id', 2);
 
-        // Description bo'yicha filtr (Agar description berilgan bo'lsa)
-        if ($description) {
 
-            $query->WhereHas('companies', function ($query) use ($description) {
-                $query->where('description', 'like', '%' . $description . '%');
-            });
-        }
+//
+//        if ($description) {
+//            $query->whereHas('companies', function ($query) use ($description) {
+//                $query->where('description', 'like', '%' . $description . '%');
+//            });
+//
+//        }
 
-        // Manzil bo'yicha filtr (Agar company address berilgan bo'lsa)
         if ($companyAddress) {
-            $query->WhereHas('companies', function ($query) use ($companyAddress) {
+            $query->whereHas('companies', function ($query) use ($companyAddress) {
                 $query->where('address', 'like', '%' . $companyAddress . '%');
             });
         }
 
-        // Til bo'yicha filtr (Agar til berilgan bo'lsa)
         if ($languageId) {
-            $query->WhereHas('language', function ($query) use ($languageId) {
+            $query->whereHas('language', function ($query) use ($languageId) {
                 $query->where('language_id', $languageId);
             });
         }

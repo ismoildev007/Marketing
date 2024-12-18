@@ -14,7 +14,7 @@ class AdminLangaugeRequest extends FormRequest
         return auth()->user()->role_id == 1;
     }
 
-    
+
     public function rules(): array
     {
         $actionMethod = $this->route()->getActionMethod();
