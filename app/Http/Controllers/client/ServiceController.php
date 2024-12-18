@@ -34,9 +34,9 @@ class ServiceController extends Controller
             'budget_max' => 'nullable|numeric|min:0',
             'price' => 'nullable|numeric|min:0',
             'deadline' => 'required|string',
-            'service_sub_category_id' => 'required|exists:service_sub_categories,id',
-            'type' => 'required|string|in:fixed,hourly',
-            'status' => 'required|string|in:open,closed',
+            'sub_category_id' => 'required|exists:service_sub_categories,id',
+            'type' => 'nullable|string|in:fixed,hourly',
+            'status' => 'nullable|string',
         ]);
 
         Lot::create([
@@ -47,7 +47,7 @@ class ServiceController extends Controller
             'budget_max' => $request->budget_max,
             'price' => $request->price,
             'deadline' => $request->deadline,
-            'service_sub_category_id' => $request->service_sub_category_id,
+            'sub_category_id' => $request->sub_category_id,
             'type' => $request->type,
             'status' => $request->status,
         ]);
@@ -72,9 +72,9 @@ class ServiceController extends Controller
             'budget_max' => 'nullable|numeric|min:0',
             'price' => 'nullable|numeric|min:0',
             'deadline' => 'required|string',
-            'service_sub_category_id' => 'required|exists:service_sub_categories,id',
-            'type' => 'required|string|in:fixed,hourly',
-            'status' => 'required|string|in:open,closed',
+            'sub_category_id' => 'required|exists:service_sub_categories,id',
+            'type' => 'nullable|string|in:fixed,hourly',
+            'status' => 'nullable|string',
         ]);
 
         $lot->update([
@@ -84,7 +84,7 @@ class ServiceController extends Controller
             'budget_max' => $request->budget_max,
             'price' => $request->price,
             'deadline' => $request->deadline,
-            'service_sub_category_id' => $request->service_sub_category_id,
+            'sub_category_id' => $request->sub_category_id,
             'type' => $request->type,
             'status' => $request->status,
         ]);

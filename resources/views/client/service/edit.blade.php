@@ -90,9 +90,9 @@
 
                                     <div class="mb-4 col-md-4">
                                         <label for="serviceSubCategoryInput" class="fw-semibold">Подкатегория услуги:</label>
-                                        <select class="form-control max-select" id="serviceSubCategoryInput" name="service_sub_category_id" required>
+                                        <select class="form-control max-select" id="serviceSubCategoryInput" name="sub_category_id" required>
                                             @foreach ($serviceSubCategories as $category)
-                                                <option value="{{ $category->id }}" {{ $lot->service_sub_category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                                <option value="{{ $category->id }}" {{ $lot->sub_category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

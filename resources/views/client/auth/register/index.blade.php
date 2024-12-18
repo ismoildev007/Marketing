@@ -65,20 +65,22 @@
 
                                 <div class="row">
                                     <div class="form-group">
-                                        <label>полное имя <span class="brand-1">*</span></label>
-                                        <input type="text" name="responsible_person_name" id="responsible_person_name" class="form-control text-center" required>
+                                        <label>Укажите название вашей компании <span class="brand-1">*</span></label>
+                                        <input type="text" name="name" id="name" class="form-control text-center" required>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Укажите название вашей компании <span class="brand-1">*</span></label>
-                                            <input type="text" name="name" id="name" class="form-control text-center" required>
+                                            <label>Имя ответственного лица <span class="brand-1">*</span></label>
+                                            <input type="text" name="responsible_person_name" id="responsible_person_name" class="form-control text-center" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Email <span class="brand-1">*</span></label>
-                                            <input type="email" name="email" id="email" class="form-control text-center" required>
-                                        </div>
+                                    <div class="col-md-6 form-group">
+                                        <label>Тип деятельности <span class="brand-1">*</span></label>
+                                        <select name="type_of_activity" id="" class="form-control">
+                                            <option value="Marketing">Marketing</option>
+                                            <option value="It Company">It company</option>
+                                            <option value="Branding Company">Marketing</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -88,12 +90,19 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Тип деятельности <span class="brand-1">*</span></label>
-                                            <input type="text" name="type_of_activity" id="activity-type" class="form-control text-center" required>
+                                            <label>Email <span class="brand-1">*</span></label>
+                                            <input type="email" name="email" id="email" class="form-control text-center" required>
                                         </div>
                                     </div>
+{{--                                    <div class="col-md-6 form-group">--}}
+{{--                                        <label>Тип деятельности <span class="brand-1">*</span></label>--}}
+{{--                                        <select name="type_of_activity" id="" class="form-control">--}}
+{{--                                            <option value="Marketing">Marketing</option>--}}
+{{--                                            <option value="It Company">It company</option>--}}
+{{--                                            <option value="Branding Company">Marketing</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
                                     <div class="col-md-6">
-
                                         <div class="form-group">
                                             <label>Пароль <span class="brand-1">*</span></label>
                                             <input type="password" name="password" id="password" class="form-control text-center" required>
