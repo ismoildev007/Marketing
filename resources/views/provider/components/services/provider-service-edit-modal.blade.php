@@ -1,107 +1,101 @@
 @foreach ($services as $service)
-
+    <form action="{{ route('service.update', $service->id) }}" method="post">
+        @csrf
+        @method('PUT')
     <!-- Modal for Editing Service -->
-    <div class="offcanvas offcanvas-end w-50" id="editServiceModal{{ $service->id }}" tabindex="-1">
-        <div class="offcanvas-header border-bottom" style="padding-top: 20px; padding-bottom: 20px">
-            <div class="d-flex align-items-center">
-                <div class="avatar-text avatar-md items-details-close-trigger" data-bs-dismiss="offcanvas"
-                    data-bs-toggle="tooltip" data-bs-trigger="hover" title="Close">
-                    <i class="feather-arrow-left"></i>
+        <div class="offcanvas offcanvas-end w-50" id="editServiceModal{{ $service->id }}" tabindex="-1">
+            <div class="offcanvas-header border-bottom" style="padding-top: 20px; padding-bottom: 20px">
+                <div class="d-flex align-items-center">
+                    <div class="avatar-text avatar-md items-details-close-trigger" data-bs-dismiss="offcanvas"
+                        data-bs-toggle="tooltip" data-bs-trigger="hover" title="Close">
+                        <i class="feather-arrow-left"></i>
+                    </div>
+                    <span class="vr text-muted mx-4"></span>
                 </div>
-                <span class="vr text-muted mx-4"></span>
-                <h2 class="fs-14 fw-bold text-truncate-1-line">Редактировать услугу</h2>
+                <button type="submit" class="btn btn-primary btn-submit">Обновлять</button>
             </div>
-        </div>
-        <div class="offcanvas-body">
-            <form action="{{ route('service.update', $service->id) }}" method="post">
-                @csrf
-                @method('PUT')
+            <div class="offcanvas-body">
 
-                <div class="row">
-                    <!-- Service Type Selection -->
-                    <div class="col-sm-12 col-lg-12">
-                        <div class="form-group mb-4">
-                            <label class="form-label">Тип услуги:</label>
-                            <select name="service_sub_category_id" id="edit-service-type-{{ $service->id }}" class="form-control select2">
-                                @foreach ($serviceTypes as $serviceType)
-                                    <option value="{{ $serviceType->id }}" 
-                                        {{ $serviceType->id == $service->service_sub_category_id ? 'selected' : '' }}>
-                                        {{ $serviceType->name_ru }}
-                                    </option>
-                                @endforeach
-                            </select>
+                    <div class="row">
+                        <!-- Service Type Selection -->
+                        <div class="col-sm-12 col-lg-12">
+                            <div class="form-group mb-4">
+                                <label class="form-label">Тип услуги:</label>
+                                <select name="service_sub_category_id" id="edit-service-type-{{ $service->id }}" class="form-control select2">
+                                    @foreach ($serviceTypes as $serviceType)
+                                        <option value="{{ $serviceType->id }}"
+                                            {{ $serviceType->id == $service->service_sub_category_id ? 'selected' : '' }}>
+                                            {{ $serviceType->name_ru }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Skills -->
-                    <div class="col-sm-12 col-lg-12">
-                        <div class="form-group mb-4">
-                            <label class="form-label">Навыки:</label>
-                             <select name="skills[]" id="edit-skills-list-{{ $service->id }}"
-                                class="form-select form-control max-select" data-select2-selector="tag" multiple>
-                                @foreach ($skills as $skill)
-                                    <option value="{{ $skill->id }}"
-                                        {{ in_array($skill->id, $service->skills->pluck('id')->toArray()) ? 'selected' : '' }}>
-                                        {{ $skill->name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                        <!-- Skills -->
+                        <div class="col-sm-12 col-lg-12">
+                            <div class="form-group mb-4">
+                                <label class="form-label">Навыки:</label>
+                                 <select name="skills[]" id="edit-skills-list-{{ $service->id }}"
+                                    class="form-select form-control max-select" data-select2-selector="tag" multiple>
+                                    @foreach ($skills as $skill)
+                                        <option value="{{ $skill->id }}"
+                                            {{ in_array($skill->id, $service->skills->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                            {{ $skill->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Starting Price -->
-                    <div class="col-sm-12 col-lg-12">
-                        <div class="form-group mb-4">
-                            <label class="form-label">Начальная цена:</label>
-                            <div class="row mt-2">
-                                @foreach ([1000, 2000, 5000, 10000] as $price)
+                        <!-- Starting Price -->
+                        <div class="col-sm-12 col-lg-12">
+                            <div class="form-group mb-4">
+                                <label class="form-label">Начальная цена:</label>
+                                <div class="row mt-2">
+                                    @foreach ([1000, 2000, 5000, 10000] as $price)
+                                        <div class="col d-flex align-items-center">
+                                            <label for="edit-price-{{ $price }}-{{ $service->id }}"
+                                                class="d-flex align-items-center">
+                                                <!-- Use the actual price value here instead of $service->price -->
+                                                <input type="radio"
+                                                    id="edit-price-{{ $price }}-{{ $service->id }}" name="price"
+                                                    value="{{ $price }}"
+                                                    {{ $service->price == $price ? 'checked' : '' }}>
+                                                <span class="ms-2">€{{ $price }}</span>
+                                            </label>
+                                        </div>
+                                    @endforeach
                                     <div class="col d-flex align-items-center">
-                                        <label for="edit-price-{{ $price }}-{{ $service->id }}"
+                                        <label for="edit-custom-price-{{ $service->id }}"
                                             class="d-flex align-items-center">
-                                            <!-- Use the actual price value here instead of $service->price -->
-                                            <input type="radio"
-                                                id="edit-price-{{ $price }}-{{ $service->id }}" name="price"
-                                                value="{{ $price }}"
-                                                {{ $service->price == $price ? 'checked' : '' }}>
-                                            <span class="ms-2">€{{ $price }}</span>
+                                            <input type="radio" id="edit-custom-price-{{ $service->id }}" name="price"
+                                                value="custom" {{ $service->price > 10000 ? 'checked' : '' }}>
+                                            <input type="number" class="ms-2 p-1" name="custom_price"
+                                                id="edit-custom-price-input-{{ $service->id }}"
+                                                value="{{ $service->price > 10000 ? $service->price : '' }}"
+                                                placeholder="€20000" {{ $service->price > 10000 ? '' : 'disabled' }} />
                                         </label>
                                     </div>
-                                @endforeach
-                                <div class="col d-flex align-items-center">
-                                    <label for="edit-custom-price-{{ $service->id }}"
-                                        class="d-flex align-items-center">
-                                        <input type="radio" id="edit-custom-price-{{ $service->id }}" name="price"
-                                            value="custom" {{ $service->price > 10000 ? 'checked' : '' }}>
-                                        <input type="number" class="ms-2 p-1" name="custom_price"
-                                            id="edit-custom-price-input-{{ $service->id }}"
-                                            value="{{ $service->price > 10000 ? $service->price : '' }}"
-                                            placeholder="€20000" {{ $service->price > 10000 ? '' : 'disabled' }} />
-                                    </label>
                                 </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Description -->
+                        <div class="col-12">
+                            <div class="form-group mb-4">
+                                <label class="form-label">Описание (необязательно):</label>
+                                <textarea class="form-control" name="description" style="height: 18em;">{{ $service->description }}</textarea>
                             </div>
                         </div>
                     </div>
 
-
-                    <!-- Description -->
-                    <div class="col-12">
-                        <div class="form-group mb-4">
-                            <label class="form-label">Описание (необязательно):</label>
-                            <textarea class="form-control" name="description" style="height: 18em;">{{ $service->description }}</textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <input type="hidden" value="{{ auth()->user()->id }}" name="provider_id">
-
-                <div class="row">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-submit">Обновлять</button>
-                    </div>
-                </div>
-            </form>
+                    <input type="hidden" value="{{ auth()->user()->id }}" name="provider_id">
+            </div>
         </div>
-    </div>
+    </form>
+
 @endforeach
 
 <script>

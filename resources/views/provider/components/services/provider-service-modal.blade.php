@@ -18,8 +18,8 @@
                     <i class="feather-arrow-left"></i>
                 </div>
                 <span class="vr text-muted mx-4"></span>
-                <h2 class="fs-14 fw-bold text-truncate-1-line">Создать услугу</h2>
             </div>
+            <button class="btn btn-primary btn-submit" type="submit">Представлять на рассмотрение</button>
         </div>
         <div class="offcanvas-body">
             <div class="row">
@@ -95,13 +95,6 @@
                 </div>
             </div>
             <input type="hidden" value="{{ auth()->user()->id }}" name="provider_id">
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-submit" type="submit">Представлять на рассмотрение</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </form>

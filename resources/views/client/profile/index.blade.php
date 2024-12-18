@@ -41,7 +41,7 @@
                                                     <div
                                                         class="avatar-image wd-150 ht-150 border border-5 border-gray-3 position-relative">
                                                         <img id="avatarPreview"
-                                                        src="{{ $client->logo ? asset('storage/' . $client->logo) : asset('assets/imgs/dora/admin-default/logo.webp') }}" alt="{{ old('name', $client->name) }}"
+                                                        src="{{ $client->client->image ? asset('storage/' . $client->client->image) : asset('assets/imgs/dora/admin-default/logo.webp') }}" alt="{{ old('name', $client->name) }}"
                                                         style="height: 18em; width: 100%; object-fit: cover;"
                                                             class="img-fluid" />
                                                     </div>
@@ -51,7 +51,7 @@
                                                             <i class="fa-solid fa-pen-to-square border rounded-circle p-3 bg-light"
                                                                 style="cursor: pointer;"></i>
                                                             <input type="file" class="form-control" id="logoInput"
-                                                                name="logo" style="opacity: 0; visibility: hidden;"
+                                                                name="image" style="opacity: 0; visibility: hidden;"
                                                                 accept="image/*">
                                                         </label>
                                                     </div>
@@ -70,7 +70,7 @@
                                                     <span class="text-muted fw-medium hstack gap-3"><i
                                                             class="feather-phone"></i>Телефон</span>
                                                     <a href="javascript:void(0);"
-                                                        class="float-end">{{ old('tagline', $client->phone_number) }}</a>
+                                                        class="float-end">{{ old('tagline', $client->client->phone_number) }}</a>
                                                 </li>
 
                                                 <li class="hstack justify-content-between mb-4">
@@ -104,8 +104,8 @@
                                                         <div class="col-sm-6 text-muted">Полное имя:</div>
                                                         <div class="col-sm-6 fw-semibold">
                                                             <input type="text" class="form-control" id="nameInput"
-                                                                placeholder="Полное имя" name="name"
-                                                                value="{{ old('name', $client->name) }}">
+                                                                placeholder="Полное имя" name="responsible_person_name"
+                                                                value="{{ old('responsible_person_name', $client->client->name) }}">
                                                         </div>
                                                     </div>
 
@@ -114,24 +114,30 @@
                                                         <div class="col-sm-6 fw-semibold">
                                                             <input type="text" class="form-control" id="taglineInput"
                                                                 placeholder="Вид деятельности" name="type_of_activity"
-                                                                value="{{ old('type_of_activity', $client->type_of_activity) }}">
+                                                                value="{{ old('type_of_activity', $client->client->type_of_activity) }}">
                                                         </div>
                                                     </div>
                                                     <div class="row g-0 mb-4">
                                                         <div class="col-sm-6 text-muted">Название организации:</div>
                                                         <div class="col-sm-6 fw-semibold">
                                                             <input type="text" class="form-control" id="taglineInput"
-                                                                placeholder="Название организации" name="organization_name"
-                                                                value="{{ old('organization_name', $client->organization_name) }}">
+                                                                placeholder="Название организации" name="name"
+                                                                value="{{ old('name', $client->name) }}">
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" class="form-control" id="taglineInput"
+                                                           placeholder="Название организации" name="email"
+                                                           value="{{ old('email', $client->email) }}">
+                                                    <input type="hidden" class="form-control" id="taglineInput"
+                                                           placeholder="Название организации" name="password"
+                                                           value="{{ $client->password }}">
 
                                                     <div class="row g-0 mb-4">
                                                         <div class="col-sm-6 text-muted">номер телефона:</div>
                                                         <div class="col-sm-6 fw-semibold">
                                                             <input type="text" class="form-control" id="addressInput"
                                                                 placeholder="номер телефона" name="phone_number"
-                                                                value="{{ old('phone_number', $client->phone_number) }}">
+                                                                value="{{ old('phone_number', $client->client->phone_number) }}">
                                                         </div>
                                                     </div>
 

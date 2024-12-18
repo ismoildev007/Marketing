@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li class="nxl-item nxl-hasmenu {{ Request::routeIs('services.index') ? 'active' : '' }}">
-                    <a href="https://marketing.dora.uz/provider/service" class="nxl-link">
+                    <a href="/provider/service" class="nxl-link">
             <span class="nxl-micon">
             <i class="feather-search"></i>
             </span>

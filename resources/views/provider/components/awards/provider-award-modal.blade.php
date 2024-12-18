@@ -17,20 +17,18 @@ if ($providerCompany) {
     $portfolios = collect();
 }
 ?>
-<!-- Modal HTML form -->
-<div class="offcanvas offcanvas-end w-50" tabindex="-1" id="awardProviderOffcanvas">
-    <div class="offcanvas-header border-bottom" style="padding-top: 20px; padding-bottom: 20px">
-        <div class="d-flex align-items-center">
-            <div class="avatar-text avatar-md items-details-close-trigger" data-bs-dismiss="offcanvas" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Details Close"><i class="feather-arrow-left"></i></div>
-            <span class="vr text-muted mx-4"></span>
-            <a href="javascript:void(0);">
-                <h2 class="fs-14 fw-bold text-truncate-1-line">Награды</h2>
-            </a>
+<form action="{{ route('awards.store') }}" method="POST">
+    @csrf
+    <!-- Modal HTML form -->
+    <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="awardProviderOffcanvas">
+        <div class="offcanvas-header border-bottom" style="padding-top: 20px; padding-bottom: 20px">
+            <div class="d-flex align-items-center">
+                <div class="avatar-text avatar-md items-details-close-trigger" data-bs-dismiss="offcanvas" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Details Close"><i class="feather-arrow-left"></i></div>
+                <span class="vr text-muted mx-4"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранять</button>
         </div>
-    </div>
-    <div class="offcanvas-body">
-        <form action="{{ route('awards.store') }}" method="POST">
-            @csrf
+        <div class="offcanvas-body">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group mb-4">
@@ -39,7 +37,7 @@ if ($providerCompany) {
                     </div>
                 </div>
 
-            
+
                 <div class="col-sm-6">
                     <div class="form-group mb-4">
                         <label for="awardDate" class="form-label">Дата</label>
@@ -50,12 +48,11 @@ if ($providerCompany) {
                 <div class="col-sm-6">
                     <div class="form-group mb-4">
                         <label class="form-label">Ссылка на существующую работу (необязательно):</label>
-                            <input name="link" id="link" class="form-control" placeholder="Ссылка " required>  
+                            <input name="link" id="link" class="form-control" placeholder="Ссылка " required>
                     </div>
                 </div>
             </div>
             <input type="hidden" name="provider_id" value="{{ auth()->user()->id }}">
-            <button type="submit" class="btn btn-primary">Сохранять</button>
-        </form>
+        </div>
     </div>
-</div>
+</form>
