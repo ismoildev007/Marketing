@@ -1846,8 +1846,9 @@ body {
 .btn.btn-tag-sm {
     padding: 10px 13px;
     background-color: #db1823;
+    color: #fff;
+    width: max-content;
     border-radius: 6px;
-    color: #191919;
     font-size: 14px;
     line-height: 14px;
     font-weight: 500;
@@ -2271,8 +2272,11 @@ body {
     line-height: 60px;
 }
 
+#scrollUp svg * {
+    fill: #fff;
+}
 #scrollUp svg {
-    fill: #db1823;
+    fill: #fff;
     height: 24px;
     position: relative;
     z-index: 123;
@@ -10411,11 +10415,14 @@ section {
 .list-change-log .item-log .line-log::before {
     content: "";
     position: absolute;
-    height: 19px;
-    width: 19px;
-    background: url(../imgs/page/change-log/point.png) no-repeat center;
+    height: 10px;
+    width: 10px;
+    background-color: #db1823;
+    border-radius: 50%;
+    /* background: url(../imgs/page/change-log/point.png) no-repeat center; */
+    box-shadow: 0px 0px 0px 5px rgb(226 118 118 / 48%);
     top: 7px;
-    left: -10px;
+    left: -5px;
 }
 
 .list-change-log .item-log .info-log {
@@ -12286,7 +12293,7 @@ section {
 }
 
 .card-grid-2 .card-grid-2-image-rd {
-    padding: 30px 20px 0px 20px;
+    padding: 15px;
     display: inline-block;
     width: 100%;
 }
