@@ -30,11 +30,14 @@
     <!-- [ Main Content ] start -->
     <div class="main-content d-flex">
         <!-- [ Content Sidebar ] start -->
-  
+
         <!-- [ Content Sidebar  ] end -->
         <!-- [ Main Area  ] start -->
         <div class="content-area" data-scrollbar-target="#psScrollbarInit">
             <div class="content-area-header bg-white sticky-top">
+                <div class="card-header">
+                    <h5 class="card-title text-black">Mенеджера</h5>
+                </div>
                 <div class="page-header-right ms-auto">
                     @if (auth()->user()->role_id == 2)
                     <div class="d-flex align-items-center gap-3 page-header-right-items-wrapper">

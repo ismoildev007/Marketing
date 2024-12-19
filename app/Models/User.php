@@ -40,6 +40,10 @@ class User extends Authenticatable
     /**
      * A user belongs to a language.
      */
+    public function client()
+    {
+        return $this->hasOne(Client::class);
+    }
 
     public function role(){
         return $this->belongsTo(Role::class);

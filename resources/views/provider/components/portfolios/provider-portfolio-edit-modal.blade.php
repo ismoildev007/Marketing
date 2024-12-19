@@ -22,7 +22,10 @@
                     <h2 class="fs-14 fw-bold text-truncate-1-line">Редактировать портфолио</h2>
                 </a>
             </div>
-            <button class="btn btn-primary d-inline-block mt-4" type="submit">обновлять</button>
+
+            <button class="btn btn-primary btn-sm d-inline-block mt-2" type="submit">
+                Oбновлять  <i class="fa fa-sync-alt"></i>
+            </button>
         </div>
         @if (session('error'))
             <div class="alert alert-danger">
@@ -102,9 +105,21 @@
                             </div>
                         </div>
 
+                        <div class="col-md-12">
+                            <h6>Сектор</h6>
+                            <div class="form-group mb-4">
+                                <select name="sector_id" class="form-control"
+                                        data-select2-selector="status">
+                                    @foreach ($sectors as $sector)
+                                        <option value="{{ $sector->id }}">
+                                            {{ $sector->name_ru }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
-
-                        <div class="col-md-12 mt-3">
+                        <div class="col-md-6 mt-3">
                             <h5>Дата начала </h5>
                             <div class="mb-4">
                                 <input type="date" class="form-control" name="start_date"
@@ -112,7 +127,7 @@
                                     value="{{ \Carbon\Carbon::parse($portfolio->start_date)->format('Y-m-d') }}">
                             </div>
                         </div>
-                        <div class="col-md-12 mt-3">
+                        <div class="col-md-6 mt-3">
                             <h5> Дата окончания</h5>
                             <div class="mb-4">
                                 <input type="date" class="form-control" name="end_date"
@@ -288,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('imageFileBtn').addEventListener('click', function () {
         showInput('image');
     });
-    
+
     document.getElementById('youtubeUrlBtn').addEventListener('click', function () {
         showInput('youtube');
     });
@@ -318,7 +333,7 @@ function previewImage(event) {
 
     if (file) {
         const reader = new FileReader();
-        
+
         reader.onload = function(e) {
             preview.src = e.target.result; // Set the image source to the file's data
             preview.style.display = 'block'; // Show the image preview

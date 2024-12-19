@@ -16,7 +16,7 @@ class Lot extends Model
         'budget_min',
         'budget_max',
         'deadline',
-        'service_sub_category_id',
+        'sub_category_id',
         'price',
         'type',
         'status',
@@ -29,7 +29,7 @@ class Lot extends Model
 
     public function category()
     {
-        return $this->belongsTo(ServiceSubCategory::class, 'service_sub_category_id');
+        return $this->belongsTo(ServiceSubCategory::class, 'sub_category_id');
     }
 
     public function attachments()

@@ -11,6 +11,8 @@
                 </div>
                 <span class="vr text-muted mx-4"></span>
             </div>
+            <button type="submit" class="btn btn-primary">Создать комментарий</button>
+
         </div>
         <div class="offcanvas-body">
             <div class="row">
@@ -157,13 +159,6 @@
                 </div>
                 <!-- Yashirin Provayder ID -->
                 <input type="hidden" name="provider_id" value="{{ auth()->user()->id }}">
-
-                <!-- Yuborish tugmasi -->
-                <div class="col-12">
-                    <div class="form-group mb-4">
-                        <button type="submit" class="btn btn-primary">Создать комментарий</button>
-                    </div>
-                </div>
             </div>
         </div>
 

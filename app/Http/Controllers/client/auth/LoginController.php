@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client\auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -46,58 +47,77 @@ class LoginController extends Controller
 
     public function register(Request $request)
     {
+        // Validatsiya
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255', // Umumiy nom
             'email' => 'required|email|unique:users,email',
-            'phone_number' => 'required|string|max:20',
-            'organization_name' => 'required|string|unique:users,organization_name|max:255',
-            'type_of_activity' => 'required|string|max:255',
+            'phone_number' => 'nullable|string|max:20',
+            'responsible_person_name' => 'nullable|string|max:255', // Mas'ul shaxs ismi
+            'type_of_activity' => 'nullable|string|max:255',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Foydalanuvchini yaratish
         $user = User::create([
-            'name' => $validated['name'],
+            'name' => $validated['name'], // `name` Users jadvaliga ketadi
             'email' => $validated['email'],
-            'phone_number' => $validated['phone_number'],
-            'organization_name' => $validated['organization_name'],
-            'type_of_activity' => $validated['type_of_activity'],
             'password' => Hash::make($validated['password']),
             'language_id' => 2, // Avtomatik ravishda language_id = 2
             'role_id' => 3,     // Avtomatik ravishda role_id = 3
         ]);
 
+        if (!empty($validated['responsible_person_name'])) {
+            $client = Client::create([
+                'user_id' => $user->id, // Bog'lanishni ta'minlash uchun `user_id` saqlash
+                'name' => $validated['responsible_person_name'], // Mas'ul shaxs ismi
+                'phone_number' => $validated['phone_number'] ?? null,
+                'type_of_activity' => $validated['type_of_activity'] ?? null,
+            ]);
+        }
+
         // Foydalanuvchini avtomatik login qilish
         Auth::login($user);
 
-        // Redirect qilish
-        return redirect()->route('client.dashboard')->with('success', 'Registration successful!');
+        return redirect()->route('client.dashboard')->with('success', 'User registered successfully!');
     }
+
     public function updateProfile(Request $request)
     {
         $user = Auth::user(); // Hozirgi foydalanuvchini olish
+        $client = $user->client; // Foydalanuvchi va Client modeli o'rtasidagi munosabat
 
         // Validatsiya
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id, // Email foydalanuvchidan boshqa hech kimniki bo'lmasligi kerak
+            'email' => 'required|email|unique:users,email,' . $user->id,
             'phone_number' => 'required|string|max:20',
-            'organization_name' => 'required|string|unique:users,organization_name,' . $user->id,
+            'responsible_person_name' => 'required|string',
             'type_of_activity' => 'required|string|max:255',
-            'password' => 'nullable|string|min:8|confirmed', // Parol ixtiyoriy
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,svg,webp.gif|max:4096',
+            'password' => 'nullable|string|min:8',
         ]);
+        $path = null;
 
-        // Ma'lumotlarni yangilash
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('clientImages', 'public');
+        }
+
+        // User modelni yangilash
         $user->update([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'phone_number' => $validated['phone_number'],
-            'organization_name' => $validated['organization_name'],
-            'type_of_activity' => $validated['type_of_activity'],
-            'password' => $validated['password'] ? Hash::make($validated['password']) : $user->password, // Agar yangi parol kiritilgan bo'lsa, uni yangilash
+            'password' => $validated['password'] ? Hash::make($validated['password']) : $user->password,
         ]);
 
-        // Profilni yangilash muvaffaqiyatli bo'lganidan keyin sahifani qayta yuklash
+        // Client modelni yangilash
+        if ($client) {
+            $client->update([
+                'image' => $path,
+                'responsible_person_name' => $validated['responsible_person_name'],
+                'type_of_activity' => $validated['type_of_activity'],
+                'phone_number' => $validated['phone_number'],
+            ]);
+        }
+
         return redirect()->route('client.profile')->with('success', 'Profil muvaffaqiyatli yangilandi!');
     }
 

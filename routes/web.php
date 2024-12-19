@@ -145,7 +145,7 @@ Route::prefix('partner')->namespace('App\Http\Controllers')->group(function () {
     Route::middleware(['checkClient:client', 'auth'])->group(function () {
         Route::get('/dashboard', [ClientPageController::class, 'dashboard'])->name('client.dashboard');
         Route::get('/profile', [ClientPageController::class, 'profile'])->name('client.profile');
-        Route::put('/profile/update', [ClientPageController::class, 'updateProfile'])->name('client.profile.update');
+        Route::put('/profile/update', [ClientLoginController::class, 'updateProfile'])->name('client.profile.update');
         Route::resource('lots', \App\Http\Controllers\client\ServiceController::class);
     });
 });

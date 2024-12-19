@@ -26,7 +26,7 @@ class AdminRequest extends FormRequest
         if ($actionMethod === 'store') {
             $rules = $this->storeNew();
         } else if($actionMethod === 'update'){
-            
+
         }
         return $rules;
     }

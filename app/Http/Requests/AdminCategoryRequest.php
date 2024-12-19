@@ -36,6 +36,6 @@ class AdminCategoryRequest extends FormRequest
             ];
         }
         return [];
-    
+
     }
 }

@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CheckAdmin
 {
-   
+
     public function handle(Request $request, Closure $next)
     {
 

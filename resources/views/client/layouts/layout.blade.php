@@ -121,7 +121,6 @@
     <!--! ================================================================ !-->
     <main class="nxl-container">
         @yield('content')
-        @include('client.components.footer')
     </main>
     <!-- Add this in your <head> section -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">

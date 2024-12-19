@@ -38,7 +38,7 @@ class ServiceController extends Controller
     public function index()
     {
         $services = ServiceSubCategory::paginate(10);
-        
+
         return view('admin.services.index', compact('services'));
     }
 

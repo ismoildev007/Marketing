@@ -14,7 +14,7 @@ class AdminServiceRequest extends FormRequest
         return auth()->user()->role_id == 1;
     }
 
-    
+
     public function rules(): array
     {
         $actionMethod = $this->route()->getActionMethod();
@@ -34,6 +34,6 @@ class AdminServiceRequest extends FormRequest
             ];
         }
         return [];
-    
+
     }
 }

@@ -34,7 +34,7 @@ class LanguageController extends Controller
         return view('admin.languages.index', compact('languages'));
     }
 
- 
+
     public function create()
     {
         return view('admin.languages.create');
@@ -76,7 +76,7 @@ class LanguageController extends Controller
         return redirect()->route('languages.index')->with('success', 'Language updated successfully.');
     }
 
- 
+
     public function destroy($id)
     {
         $language = Language::findOrFail($id);
