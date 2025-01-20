@@ -20,7 +20,7 @@
                         </div>
                         <div class="card-info">
                             <h5 class="mb-12">Я клиент, <br><span style="font-weight: 300;">ищу поставщиков</span></h5>
-                            <p class="mb-12 text-md neutral-300">Технические работы. Пожалуйста, попробуйте позже.</p>
+                            <p class="mb-12 text-md neutral-300">Ищете надежных поставщиков для вашего бизнеса? Зарегистрируйтесь и начните поиск уже сейчас!</p>
                             <!-- Linkni o'chirilgan qilish -->
                             <a class="btn btn-link-white mt-20" href="{{ route('client.login') }}">
                                 <svg width="38" height="38" viewbox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@
                                             <rect width="13" height="13" fill="white" transform="translate(13 13)"></rect>
                                         </clippath>
                                     </defs>
-                                </svg>Технические работы клиент
+                                </svg>Войти как клиент
                             </a>
                         </div>
                     </div>
