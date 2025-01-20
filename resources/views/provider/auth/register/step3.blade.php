@@ -79,22 +79,22 @@
                                 <!-- Xatolarni ko'rsatish uchun blok -->
 
                                 <div class="form-group col-lg-6 col-sm-12">
-                                    <label>Имя менеджера <span class="brand-1">*</span></label>
+                                    <label>Имя  <span class="brand-1">*</span></label>
                                     <input type="text" name="name" class="form-control text-center"
                                         placeholder="Enter manager's name" required>
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
-                                    <label>Электронная почта менеджера <span class="brand-1">*</span></label>
+                                    <label>Электронная почта  <span class="brand-1">*</span></label>
                                     <input type="email" name="email" class="form-control text-center"
                                         placeholder="Enter manager's email" required>
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
-                                    <label>Пароль менеджера <span class="brand-1">*</span></label>
+                                    <label>Пароль  <span class="brand-1">*</span></label>
                                     <input type="password" name="password" class="form-control text-center"
                                         placeholder="Enter manager's password" required>
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
-                                    <label>Подтвердите пароль менеджера <span class="brand-1">*</span></label>
+                                    <label>Подтвердите пароль  <span class="brand-1">*</span></label>
                                     <input type="password" name="password_confirmation" class="form-control text-center"
                                         placeholder="Confirm manager's password" required>
                                 </div>
