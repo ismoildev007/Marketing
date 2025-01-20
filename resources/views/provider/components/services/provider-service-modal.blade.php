@@ -2,6 +2,14 @@
     .select2-selection__rendered .select2-selection__choice {
         width: max-content;
     }
+
+    textarea {
+        resize: none;
+    }
+
+    .fs-14 {
+        font-size: 14px !important;
+    }
 </style>
 
 
@@ -14,70 +22,79 @@
         <div class="offcanvas-header border-bottom" style="padding-top: 20px; padding-bottom: 20px">
             <div class="d-flex align-items-center">
                 <div class="avatar-text avatar-md items-details-close-trigger" data-bs-dismiss="offcanvas"
-                     data-bs-toggle="tooltip" data-bs-trigger="hover" title="Close">
+                    data-bs-toggle="tooltip" data-bs-trigger="hover" title="Close">
                     <i class="feather-arrow-left"></i>
                 </div>
                 <span class="vr text-muted mx-4"></span>
             </div>
-            <button class="btn btn-primary btn-submit" type="submit">Представлять на рассмотрение</button>
+            <button disabled="disabled" id="service_btn" class="btn btn-primary btn-submit" type="submit">Представлять
+                на рассмотрение</button>
         </div>
         <div class="offcanvas-body">
             <div class="row">
                 <!-- Service Type Selection -->
                 <div class="col-sm-12 col-lg-12">
                     <div class="form-group mb-4">
-                        <label class="form-label">Тип услуги:</label>
+                        <label class="fs-14 form-label">Тип услуги:</label>
 
                         <select name="service_sub_category_id" id="service-type" class="form-control select2">
-                            <option value="">Выберите услугу...</option>
-                            @foreach($serviceTypes as $service)
+                            <option value="" selected disabled hidden>Выберите услугу</option>
+                            @foreach ($serviceTypes as $service)
                                 <option value="{{ $service->id }}">{{ $service->name_ru }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col-sm-12 col-lg-12">
-                    <div class="form-group mb-4">
-                        <label class="form-label">Навыки:</label>
+                    <div style="opacity: 0.5" class="form-group mb-4 temporaryDisabled">
+                        <label class="fs-14 form-label ">Навыки:</label>
 
-                        <select name="skills[]" id="skills-list" class="form-select form-control max-select" data-select2-selector="tag" multiple>
+                        <select disabled="disabled" name="skills[]" id="skills-list"
+                            class="temporaryDisabledIn form-select form-control max-select" data-select2-selector="tag"
+                            multiple>
                             <!-- Skills will be dynamically loaded here -->
                         </select>
                     </div>
                 </div>
                 <!-- Starting Price -->
                 <div class="col-sm-12 col-lg-12">
-                    <div class="form-group mb-4">
-                        <label class="form-label">Начальная цена:</label>
+                    <div style="opacity: 0.5" class="form-group mb-4 temporaryDisabled">
+                        <label class="fs-14 form-label">Начальная цена:</label>
                         <div class="row mt-2">
                             <div class="col d-flex align-items-center">
                                 <label for="price-1000" class="d-flex align-items-center">
-                                    <input type="radio" id="price-1000" name="price" value="1000">
-                                    <span class="ms-2">€1000</span>
+                                    <input disabled="disabled" class="temporaryDisabledIn" type="radio"
+                                        id="price-1000" name="price" value="1000">
+                                    <span class="ms-2">$1000</span>
                                 </label>
                             </div>
                             <div class="col d-flex align-items-center">
                                 <label for="price-2000" class="d-flex align-items-center">
-                                    <input type="radio" id="price-2000" name="price" value="2000">
-                                    <span class="ms-2">€2000</span>
+                                    <input disabled="disabled" class="temporaryDisabledIn" type="radio"
+                                        id="price-2000" name="price" value="2000">
+                                    <span class="ms-2">$2000</span>
                                 </label>
                             </div>
                             <div class="col d-flex align-items-center">
                                 <label for="price-5000" class="d-flex align-items-center">
-                                    <input type="radio" id="price-5000" name="price" value="5000">
-                                    <span class="ms-2">€5000</span>
+                                    <input disabled="disabled" class="temporaryDisabledIn" type="radio"
+                                        id="price-5000" name="price" value="5000">
+                                    <span class="ms-2">$5000</span>
                                 </label>
                             </div>
                             <div class="col d-flex align-items-center">
                                 <label for="price-10000" class="d-flex align-items-center">
-                                    <input type="radio" id="price-10000" name="price" value="10000">
-                                    <span class="ms-2">€10000</span>
+                                    <input disabled="disabled" class="temporaryDisabledIn" type="radio"
+                                        id="price-10000" name="price" value="10000">
+                                    <span class="ms-2">$10000</span>
                                 </label>
                             </div>
                             <div class="col d-flex align-items-center">
                                 <label for="custom-price" class="d-flex align-items-center">
-                                    <input type="radio" id="custom-price" name="price" value="custom">
-                                    <input type="number" class="ms-2 p-1" name="custom_price" id="custom-price-input" placeholder="€20000" disabled />
+                                    <input disabled="disabled" class="temporaryDisabledIn" type="radio"
+                                        id="custom-price" name="price" value="custom">
+                                    <input type="number" class="ms-2 p-1 border-0 bg-transparent" name="custom_price"
+                                        id="custom-price-input" placeholder="$20000" disabled />
                                 </label>
                             </div>
                         </div>
@@ -88,9 +105,10 @@
 
                 <!-- Description -->
                 <div class="col-12">
-                    <div class="form-group mb-4">
-                        <label class="form-label">Описание (необязательно):</label>
-                        <textarea class="form-control" name="description" style="height: 18em;"></textarea>
+                    <div style="opacity: 0.5" class="form-group mb-4 temporaryDisabled">
+                        <label class="fs-14 form-label">Описание (необязательно):</label>
+                        <textarea id="service_description" disabled="disabled" class="temporaryDisabledIn form-control" name="description"
+                            style="height: 15em;"></textarea>
                     </div>
                 </div>
             </div>
@@ -100,61 +118,64 @@
 </form>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
-$(document).ready(function () {
-    // Populate Service Type options
-    const serviceTypeSelect = $('#service-type');
-
-    $.ajax({
-        url: '/api/service-lists',
-        method: 'GET',
-        success: function (data) {
-            console.log('Service Lists Data:', data); // Check what is being returned
-            if (data.status === 'success' && Array.isArray(data.data)) {
-                data.data.forEach(function (service) {
-                    const option = $('<option class="text-black"></option>').val(service.id).text(service.name_en);
-                    serviceTypeSelect.append(option);
-                });
-            } else {
-                console.error('Unexpected data format:', data);
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.error('Error fetching service types:', textStatus, errorThrown);
-        }
-    });
-
-    // Populate Skills based on selected Service Type
-    $('#service-type').on('change', function () {
-        const selectedServiceId = $(this).val();
+    $(document).ready(function() {
+        // Populate Service Type options
+        const serviceTypeSelect = $('#service-type');
 
         $.ajax({
-            url: '/api/skills',
+            url: '/api/service-lists',
             method: 'GET',
-            success: function (data) {
-                console.log('Skills Data:', data); // Check what is being returned
-                const skillsList = $('#skills-list');
-                skillsList.empty(); // Clear existing options
-
-                if (Array.isArray(data)) {
-                    const filteredSkills = data.filter(skill => parseInt(skill.service_id) === parseInt(selectedServiceId));
-                    console.log(filteredSkills);
-                    filteredSkills.forEach(function (skill) {
-                        console.log(skill.name_en);
-                        const option = $('<option></option>').val(skill.id).text(skill.name_en);
-                        skillsList.append(option);
+            success: function(data) {
+                console.log('Service Lists Data:', data); // Check what is being returned
+                if (data.status === 'success' && Array.isArray(data.data)) {
+                    data.data.forEach(function(service) {
+                        const option = $('<option class="text-black"></option>').val(service
+                            .id).text(service.name_en);
+                        serviceTypeSelect.append(option);
                     });
                 } else {
                     console.error('Unexpected data format:', data);
                 }
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error('Error fetching skills:', textStatus, errorThrown);
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error fetching service types:', textStatus, errorThrown);
             }
         });
-    });
-});
 
+        // Populate Skills based on selected Service Type
+        $('#service-type').on('change', function() {
+            const selectedServiceId = $(this).val();
+
+            $.ajax({
+                url: '/api/skills',
+                method: 'GET',
+                success: function(data) {
+                    console.log('Skills Data:', data); // Check what is being returned
+                    const skillsList = $('#skills-list');
+                    skillsList.empty(); // Clear existing options
+
+                    if (Array.isArray(data)) {
+                        const filteredSkills = data.filter(skill => parseInt(skill
+                            .service_id) === parseInt(selectedServiceId));
+                        console.log(filteredSkills);
+                        filteredSkills.forEach(function(skill) {
+                            console.log(skill.name_en);
+                            const option = $('<option></option>').val(skill.id)
+                                .text(skill.name_en);
+                            skillsList.append(option);
+                        });
+                    } else {
+                        console.error('Unexpected data format:', data);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error fetching skills:', textStatus, errorThrown);
+                }
+            });
+        });
+    });
 </script>
 <script>
     document.getElementById('service-type').addEventListener('change', function() {
@@ -208,28 +229,100 @@ $(document).ready(function () {
         });
     });
 
-    $(document).ready(function () {
-    $('.max-select').each(function () {
-        let $this = $(this);
+    $(document).ready(function() {
+        $('.max-select').each(function() {
+            let $this = $(this);
 
-        // Elementdan tanlangan qiymatlarni olish
-        let selectedValues = $this.data('selected-skills');
+            // Elementdan tanlangan qiymatlarni olish
+            let selectedValues = $this.data('selected-skills');
 
-        // Select2 ni o'rnatish
-        $this.select2({
-            tags: true,
-            width: '100%',
-            closeOnSelect: false,
+            // Select2 ni o'rnatish
+            $this.select2({
+                tags: true,
+                width: '100%',
+                closeOnSelect: false,
+            });
+
+            // Tanlangan qiymatlarni qo'shish
+            if (selectedValues) {
+                $this.val(selectedValues).trigger('change');
+            }
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const serviceTypeSelect = document.getElementById('service-type');
+        const temporaryDisabledElements = document.querySelectorAll('.temporaryDisabled');
+        const temporaryDisabledInElements = document.querySelectorAll('.temporaryDisabledIn');
+
+        serviceTypeSelect.addEventListener('change', function() {
+            if (serviceTypeSelect.value) {
+                // Agar biror qiymat tanlangan bo'lsa
+                temporaryDisabledElements.forEach(element => {
+                    // element.removeAttribute('disabled', 'disabled');
+                    element.style.opacity = '1';
+                });
+                temporaryDisabledInElements.forEach(element => {
+                    element.removeAttribute('disabled',
+                        'disabled'); // Agar faollashtirilishi kerak bo'lsa
+                });
+
+            } else {
+                // Agar tanlanmagan bo'lsa
+                temporaryDisabledElements.forEach(element => {
+                    // element.setAttribute('disabled', 'disabled');
+                    element.style.opacity = '0.5';
+                });
+                temporaryDisabledInElements.forEach(element => {
+                    element.setAttribute('disabled',
+                        'disabled'); // Agar faollashtirilishi kerak bo'lsa
+                });
+
+            }
         });
 
-        // Tanlangan qiymatlarni qo'shish
-        if (selectedValues) {
-            $this.val(selectedValues).trigger('change');
-        }
-    });
-});
-</script>
 
+    });
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     const radioButtons = document.querySelectorAll('input[name="price"]');
+    //     const isSelected = Array.from(radioButtons).some(radio => radio.checked);
+    //     const skillslist = document.getElementById('skills-list').value;
+    //     const service_description = document.getElementById('service_description').value;
+    //     const service_btn = document.getElementById('service_btn');
+
+    //     if (isSelected && skillslist && service_description.trim()) {
+    //         service_btn.removeAttribute('disabled', 'disabled')
+    //     } else {
+    //         service_btn.setAttribute('disabled', 'disabled')
+    //     }
+
+    // })
+    document.addEventListener('DOMContentLoaded', function() {
+        const radioButtons = document.querySelectorAll('input[name="price"]');
+        const skillslist = document.getElementById('skills-list');
+        const service_description = document.getElementById('service_description');
+        const service_btn = document.getElementById('service_btn');
+
+        function checkInputs() {
+            const isSelected = Array.from(radioButtons).some(radio => radio.checked);
+            const isSkillsListFilled = skillslist.value.trim() !== '';
+            const isServiceDescriptionFilled = service_description.value.trim() !== '';
+
+            if (isSelected && isSkillsListFilled && isServiceDescriptionFilled) {
+                service_btn.removeAttribute('disabled');
+            } else {
+                service_btn.setAttribute('disabled', 'disabled');
+            }
+        }
+
+        radioButtons.forEach(radio => radio.addEventListener('change', checkInputs));
+        skillslist.addEventListener('input', checkInputs);
+        service_description.addEventListener('input', checkInputs);
+
+        checkInputs();
+    });
+</script>
 <!--! ================================================================ !-->
 <!--! [End] Tasks Details Offcanvas !-->
 <!--! ================================================================ !-->
