@@ -86,8 +86,8 @@
                             </div>
                             <div class="col d-flex align-items-center">
                                 <label for="price-2000" class="d-flex align-items-center w-100">
-                                    <input hidden disabled="disabled" class="temporaryDisabledIn card-input-element" type="radio" id="price-2000"
-                                        name="price" value="2000">
+                                    <input hidden disabled="disabled" class="temporaryDisabledIn card-input-element"
+                                        type="radio" id="price-2000" name="price" value="2000">
                                     <span
                                         class="card card-body d-flex flex-row justify-content-between align-items-center p-3">
                                         <span class="d-block fs-13 fw-bold text-dark">$2000</span>
@@ -96,8 +96,8 @@
                             </div>
                             <div class="col d-flex align-items-center">
                                 <label for="price-5000" class="d-flex align-items-center w-100">
-                                    <input hidden disabled="disabled" class="temporaryDisabledIn card-input-element" type="radio" id="price-5000"
-                                        name="price" value="5000">
+                                    <input hidden disabled="disabled" class="temporaryDisabledIn card-input-element"
+                                        type="radio" id="price-5000" name="price" value="5000">
                                     <span
                                         class="card card-body d-flex flex-row justify-content-between align-items-center p-3">
                                         <span class="d-block fs-13 fw-bold text-dark">$5000</span>
@@ -106,8 +106,8 @@
                             </div>
                             <div class="col d-flex align-items-center">
                                 <label for="price-10000" class="d-flex align-items-center w-100">
-                                    <input hidden disabled="disabled" class="temporaryDisabledIn card-input-element" type="radio" id="price-10000"
-                                        name="price" value="10000">
+                                    <input hidden disabled="disabled" class="temporaryDisabledIn card-input-element"
+                                        type="radio" id="price-10000" name="price" value="10000">
                                     <span
                                         class="card card-body d-flex flex-row justify-content-between align-items-center p-3">
                                         <span class="d-block fs-13 fw-bold text-dark">$10000</span>
@@ -116,17 +116,17 @@
                             </div>
                             <div class="col d-flex align-items-center">
                                 <label for="custom-price" class="d-flex align-items-center w-100">
-                                    <input disabled="disabled" hidden class="temporaryDisabledIn card-input-element" type="radio" id="custom-price"
-                                        name="price" value="custom">
+                                    <input disabled="disabled" hidden class="temporaryDisabledIn card-input-element"
+                                        type="radio" id="custom-price" name="price" value="custom">
                                     <span
                                         class="card card-body d-flex flex-row justify-content-between align-items-center p-3">
                                         <span class="d-block fs-13 fw-bold text-dark"
                                             id="custom_price_org">$20000</span>
-                                        <input disabled="disabled" style="width:60px;" type="number"
-                                            class="temporaryDisabledIn p-0 border-0 bg-transparent d-none" id="custom-price-input"
-                                            placeholder="$20000" />
+                                        <input name="price" disabled="disabled" style="width:60px;" type="number"
+                                            class="temporaryDisabledIn p-0 border-0 bg-transparent d-none"
+                                            id="custom-price-input" placeholder="$20000" />
+                                    </span>
                                 </label>
-                                </span>
                             </div>
 
                         </div>
@@ -339,20 +339,6 @@
 
 
     });
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     const radioButtons = document.querySelectorAll('input[name="price"]');
-    //     const isSelected = Array.from(radioButtons).some(radio => radio.checked);
-    //     const skillslist = document.getElementById('skills-list').value;
-    //     const service_description = document.getElementById('service_description').value;
-    //     const service_btn = document.getElementById('service_btn');
-
-    //     if (isSelected && skillslist && service_description.trim()) {
-    //         service_btn.removeAttribute('disabled', 'disabled')
-    //     } else {
-    //         service_btn.setAttribute('disabled', 'disabled')
-    //     }
-
-    // })
     document.addEventListener('DOMContentLoaded', function() {
         const radioButtons = document.querySelectorAll('input[name="price"]');
         const skillslist = document.getElementById('skills-list');
