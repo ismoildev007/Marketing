@@ -7,8 +7,8 @@
         resize: none;
     }
 
-    .fs-14 {
-        font-size: 14px !important;
+    .fs-15 {
+        font-size: 15px !important;
     }
 </style>
 
@@ -35,7 +35,7 @@
                 <!-- Service Type Selection -->
                 <div class="col-sm-12 col-lg-12">
                     <div class="form-group mb-4">
-                        <label class="fs-14 form-label">Тип услуги:</label>
+                        <label class="fs-15 form-label">Тип услуги:</label>
 
                         <select name="service_sub_category_id" id="service-type" class="form-control select2">
                             <option value="" selected disabled hidden>Выберите услугу</option>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-sm-12 col-lg-12">
                     <div style="opacity: 0.5" class="form-group mb-4 temporaryDisabled">
-                        <label class="fs-14 form-label ">Навыки:</label>
+                        <label class="fs-15 form-label ">Навыки:</label>
 
                         <select disabled="disabled" name="skills[]" id="skills-list"
                             class="temporaryDisabledIn form-select form-control max-select" data-select2-selector="tag"
@@ -56,10 +56,13 @@
                         </select>
                     </div>
                 </div>
+
                 <!-- Starting Price -->
                 <div class="col-sm-12 col-lg-12">
                     <div style="opacity: 0.5" class="form-group mb-4 temporaryDisabled">
-                        <label class="fs-14 form-label">Начальная цена:</label>
+                        <label class="fs-15 form-label">Начальная цена:</label> <br>
+                        <small>Укажите минимальную стоимость, с которой начинается предоставление этой услуги. Это
+                            поможет клиентам сразу понять, подходят ли им условия сотрудничества</small>
                         <div class="row mt-2">
                             <div class="col d-flex align-items-center">
                                 <label for="price-1000" class="d-flex align-items-center">
@@ -106,7 +109,7 @@
                 <!-- Description -->
                 <div class="col-12">
                     <div style="opacity: 0.5" class="form-group mb-4 temporaryDisabled">
-                        <label class="fs-14 form-label">Описание (необязательно):</label>
+                        <label class="fs-15 form-label">Описание (необязательно):</label>
                         <textarea id="service_description" disabled="disabled" class="temporaryDisabledIn form-control" name="description"
                             style="height: 15em;"></textarea>
                     </div>
