@@ -39,7 +39,7 @@
                     <div class="card-header">
                         <div class="">
                             <h5 class="card-title text-black">Mенеджера</h5>
-                            <small>Profilda o’z jamoangizni yarating</small>
+                            {{-- <small>Profilda o’z jamoangizni yarating</small> --}}
                         </div>
                     </div>
                     <div class="page-header-right ms-auto">
