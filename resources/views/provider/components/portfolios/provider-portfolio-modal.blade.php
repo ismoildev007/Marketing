@@ -1,20 +1,20 @@
-<form action="{{ route('portfolios.store')}}" enctype='multipart/form-data' method="POST">
+<form action="{{ route('portfolios.store') }}" enctype='multipart/form-data' method="POST">
 
     @csrf
-    <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="portfolioProviderOffcanvas">
+    <div class="offcanvas offcanvas-end w-75" tabindex="-1" id="portfolioProviderOffcanvas">
         <div class="offcanvas-header border-bottom" style="padding-top: 20px; padding-bottom: 20px">
             <div class="d-flex align-items-center">
-                <div class="avatar-text avatar-md items-details-close-trigger" data-bs-dismiss="offcanvas" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Details Close"><i class="feather-arrow-left"></i></div>
+                <div class="avatar-text avatar-md items-details-close-trigger" data-bs-dismiss="offcanvas"
+                    data-bs-toggle="tooltip" data-bs-trigger="hover" title="Details Close"><i
+                        class="feather-arrow-left"></i></div>
                 <span class="vr text-muted mx-4"></span>
-                <a href="javascript:void(0);">
-                    <h2 class="fs-14 fw-bold text-truncate-1-line">Портфель</h2>
-                </a>
             </div>
-            <button class="btn btn-primary btn-sm d-inline-block mt-2" type="submit">
-                Отправить <i class="feather-arrow-right"></i>
-            </button>
+            <a href="javascript:void(0);">
+                <h2 class="fs-14 fw-bold text-truncate-1-line">Портфель</h2>
+            </a>
+            <div class=""></div>
         </div>
-        @if($errors->has('error'))
+        @if ($errors->has('error'))
             <div class="alert alert-danger">
                 {{ $errors->first('error') }}
             </div>
@@ -23,13 +23,15 @@
 
             <div class="row">
                 <div class="col-md-7">
-                  <div class="row">
-                     <h4> Добавить работу</h4>
+                    <div class="row">
+                        <h4> Добавить работу</h4>
                         <div class="col-md-12 mt-3">
-                           <h5> Название работы</h5>
+                            <h5> Название работы</h5>
                             <div class="mb-4">
-                                <label class="form-label">Дайте краткое, но содержательное название своей работе. <span class="text-danger">*</span></label>
-                                <input type="text" name="work_title" class="form-control" placeholder="Введите название вашей работы здесь...">
+                                <label class="form-label">Дайте краткое, но содержательное название своей работе. <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" name="work_title" class="form-control"
+                                    placeholder="Введите название вашей работы здесь...">
                             </div>
                         </div>
 
@@ -41,10 +43,14 @@
                                         <main class="container">
                                             <div id="" class="mt-3">
                                                 <div class="">
-                                                    <label for="image" class="btn btn-primary w-100">Загрузить изображение:</label>
-                                                    <input type="file" name="image" hidden id="image" accept="image/*" class="form-control @error('image') is-invalid @enderror" onchange="previewGalleryImages(event)">
+                                                    <label for="image" class="btn btn-primary w-100">Загрузить
+                                                        изображение:</label>
+                                                    <input type="file" name="image" hidden id="image"
+                                                        accept="image/*"
+                                                        class="form-control @error('image') is-invalid @enderror"
+                                                        onchange="previewGalleryImages(event)">
                                                     @error('image')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                        <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
                                                     <div class="mt-2" id="galleryPreview"></div>
                                                 </div>
@@ -117,7 +123,9 @@
                                         </script>
 
                                         <div class="text-dark mt-3" id="imageInputInfo" style="display: none;">
-                                            Рекомендуемый размер: <b>2MB max</b>. Рекомендуемое разрешение: <b>1200x900 px</b>. Пожалуйста, постарайтесь сохранить альбомную ориентацию: <b>1.3:1</b>.
+                                            Рекомендуемый размер: <b>2MB max</b>. Рекомендуемое разрешение: <b>1200x900
+                                                px</b>. Пожалуйста, постарайтесь сохранить альбомную ориентацию:
+                                            <b>1.3:1</b>.
                                         </div>
                                     </div>
                                 </div>
@@ -127,11 +135,13 @@
                         <div class="col-md-12">
                             <h5>Экспертиза</h5>
                             <div class="form-group mb-4">
-                                <label class="form-label">Укажите области знаний, требуемые для выполненной вами работы.</label>
-                                <select class="form-control max-select" id="serviceSelect" name="service_sub_category_id">
+                                <label class="form-label">Укажите области знаний, требуемые для выполненной вами
+                                    работы.</label>
+                                <select class="form-control max-select" id="serviceSelect"
+                                    name="service_sub_category_id">
                                     <option value="">Выберите услугу...</option>
                                     @foreach ($services as $service)
-                                        <option value="{{ $service->id }}">{{ $service->name_en }}</option>
+                                        <option value="{{ $service->id }}">{{ $service->name_ru }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -141,7 +151,8 @@
                             <h5>Навыки <span>(необязательный)</span></h5>
                             <div class="mb-4">
                                 <label class="form-label">Укажите необходимые навыки и компетенции.</label>
-                                <select class="form-control max-select" id="skillsSelect" name="skills[]" multiple></select>
+                                <select class="form-control max-select" id="skillsSelect" name="skills[]"
+                                    multiple></select>
                             </div>
                         </div>
 
@@ -178,7 +189,8 @@
                                         success: function(data) {
                                             skillsSelect.empty(); // Eski ma'lumotlarni o'chirish
                                             data.forEach(skill => {
-                                                const newOption = new Option(skill.name, skill.id, false, false);
+                                                const newOption = new Option(skill.name, skill.id, false,
+                                                    false);
                                                 skillsSelect.append(newOption);
                                             });
                                             skillsSelect.trigger('change');
@@ -189,113 +201,118 @@
                                     });
                                 });
                             });
-
-
                         </script>
-                        <div class="col-md-12">
-                            <h6>Сектор</h6>
-                            <div class="form-group mb-4">
-                                <select name="sector_id" class="form-control"
-                                    data-select2-selector="status">
-                                    @foreach ($sectors as $sector)
-                                        <option value="{{ $sector->id }}">
-                                            {{ $sector->name_ru }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+
 
                         <div class="col-md-6 mt-3">
-                           <h5> Дата начала </h5>
+                            <h5> Дата начала </h5>
                             <div class="mb-4">
-                                <input type="date" class="form-control" name="start_date" placeholder="Введите бюджет...">
+                                <input type="date" class="form-control" name="start_date"
+                                    placeholder="Введите бюджет...">
                             </div>
                         </div>
                         <div class="col-md-6 mt-3">
-                           <h5> Дата окончания</h5>
+                            <h5> Дата окончания</h5>
                             <div class="mb-4">
-                                <input type="date" class="form-control" name="end_date" placeholder="Введите бюджет...">
+                                <input type="date" class="form-control" name="end_date"
+                                    placeholder="Введите бюджет...">
                             </div>
                         </div>
                         <div class="col-md-12 mt-3">
-                           <h5> Бюджет <span>(необязательный) </span></h5>
+                            <h5> Бюджет <span>(необязательный) </span></h5>
                             <div class="mb-4">
-                                <label class="form-label">Укажите, какой общий бюджет был выделен на выполнение этой работы.<span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" name="budget" placeholder="Введите бюджет...">
-                                <label class="form-label">Конфиденциально: эта информация не будет видна публично, но поможет нам отправлять вам более точные и релевантные предложения.<span class="text-danger">*</span></label>
+                                <label class="form-label">Укажите, какой общий бюджет был выделен на выполнение этой
+                                    работы.<span class="text-danger">*</span></label>
+                                <input type="number" min="0" class="form-control" name="budget"
+                                    placeholder="Введите бюджет...">
+                                <label class="form-label">Конфиденциально: эта информация не будет видна публично, но
+                                    поможет нам отправлять вам более точные и релевантные предложения.<span
+                                        class="text-danger">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-12">
-                           <div class="my-3">
-                                    <h5> Описание <span> (необязательный) </span></h5>
-                                    <label class="form-label">Опишите подробности вашего сотрудничества с клиентом по выполненной работе.</label>
+                            <div class="my-3">
+                                <h5> Описание <span> (необязательный) </span></h5>
+                                <label class="form-label">Опишите подробности вашего сотрудничества с клиентом по
+                                    выполненной работе.</label>
                             </div>
-                           <div class="mb-4">
+                            <div class="mb-4">
                                 <div class="form-group">
                                     <h6> Введение</h6>
-                                    <label class="form-label">В качестве введения кратко опишите выполненную работу в нескольких предложениях.</label>
-                                    <textarea class="form-control" id="exampleTextarea" name="introduction" rows="5" placeholder="Введите текст здесь..."></textarea>
+                                    <label class="form-label">В качестве введения кратко опишите выполненную работу в
+                                        нескольких предложениях.</label>
+                                    <textarea class="form-control" id="exampleTextarea" name="introduction" rows="5"
+                                        placeholder="Введите текст здесь..."></textarea>
                                 </div>
-                             </div>
+                            </div>
                         </div>
                         <div class="col-md-12">
-                           <div class="mb-4">
+                            <div class="mb-4">
                                 <div class="form-group">
                                     <h6> Проблемы </h6>
-                                    <label class="form-label">В качестве вступления кратко опишите выполненную работу в нескольких предложениях.</label>
-                                    <textarea class="form-control" id="exampleTextarea" rows="5" name="challenges" placeholder="Введите текст здесь..."></textarea>
+                                    <label class="form-label">В качестве вступления кратко опишите выполненную работу в
+                                        нескольких предложениях.</label>
+                                    <textarea class="form-control" id="exampleTextarea" rows="5" name="challenges"
+                                        placeholder="Введите текст здесь..."></textarea>
                                 </div>
-                             </div>
+                            </div>
                         </div>
                         <div class="col-md-12">
-                           <div class="mb-4">
+                            <div class="mb-4">
                                 <div class="form-group">
                                     <h6> Решение </h6>
-                                    <label class="form-label">В качестве вступления кратко опишите представленную работу в нескольких предложениях.</label>
-                                    <textarea class="form-control" id="exampleTextarea" rows="5" name="solution" placeholder="Введите текст здесь..."></textarea>
+                                    <label class="form-label">В качестве вступления кратко опишите представленную
+                                        работу в нескольких предложениях.</label>
+                                    <textarea class="form-control" id="exampleTextarea" rows="5" name="solution"
+                                        placeholder="Введите текст здесь..."></textarea>
                                 </div>
-                             </div>
+                            </div>
                         </div>
                         <div class="col-md-12">
-                           <div class="mb-4">
+                            <div class="mb-4">
                                 <div class="form-group">
                                     <h6> Влияние</h6>
-                                    <label class="form-label">В качестве вступления кратко опишите представленную работу в нескольких предложениях.</label>
-                                    <textarea class="form-control" id="exampleTextarea" name="impact" rows="5" placeholder="Введите текст здесь..."></textarea>
+                                    <label class="form-label">В качестве вступления кратко опишите представленную
+                                        работу в нескольких предложениях.</label>
+                                    <textarea class="form-control" id="exampleTextarea" name="impact" rows="5"
+                                        placeholder="Введите текст здесь..."></textarea>
                                 </div>
-                             </div>
+                            </div>
                         </div>
                         <div class="col-md-12 mt-3">
-                           <h5> Справочная ссылка <span> (необязательный) </span></h5>
+                            <h5> Справочная ссылка <span> (необязательный) </span></h5>
                             <div class="mb-4">
-                                <label class="form-label">Укажите ссылку на результат вашего сотрудничества (например, ссылку на сайт, видео, мероприятие).</label>
-                                <input type="text" class="form-control" name="source_link" placeholder="Введите ссылку на вашу работу...">
+                                <label class="form-label">Укажите ссылку на результат вашего сотрудничества (например,
+                                    ссылку на сайт, видео, мероприятие).</label>
+                                <input type="text" class="form-control" name="source_link"
+                                    placeholder="Введите ссылку на вашу работу...">
                             </div>
                         </div>
 
-                  </div>
+                    </div>
                 </div>
                 <div class="col-md-5 sticky-column ">
-                  <div class="row">
-                     <h4> Клиент</h4>
+                    <div class="row">
+                        <h4> Клиент</h4>
                         <div class="col-md-12">
                             <div class="mb-4">
                                 <div class="form-group">
                                     <h6>Название компании</h6>
-                                    <input class="form-control" id="exampleTextarea" name="company_name" rows="5" placeholder="Введите текст здесь...">
+                                    <input class="form-control" id="exampleTextarea" name="company_name"
+                                        rows="5" placeholder="Введите текст здесь...">
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-md-12 mt-3">
-                           <h6> Расположение</h6>
+                            <h6> Расположение</h6>
                             <div class="mb-4">
-                                <input type="text" class="form-control" name="company_location" placeholder="Введите название вашей работы здесь...">
+                                <input type="text" class="form-control" name="company_location"
+                                    placeholder="Введите название вашей работы здесь...">
                             </div>
                         </div>
                         <div class="col-md-12">
-                         <h6> Географический охват <span> (необязательный) </span> </h6>
+                            <h6> Географический охват <span> (необязательный) </span> </h6>
                             <div class="form-group mb-4">
                                 <select class="form-control" data-select2-selector="status" name="geographic_scope">
                                     <option value="Local" data-bg="bg-primary" selected>Местный</option>
@@ -306,7 +323,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                         <h6> Аудитория <span> (необязательный) </span> </h6>
+                            <h6> Аудитория <span> (необязательный) </span> </h6>
                             <div class="form-group mb-4">
                                 <select class="form-control" data-select2-selector="status" name="audience">
                                     <option value="B2B" data-bg="bg-primary" selected>B2B</option>
@@ -316,27 +333,30 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                         <h6> Попросите этого клиента оставить отзыв <span> (необязательный) </span> </h6>
-                             <div class="mb-4">
-                                <input type="text" class="form-control" placeholder="Введите название вашей работы здесь...">
+                            <h6> Попросите этого клиента оставить отзыв <span> (необязательный) </span> </h6>
+                            <div class="mb-4">
+                                <input type="text" class="form-control"
+                                    placeholder="Введите название вашей работы здесь...">
                             </div>
-                            <label> Конфиденциально: адрес электронной почты вашего клиента является конфиденциальным и не будет храниться или показываться где-либо.</label>
+                            <label> Конфиденциально: адрес электронной почты вашего клиента является конфиденциальным и
+                                не будет храниться или показываться где-либо.</label>
                         </div>
-                  </div>
+                    </div>
                 </div>
                 <input type="hidden" name="provider_id" value="{{ auth()->user()->id }}">
-                <button class="btn btn-primary d-inline-block mt-4" type="submit">Представлять на рассмотрение</button>
+                <button class="btn btn-primary d-inline-block mt-4" type="submit">Представлять на
+                    рассмотрение</button>
             </div>
         </div>
     </div>
 </form>
 
-    <style>
-        .sticky-column {
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow: auto;
-        }
-    </style>
+<style>
+    .sticky-column {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+    }
+</style>

@@ -1,7 +1,7 @@
 <!--! ================================================================ !-->
     <!--! [Start] Tasks Details Offcanvas !-->
     <!--! ================================================================ !-->
-    <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="portfolioProviderOffcanvas">
+    <div class="offcanvas offcanvas-end w-75" tabindex="-1" id="portfolioProviderOffcanvas">
         <div class="offcanvas-header border-bottom" style="padding-top: 20px; padding-bottom: 20px">
             <div class="d-flex align-items-center">
                 <div class="avatar-text avatar-md items-details-close-trigger" data-bs-dismiss="offcanvas" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Details Close"><i class="feather-arrow-left"></i></div>
@@ -15,8 +15,8 @@
             <form action="{{ route('portfolios.store')}}" enctype='multipart/form-data' method="POST">
             @csrf
             <div class="row">
-                <div class="col-md-7"> 
-                  <div class="row"> 
+                <div class="col-md-7">
+                  <div class="row">
                      <h4> Add work</h4>
                         <div class="col-md-12 mt-3">
                            <h5> Work's title</h5>
@@ -48,7 +48,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                    
+
                                             <div id="inputContainer" class="mt-3">
                                                 <div id="imageInput" class="input-field" style="display: none;">
                                                     <label for="imageFile">Upload Image:</label>
@@ -57,7 +57,7 @@
                                                         <span class="invalid-feedback">{{ $message }}</span>
                                                     @enderror
                                                 </div>
-                    
+
                                                 <div id="youtubeInput" class="input-field" style="display: none;">
                                                     <label for="youtubeUrl">Add your YouTube Video URL:</label>
                                                     <input type="text" id="youtubeUrl" name="youtube_url" placeholder="Enter YouTube video URL" class="form-control @error('youtube_url') is-invalid @enderror">
@@ -67,7 +67,7 @@
                                                 </div>
                                             </div>
                                         </main>
-                    
+
                                         <div class="text-dark mt-3" id="imageInputInfo" style="display: none;">
                                             Recommended size: <b>2MB max</b>. Recommended resolution: <b>1200x900 px</b>. Please try to keep a landscape ratio of: <b>1.3:1</b>.
                                         </div>
@@ -89,7 +89,7 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-12 mt-3">
                             <h5>Skills <span>(optional)</span></h5>
                             <div class="mb-4">
@@ -97,24 +97,24 @@
                                 <select class="form-control" id="skillsSelect" name="skills[]" multiple></select>
                             </div>
                         </div>
-                        
+
                         <script>
                             document.getElementById('serviceSelect').addEventListener('change', function() {
                                 const serviceId = this.value;
-                                
+
                                 // If no service is selected, clear the skills dropdown
                                 if (!serviceId) {
                                     document.getElementById('skillsSelect').innerHTML = '';
                                     return;
                                 }
-                        
+
                                 // Make an AJAX request to fetch the skills based on the selected service
                                 fetch(`/api/services/${serviceId}/skills`)
                                     .then(response => response.json())
                                     .then(data => {
                                         const skillsSelect = document.getElementById('skillsSelect');
                                         skillsSelect.innerHTML = ''; // Clear current options
-                                        
+
                                         data.forEach(skill => {
                                             const option = document.createElement('option');
                                             option.value = skill.id;
@@ -127,7 +127,7 @@
                                     });
                             });
                         </script>
-                        
+
                         <div class="col-md-12 mt-3">
                            <h5> Start date </h5>
                             <div class="mb-4">
@@ -149,7 +149,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                           <div class="my-3"> 
+                           <div class="my-3">
                                     <h5> Description <span> (optional) </span></h5>
                                     <label class="form-label">Describe the details of your collaboration with the client on the work delivered.</label>
                             </div>
@@ -161,7 +161,7 @@
                                 </div>
                              </div>
                         </div>
-                        <div class="col-md-12">    
+                        <div class="col-md-12">
                            <div class="mb-4">
                                 <div class="form-group">
                                     <h6> Challenges </h6>
@@ -170,7 +170,7 @@
                                 </div>
                              </div>
                         </div>
-                        <div class="col-md-12">    
+                        <div class="col-md-12">
                            <div class="mb-4">
                                 <div class="form-group">
                                     <h6> Solution </h6>
@@ -179,7 +179,7 @@
                                 </div>
                              </div>
                         </div>
-                        <div class="col-md-12">    
+                        <div class="col-md-12">
                            <div class="mb-4">
                                 <div class="form-group">
                                     <h6> Impact</h6>
@@ -198,8 +198,8 @@
 
                   </div>
                 </div>
-                <div class="col-md-5 sticky-column "> 
-                  <div class="row"> 
+                <div class="col-md-5 sticky-column ">
+                  <div class="row">
                      <h4> Client</h4>
                         <div class="col-md-12 mt-3">
                            <h6> Company name</h6>
@@ -255,8 +255,8 @@
                 </div>
                 <input type="hidden" name="provider_id" value="{{ auth()->user()->id }}">
                 <button type="submit">Submit</button>
-            </div>    
-            </form>    
+            </div>
+            </form>
         </div>
     </div>
     <!--! ================================================================ !-->
@@ -264,7 +264,7 @@
     <!--! ================================================================ !-->
 
 
-    <script> 
+    <script>
         function showInput(type) {
             // Barcha input maydonlarini va qo'shimcha ma'lumotlarni dastlab yashirish
             document.getElementById('imageInput').style.display = 'none';
