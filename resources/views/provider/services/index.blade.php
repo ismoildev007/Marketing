@@ -50,6 +50,7 @@
                         <div class="card-body">
                             <!-- BEGIN: Services -->
                             <div class="card stretch stretch-full">
+
                                 <div class="card-body custom-card-action p-3">
                                     <table class="table" id="serviceList">
                                         <thead>
