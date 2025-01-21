@@ -17,11 +17,12 @@ use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
-        /**
+    /**
      * Display a listing of the resource.
      */
 
-    public function dashboard(){
+    public function dashboard()
+    {
         $provider = Auth::user(); // Get the authenticated user
         $providerCompany = ProviderCompany::where('provider_id', $provider->id)->first();
         $company = Company::where('id', $providerCompany->company_id)->first();
@@ -40,7 +41,7 @@ class PageController extends Controller
         $languages = Language::all();
         $providerLanguageCodes = $provider->language()->pluck('code')->toArray(); // Get language codes associated with the provider
 
-        return view('provider.profile.index', compact('provider', 'services', 'languages', 'providerLanguageCodes', 'providerCompany','company'));
+        return view('provider.profile.index', compact('provider', 'services', 'languages', 'providerLanguageCodes', 'providerCompany', 'company'));
     }
 
     public function show($id)
@@ -52,10 +53,11 @@ class PageController extends Controller
 
     public function update(Request $request)
     {
+  
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'turnover' => 'nullable|integer|min:0',
-            'teamSize' => 'required|integer|min:1',
+            'teamSize' => 'required|string',
             'tagline' => 'nullable|string|max:255',
             'founded' => 'nullable|date',
             'description' => 'nullable|string',
@@ -133,9 +135,4 @@ class PageController extends Controller
 
         return redirect()->route('providers.profile')->with('success', __('messages.profile_update'));
     }
-
-
-
-
-
 }

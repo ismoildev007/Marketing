@@ -36,7 +36,6 @@ class PortfolioRequest extends FormRequest
                 // Client info validation
                 'company_name' => 'required|string|max:255',
                 'company_location' => 'required|string|max:255',
-                'sector_id' => 'required|string|max:255',
                 'geographic_scope' => 'required|string|max:255',
                 'audience' => 'required|string|max:255',
             ];
@@ -58,7 +57,6 @@ class PortfolioRequest extends FormRequest
                 // Client info validation
                 'company_name' => 'required|string|max:255',
                 'company_location' => 'required|string|max:255',
-                'sector_id' => 'required|string|max:255',
                 'geographic_scope' => 'required|string|max:255',
                 'audience' => 'required|string|max:255',
             ];
