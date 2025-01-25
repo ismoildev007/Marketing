@@ -23,6 +23,11 @@
                                 href="/">Главная
                                 страница</a></li>
                     </ul>
+                    <ul class="nxl-submenu">
+                        <li class="nxl-item {{ request()->is('/provider/dashboard') ? 'active' : '' }}"><a class="nxl-link"
+                                href="/provider/dashboard">Панель инструментов
+                                страница</a></li>
+                    </ul>
                 </li>
 
                 <li class="nxl-item nxl-hasmenu {{ request()->is('provider/providers') ? 'active' : '' }}">

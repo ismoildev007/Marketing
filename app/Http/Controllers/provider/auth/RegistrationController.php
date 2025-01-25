@@ -39,30 +39,31 @@ class RegistrationController extends Controller
      }
 
      // Step 2: Handle company details submission
-     public function handleCompanyDetails(Request $request)
-     {
-         $validatedData = $request->validate([
-             'company_address' => 'required|string|max:255',
-             'company_website' => 'required|url|max:255',
-             'company_phone' => 'required|string|max:15',
-             'teamSize' => 'required|string',
-             'founded' => 'nullable|date', // Assuming 'founded' is a date column
-             'tagline' => 'nullable|string|max:255',
-         ]);
+    public function handleCompanyDetails(Request $request)
+    {
+        $validatedData = $request->validate([
+            'company_address' => 'required|string|max:255',
+            'company_website' => 'required|string|max:255',
+            'company_phone' => 'required|string|max:15',
+            'teamSize' => 'required|string',
+            'founded' => 'nullable|date',
+            'tagline' => 'nullable|string|max:255',
+        ]);
 
-         // Get the existing company session data
-         $companyData = $request->session()->get('company');
+        if (!preg_match('/^https?:\/\//', $validatedData['company_website'])) {
+            $validatedData['company_website'] = 'https://' . $validatedData['company_website'];
+        }
 
-         // Merge the additional details with the company session data
-         $companyData = array_merge($companyData, $validatedData);
+        $companyData = $request->session()->get('company', []);
 
-         // Save the updated company data in the session
-         $request->session()->put('company', $companyData);
+        $companyData = array_merge($companyData, $validatedData);
 
-         return redirect()->route('providerRegisterStep3');
-     }
+        $request->session()->put('company', $companyData);
 
-     // Step 3: Show manager account creation form
+        return redirect()->route('providerRegisterStep3');
+    }
+
+    // Step 3: Show manager account creation form
      public function showManagerForm()
      {
          return view('provider.auth.register.step3');

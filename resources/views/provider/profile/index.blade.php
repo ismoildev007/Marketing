@@ -1,17 +1,17 @@
 @extends('provider.layouts.layout')
 
 @section('content')
-    <form action="{{ route('provider.update', $provider->id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
-        <div class="nxl-content without-header nxl-full-content">
-            <!-- [ Main Content ] start -->
-            <div class="main-content d-flex">
-                <!-- [ Content Sidebar ] start -->
-                <!-- [ Content Sidebar  ] end -->
-                <!-- [ Main Area  ] start -->
-                <div class="content-area" data-scrollbar-target="#psScrollbarInit">
 
+    <div class="nxl-content without-header nxl-full-content">
+        <!-- [ Main Content ] start -->
+        <div class="main-content d-flex">
+            <!-- [ Content Sidebar ] start -->
+            <!-- [ Content Sidebar  ] end -->
+            <!-- [ Main Area  ] start -->
+            <div class="content-area">
+                <form class="pb-5" action="{{ route('provider.update', $provider->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
                     <div class="content-area-header bg-white sticky-top ">
                         <div class="page-header-right ms-auto">
                             <div class="d-flex align-items-center gap-3 page-header-right-items-wrapper">
@@ -23,299 +23,297 @@
                         </div>
                     </div>
                     <div class="content-area-body">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                        <div class=" mb-0">
+                    <div class=" mb-0">
 
-                            <div class="row">
-                                <div class="col-xxl-4 col-xl-6">
-                                    <div class="card stretch stretch-full h-auto">
-                                        <div class="card-body">
-                                            <div class="mb-4 text-center">
-                                                <div class="wd-150 ht-150 mx-auto mb-3 position-relative">
-                                                    <div
-                                                        class="avatar-image wd-150 ht-150 border border-5 border-gray-3 position-relative">
-                                                        <img id="avatarPreview"
-                                                            src="{{ $company->logo ? asset('storage/' . $company->logo) : asset('assets/imgs/dora/admin-default/logo.webp') }}"
-                                                            alt="{{ old('name', $company->name) }}"
-                                                            style="height: 18em; width: 100%; object-fit: cover;"
-                                                            class="img-fluid" />
-                                                    </div>
-                                                    <div class="wd-10 ht-10 text-success rounded-circle position-absolute translate-middle"
-                                                        style="top: 68%; right: 18px">
-                                                        <label for="logoInput" class="overflow-hidden">
-                                                            <i class="fa-solid fa-pen-to-square border rounded-circle p-3 bg-light"
-                                                                style="cursor: pointer;"></i>
-                                                            <input type="file" class="form-control" id="logoInput"
-                                                                name="logo" style="opacity: 0; visibility: hidden;"
-                                                                accept="image/*">
-                                                        </label>
-                                                    </div>
+                        <div class="row">
+                            <div class="col-xxl-4 col-xl-6">
+                                <div class="card stretch stretch-full h-auto">
+                                    <div class="card-body">
+                                        <div class="mb-4 text-center">
+                                            <div class="wd-150 ht-150 mx-auto mb-3 position-relative">
+                                                <div
+                                                    class="avatar-image wd-150 ht-150 border border-5 border-gray-3 position-relative">
+                                                    <img id="avatarPreview"
+                                                        src="{{ $company->logo ? asset('storage/' . $company->logo) : asset('assets/imgs/dora/admin-default/logo.webp') }}"
+                                                        alt="{{ old('name', $company->name) }}"
+                                                        style="height: 18em; width: 100%; object-fit: cover;"
+                                                        class="img-fluid" />
                                                 </div>
-                                                <div class="mb-4">
-
-                                                    <a href="javascript:void(0);" class="fs-14 fw-bold d-block">
-                                                        {{ old('name', $company->name) }}</a>
-                                                    <a href="javascript:void(0);"
-                                                        class="fs-12 fw-normal text-muted d-block">{{ old('email', $provider->email) }}</a>
-                                                </div>
-
-                                            </div>
-                                            <ul class="list-unstyled mb-4">
-                                                <li class="hstack justify-content-between mb-4">
-                                                    <span class="text-muted fw-medium hstack gap-3"><i
-                                                            class="feather-phone"></i>Телефон</span>
-                                                    <a href="javascript:void(0);"
-                                                        class="float-end">{{ old('tagline', $company->phone_number) }}</a>
-                                                </li>
-
-                                                <li class="hstack justify-content-between mb-4">
-                                                    <span class="text-muted fw-medium hstack gap-3"><i
-                                                            class="feather-mail"></i>Электронная почта</span>
-                                                    <a href="javascript:void(0);"
-                                                        class="float-end">{{ old('email', $provider->email) }}</a>
-                                                </li>
-                                                <li class="hstack justify-content-between mb-4">
-                                                    <span class="text-muted fw-medium hstack gap-3"><i
-                                                            class="feather-map-pin"></i>Расположение</span>
-                                                    <a href="javascript:void(0);"
-                                                        title="{{ old('tagline', $provider->address) }}"
-                                                        class="float-end long-text text-center mx-1"
-                                                        onclick="toggleAddress(this)">
-                                                        {{ Str::limit(old('tagline', $company->address), 100) }}
-                                                        <!-- Laravel yordamida matnni cheklash -->
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-8 col-xl-6">
-                                    <div class="col-12">
-                                        <div class="card stretch stretch-full border-0 rounded">
-                                            <div class="position-relative">
-                                                <img id="coverPreview"
-                                                    src="{{ $company->cover ? asset('storage/' . $company->cover) : asset('assets/imgs/dora/admin-default/banner.webp') }}"
-                                                    alt="{{ old('name', $company->name) }}"
-                                                    style="height: 18em; width: 100%; object-fit: cover;" />
                                                 <div class="wd-10 ht-10 text-success rounded-circle position-absolute translate-middle"
-                                                    style="bottom: 10%; right: 3%;">
-                                                    <label for="coverInput" class="overflow-hidden">
+                                                    style="top: 68%; right: 18px">
+                                                    <label for="logoInput" class="overflow-hidden">
                                                         <i class="fa-solid fa-pen-to-square border rounded-circle p-3 bg-light"
                                                             style="cursor: pointer;"></i>
-                                                        <input type="file" class="form-control" id="coverInput"
-                                                            name="cover" style="opacity: 0; visibility: hidden;"
+                                                        <input type="file" class="form-control" id="logoInput"
+                                                            name="logo" style="opacity: 0; visibility: hidden;"
                                                             accept="image/*">
                                                     </label>
-                                                    @error('cover')
-                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                    @enderror
                                                 </div>
+                                            </div>
+                                            <div class="mb-4">
+
+                                                <a href="javascript:void(0);" class="fs-14 fw-bold d-block">
+                                                    {{ old('name', $company->name) }}</a>
+                                                <a href="javascript:void(0);"
+                                                    class="fs-12 fw-normal text-muted d-block">{{ old('email', $provider->email) }}</a>
+                                            </div>
+
+                                        </div>
+                                        <ul class="list-unstyled mb-4">
+                                            <li class="hstack justify-content-between mb-4">
+                                                <span class="text-muted fw-medium hstack gap-3"><i
+                                                        class="feather-phone"></i>Телефон</span>
+                                                <a href="javascript:void(0);"
+                                                    class="float-end">{{ old('tagline', $company->phone_number) }}</a>
+                                            </li>
+
+                                            <li class="hstack justify-content-between mb-4">
+                                                <span class="text-muted fw-medium hstack gap-3"><i
+                                                        class="feather-mail"></i>Электронная почта</span>
+                                                <a href="javascript:void(0);"
+                                                    class="float-end">{{ old('email', $provider->email) }}</a>
+                                            </li>
+                                            <li class="hstack justify-content-between mb-4">
+                                                <span class="text-muted fw-medium hstack gap-3"><i
+                                                        class="feather-map-pin"></i>Расположение</span>
+                                                <a href="javascript:void(0);"
+                                                    title="{{ old('tagline', $provider->address) }}"
+                                                    class="float-end long-text text-center mx-1"
+                                                    onclick="toggleAddress(this)">
+                                                    {{ Str::limit(old('tagline', $company->address), 100) }}
+                                                    <!-- Laravel yordamida matnni cheklash -->
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-8 col-xl-6">
+                                <div class="col-12">
+                                    <div class="card stretch stretch-full border-0 rounded">
+                                        <div class="position-relative">
+                                            <img id="coverPreview"
+                                                src="{{ $company->cover ? asset('storage/' . $company->cover) : asset('assets/imgs/dora/admin-default/banner.webp') }}"
+                                                alt="{{ old('name', $company->name) }}"
+                                                style="height: 18em; width: 100%; object-fit: cover;" />
+                                            <div class="wd-10 ht-10 text-success rounded-circle position-absolute translate-middle"
+                                                style="bottom: 10%; right: 3%;">
+                                                <label for="coverInput" class="overflow-hidden">
+                                                    <i class="fa-solid fa-pen-to-square border rounded-circle p-3 bg-light"
+                                                        style="cursor: pointer;"></i>
+                                                    <input type="file" class="form-control" id="coverInput"
+                                                        name="cover" style="opacity: 0; visibility: hidden;"
+                                                        accept="image/*">
+                                                </label>
+                                                @error('cover')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card border-top-0">
+                                </div>
+                                <div class="card border-top-0">
 
-                                        {{-- <div class="card-header p-0">
-                                                <!-- Nav tabs -->
-                                                <ul class="nav nav-tabs flex-wrap w-100 text-center customers-nav-tabs"
-                                                    id="myTab" role="tablist">
-                                                    <li class="nav-item flex-fill border-top" role="presentation">
-                                                        <a href="javascript:void(0);" class="nav-link active"
-                                                            data-bs-toggle="tab" data-bs-target="#overviewTab"
-                                                            role="tab">{{ old('name', $company->name) ?: 'Kompaniya' }}</a>
-                                                    </li>
+                                    {{-- <div class="card-header p-0">
+                                            <!-- Nav tabs -->
+                                            <ul class="nav nav-tabs flex-wrap w-100 text-center customers-nav-tabs"
+                                                id="myTab" role="tablist">
+                                                <li class="nav-item flex-fill border-top" role="presentation">
+                                                    <a href="javascript:void(0);" class="nav-link active"
+                                                        data-bs-toggle="tab" data-bs-target="#overviewTab"
+                                                        role="tab">{{ old('name', $company->name) ?: 'Kompaniya' }}</a>
+                                                </li>
 
-                                                </ul>
-                                            </div> --}}
+                                            </ul>
+                                        </div> --}}
 
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade show active p-4" id="overviewTab" role="tabpanel">
-                                                <div class="about-section mb-5">
-                                                    <div class="mb-4 d-flex align-items-center justify-content-between">
-                                                        <h5 class="fw-bold mb-0">
-                                                            О нас: {{ old('name', $company->name) ?: 'Kompaniya' }}
-                                                        </h5>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <textarea class="form-control" name="description" style="height: 18em;">{{ old('description', $company->description) }}</textarea>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active p-4" id="overviewTab" role="tabpanel">
+                                            <div class="about-section mb-5">
+                                                <div class="mb-4 d-flex align-items-center justify-content-between">
+                                                    <h5 class="fw-bold mb-0">
+                                                        О нас: {{ old('name', $company->name) ?: 'Kompaniya' }}
+                                                    </h5>
+                                                </div>
+                                                <div class="col-12">
+                                                    <textarea class="form-control" name="description" style="height: 18em;">{{ old('description', $company->description) }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="profile-details mb-5">
+                                                <div class="mb-4 d-flex align-items-center justify-content-between">
+                                                    <h5 class="fw-bold mb-0">Профиль:</h5>
+                                                </div>
+
+                                                <div class="row g-0 mb-4">
+                                                    <div class="col-sm-6 text-muted">Название компании:</div>
+                                                    <div class="col-sm-6 fw-semibold">
+                                                        <input type="text" class="form-control" id="nameInput"
+                                                            placeholder="Имя" name="name"
+                                                            value="{{ old('name', $provider->name) }}">
                                                     </div>
                                                 </div>
-                                                <div class="profile-details mb-5">
-                                                    <div class="mb-4 d-flex align-items-center justify-content-between">
-                                                        <h5 class="fw-bold mb-0">Профиль:</h5>
+
+                                                <div class="row g-0 mb-4">
+                                                    <div class="col-sm-6 text-muted">Девиз:</div>
+                                                    <div class="col-sm-6 fw-semibold">
+                                                        <input type="text" class="form-control" id="taglineInput"
+                                                            placeholder="Слоган" name="tagline"
+                                                            value="{{ old('tagline', $company->tagline) }}">
                                                     </div>
-
-                                                    <div class="row g-0 mb-4">
-                                                        <div class="col-sm-6 text-muted">Название компании:</div>
-                                                        <div class="col-sm-6 fw-semibold">
-                                                            <input type="text" class="form-control" id="nameInput"
-                                                                placeholder="Имя" name="name"
-                                                                value="{{ old('name', $provider->name) }}">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row g-0 mb-4">
-                                                        <div class="col-sm-6 text-muted">Девиз:</div>
-                                                        <div class="col-sm-6 fw-semibold">
-                                                            <input type="text" class="form-control" id="taglineInput"
-                                                                placeholder="Слоган" name="tagline"
-                                                                value="{{ old('tagline', $company->tagline) }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row g-0 mb-4">
-                                                        <div class="col-sm-6 text-muted">Веб-сайт:</div>
-                                                        <div class="col-sm-6 fw-semibold">
-                                                            <input type="text" class="form-control" id="taglineInput"
-                                                                placeholder="Веб-сайт" name="website"
-                                                                value="{{ old('website', $company->website) }}">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row g-0 mb-4">
-                                                        <div class="col-sm-6 text-muted">Адрес:</div>
-                                                        <div class="col-sm-6 fw-semibold">
-                                                            <input type="text" class="form-control" id="addressInput"
-                                                                placeholder="Адрес" name="address"
-                                                                value="{{ old('tagline', $company->address) }}">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row g-0 mb-4">
-                                                        <div class="col-sm-6 text-muted">Номер телефона:</div>
-                                                        <div class="col-sm-6 fw-semibold">
-                                                            <input type="tel" class="form-control" id="phone_number"
-                                                                placeholder="Номер телефона" name="phone_number"
-                                                                value="{{ old('phone', $company->phone_number) }}">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row g-0 mb-4">
-                                                        <div class="col-sm-6 text-muted">Электронная почта:</div>
-                                                        <div class="col-sm-6 fw-semibold">
-                                                            <input type="email" class="form-control" id="emailInput"
-                                                                placeholder="Электронная почта" name="email"
-                                                                value="{{ old('email', $company->email) }}">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row g-0 mb-4">
-                                                        <div class="col-sm-6 text-muted">Языки:</div>
-                                                        <div class="col-sm-6 fw-semibold">
-                                                            <select class="form-select form-control max-select"
-                                                                name="languages[]" id="languages" multiple>
-                                                                @foreach ($languages as $language)
-                                                                    <option value="{{ $language->code }}" selected>
-                                                                        {{ $language->name_uz }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="row g-0 mb-4">
-                                                        <div class="col-sm-6 text-muted">Дата основания:</div>
-                                                        <div class="col-sm-6 fw-semibold">
-                                                            <input type="date" class="form-control"
-                                                                id="foundedAtInput" name="founded"
-                                                                value="{{ old('foundedAt', isset($company->founded) ? date('Y-m-d', strtotime($company->founded)) : '') }}">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row g-0 mb-4">
-                                                        <div class="col-sm-6 text-muted">Стоимость услуги:</div>
-                                                        <div class="col-sm-6 fw-semibold">
-                                                            <input type="text" class="form-control" id="turnoverInput"
-                                                                placeholder="Оборот" name="turnover"
-                                                                value="{{ old('turnover', $company->turnover) }}">
-                                                        </div>
-                                                    </div>
-
-                                                    
-                                                    <div class="form-group row mb-3">
-                                                        <label class="col-lg-6 col-sm-12">Размер команды <span class="brand-1">*</span></label>
-                                                        <div class="col-lg-6 col-sm-12 p-0">
-
-                                                            <select name="teamSize" id="teamSizeInput"
-                                                                class="form-control text-center">
-                                                                <option value="" disabled hidden
-                                                                    {{ !$company->number_of_team ? 'selected' : '' }}>Select
-                                                                    your team size</option>
-                                                                <option value="1-10"
-                                                                    {{ $company->number_of_team === '1-10' ? 'selected' : '' }}>
-                                                                    1-10</option>
-                                                                <option value="11-25"
-                                                                    {{ $company->number_of_team === '11-25' ? 'selected' : '' }}>
-                                                                    11-25</option>
-                                                                <option value="26-50"
-                                                                    {{ $company->number_of_team === '26-50' ? 'selected' : '' }}>
-                                                                    26-50</option>
-                                                                <option value="51-100"
-                                                                    {{ $company->number_of_team === '51-100' ? 'selected' : '' }}>
-                                                                    51-100</option>
-                                                                <option value="101-200"
-                                                                    {{ $company->number_of_team === '101-200' ? 'selected' : '' }}>
-                                                                    101-200</option>
-                                                                <option value="200+"
-                                                                    {{ $company->number_of_team === '200+' ? 'selected' : '' }}>
-                                                                    200+</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-
-                                                    @foreach (auth()->user()->companies as $company)
-                                                        <input type="hidden" value="{{ $company->id }}"
-                                                            name="companies[]">
-                                                    @endforeach
-
-                                                    <div class="row g-0 mb-4 providerSubmit" id="providerSubmit"
-                                                        style="display: none;">
-                                                        <button type="submit" class="btn btn-primary">Сохранять</button>
-                                                    </div>
-
                                                 </div>
-                                                <div class="alert alert-dismissible mb-4 p-4 d-flex alert-soft-warning-message profile-overview-alert d-none"
-                                                    role="alert">
-                                                    <div class="me-4 d-none d-md-block">
-                                                        <i class="feather feather-alert-triangle fs-1"></i>
+                                                <div class="row g-0 mb-4">
+                                                    <div class="col-sm-6 text-muted">Веб-сайт:</div>
+                                                    <div class="col-sm-6 fw-semibold">
+                                                        <input type="text" class="form-control" id="taglineInput"
+                                                            placeholder="Веб-сайт" name="website"
+                                                            value="{{ old('website', $company->website) }}">
                                                     </div>
-                                                    <div>
-                                                        <p class="fw-bold mb-1 text-truncate-1-line">Вы должны регулярно
-                                                            поддерживать свою учетную запись</p>
-                                                        <p class="fs-10 fw-medium text-uppercase text-truncate-1-line">
-                                                            Последнее обновление: <strong>31 Avg, 2024</strong></p>
-                                                        <a href="javascript:void(0);"
-                                                            class="btn btn-sm bg-soft-warning text-warning d-inline-block">Читать
-                                                            далее</a>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                            aria-label="Close"></button>
+                                                </div>
+
+                                                <div class="row g-0 mb-4">
+                                                    <div class="col-sm-6 text-muted">Адрес:</div>
+                                                    <div class="col-sm-6 fw-semibold">
+                                                        <input type="text" class="form-control" id="addressInput"
+                                                            placeholder="Адрес" name="address"
+                                                            value="{{ old('tagline', $company->address) }}">
                                                     </div>
+                                                </div>
+
+                                                <div class="row g-0 mb-4">
+                                                    <div class="col-sm-6 text-muted">Номер телефона:</div>
+                                                    <div class="col-sm-6 fw-semibold">
+                                                        <input type="tel" class="form-control" id="phone_number"
+                                                            placeholder="Номер телефона" name="phone_number"
+                                                            value="{{ old('phone', $company->phone_number) }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row g-0 mb-4">
+                                                    <div class="col-sm-6 text-muted">Электронная почта:</div>
+                                                    <div class="col-sm-6 fw-semibold">
+                                                        <input type="email" class="form-control" id="emailInput"
+                                                            placeholder="Электронная почта" name="email"
+                                                            value="{{ old('email', $company->email) }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row g-0 mb-4">
+                                                    <div class="col-sm-6 text-muted">Языки:</div>
+                                                    <div class="col-sm-6 fw-semibold">
+                                                        <select class="form-select form-control max-select"
+                                                            name="languages[]" id="languages" multiple>
+                                                            @foreach ($languages as $language)
+                                                                <option value="{{ $language->code }}" selected>
+                                                                    {{ $language->name_uz }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="row g-0 mb-4">
+                                                    <div class="col-sm-6 text-muted">Дата основания:</div>
+                                                    <div class="col-sm-6 fw-semibold">
+                                                        <input type="date" class="form-control"
+                                                            id="foundedAtInput" name="founded"
+                                                            value="{{ old('foundedAt', isset($company->founded) ? date('Y-m-d', strtotime($company->founded)) : '') }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row g-0 mb-4">
+                                                    <div class="col-sm-6 text-muted">Стоимость услуги:</div>
+                                                    <div class="col-sm-6 fw-semibold">
+                                                        <input type="text" class="form-control" id="turnoverInput"
+                                                            placeholder="Оборот" name="turnover"
+                                                            value="{{ old('turnover', $company->turnover) }}">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-lg-6 col-sm-12">Размер команды <span class="brand-1">*</span></label>
+                                                    <div class="col-lg-6 col-sm-12 p-0">
+
+                                                        <select name="teamSize" id="teamSizeInput"
+                                                            class="form-control text-center">
+                                                            <option value="" disabled hidden
+                                                                {{ !$company->number_of_team ? 'selected' : '' }}>Select
+                                                                your team size</option>
+                                                            <option value="1-10"
+                                                                {{ $company->number_of_team === '1-10' ? 'selected' : '' }}>
+                                                                1-10</option>
+                                                            <option value="11-25"
+                                                                {{ $company->number_of_team === '11-25' ? 'selected' : '' }}>
+                                                                11-25</option>
+                                                            <option value="26-50"
+                                                                {{ $company->number_of_team === '26-50' ? 'selected' : '' }}>
+                                                                26-50</option>
+                                                            <option value="51-100"
+                                                                {{ $company->number_of_team === '51-100' ? 'selected' : '' }}>
+                                                                51-100</option>
+                                                            <option value="101-200"
+                                                                {{ $company->number_of_team === '101-200' ? 'selected' : '' }}>
+                                                                101-200</option>
+                                                            <option value="200+"
+                                                                {{ $company->number_of_team === '200+' ? 'selected' : '' }}>
+                                                                200+</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                @foreach (auth()->user()->companies as $company)
+                                                    <input type="hidden" value="{{ $company->id }}"
+                                                        name="companies[]">
+                                                @endforeach
+
+                                                <div class="row g-0 mb-4 providerSubmit" id="providerSubmit"
+                                                    style="display: none;">
+                                                    <button type="submit" class="btn btn-primary">Сохранять</button>
+                                                </div>
+
+                                            </div>
+                                            <div class="alert alert-dismissible mb-4 p-4 d-flex alert-soft-warning-message profile-overview-alert d-none"
+                                                role="alert">
+                                                <div class="me-4 d-none d-md-block">
+                                                    <i class="feather feather-alert-triangle fs-1"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="fw-bold mb-1 text-truncate-1-line">Вы должны регулярно
+                                                        поддерживать свою учетную запись</p>
+                                                    <p class="fs-10 fw-medium text-uppercase text-truncate-1-line">
+                                                        Последнее обновление: <strong>31 Avg, 2024</strong></p>
+                                                    <a href="javascript:void(0);"
+                                                        class="btn btn-sm bg-soft-warning text-warning d-inline-block">Читать
+                                                        далее</a>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                        aria-label="Close"></button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+
                     </div>
-
                 </div>
-                <!-- [ Content Area ] end -->
+                </form>
             </div>
-            <!-- [ Main Content ] end -->
+            <!-- [ Content Area ] end -->
         </div>
-
-    </form>
+        <!-- [ Main Content ] end -->
+    </div>
 
     <script>
         const coverInput = document.getElementById('coverInput');
@@ -415,7 +413,5 @@
             });
         });
     </script>
-
-
 
 @endsection

@@ -23,10 +23,7 @@ class PageController extends Controller
 
     public function dashboard()
     {
-        $provider = Auth::user(); // Get the authenticated user
-        $providerCompany = ProviderCompany::where('provider_id', $provider->id)->first();
-        $company = Company::where('id', $providerCompany->company_id)->first();
-        return redirect()->route('providers.profile', compact('company'));
+        return view('provider.main');
     }
     public function profile()
     {
@@ -53,7 +50,7 @@ class PageController extends Controller
 
     public function update(Request $request)
     {
-  
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'turnover' => 'nullable|integer|min:0',

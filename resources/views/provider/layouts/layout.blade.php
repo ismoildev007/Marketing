@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-
-
     <style>
         /* Style for Select2 dropdown */
         .select2-container--default .select2-selection--multiple {
@@ -104,6 +101,7 @@
     <!--! BEGIN: Vendors CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/vendors/css/vendors.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/vendors/css/dataTables.bs5.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/vendors/css/jquery-jvectormap.min.css') }}">
 
     <!-- <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/vendors/css/select2.min.css') }}"> -->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/vendors/css/select2-theme.min.css') }}">
@@ -120,7 +118,6 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
-
 
     <!-- Add before the closing </body> tag -->
 
@@ -253,6 +250,7 @@
     <script src="{{ asset('admin/assets/vendors/js/select2-active.min.js') }}"></script>
     <!-- For employees JS-->
     <!-- SweetAlert2 JS -->
+    <script src="{{ asset('admin/assets/vendors/js/daterangepicker.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admin/assets/vendors/js/quill.min.js') }}"></script>
     <script src="{{ asset('admin/assets/vendors/js/datepicker.min.js') }}"></script>
@@ -265,6 +263,8 @@
     <script src="{{ asset('admin/assets/js/payment-init.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="{{ asset('admin/assets/js/formatter.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/widgets-charts-init.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/analytics-init.min.js') }}"></script>
     <!--! END: Apps Init !-->
     <!--! BEGIN: Theme Customizer  !-->
     <script src="{{ asset('admin/assets/js/theme-customizer-init.min.js') }}"></script>
