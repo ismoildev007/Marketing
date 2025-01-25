@@ -91,13 +91,12 @@ class PortfoliosController extends Controller
                 'portfolio_id' => $portfolio->id,
                 'company_name' => $validatedData['company_name'],
                 'location' => $validatedData['company_location'],
-                'sector_id' => $validatedData['sector_id'],
                 'geographic_scope' => $validatedData['geographic_scope'],
                 'audience' => $validatedData['audience'],
             ]);
 
             return redirect()->route('portfolios.index')->with('success', 'Portfolio created successfully');
-            
+
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'Xatolik yuz berdi: ' . $e->getMessage()]);
         }
@@ -131,7 +130,6 @@ class PortfoliosController extends Controller
                 'source_link' => 'nullable|string',
                 'company_name' => 'required|string|max:255',
                 'company_location' => 'required|string|max:255',
-                'sector_id' => 'required|exists:sectors,id',
                 'geographic_scope' => 'nullable|string',
                 'audience' => 'nullable|string',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
@@ -158,7 +156,6 @@ class PortfoliosController extends Controller
                 [
                     'company_name'     => $data['company_name'],
                     'location'        => $data['company_location'],
-                    'sector_id'       => $data['sector_id'],
                     'geographic_scope' => $data['geographic_scope'],
                     'audience'        => $data['audience'],
                 ]

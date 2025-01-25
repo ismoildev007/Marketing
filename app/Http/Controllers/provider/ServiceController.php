@@ -25,7 +25,7 @@ class ServiceController extends Controller
             // Get all providers for this company
             $providerIds = ProviderCompany::where('company_id', $providerCompany->company_id)
                 ->pluck('provider_id');
-            
+
             // Get the latest team info for all providers in the company
             $services = Service::whereIn('provider_id', $providerIds)->get();
         } else {
@@ -34,7 +34,7 @@ class ServiceController extends Controller
         }
         $skills = Skill::all();
         $serviceTypes = ServiceSubCategory::all();
-        
+
         return view('provider.services.index', compact('services', 'skills', 'serviceTypes'));
     }
 
@@ -85,7 +85,7 @@ class ServiceController extends Controller
         }
 
         // Redirect to the service index with success message
-        return redirect()->route('service.index')->with('success', 'Service created successfully.');
+        return redirect()->route('service.index')->with('success', 'Сервис успешно создан.');
     }
 
     /**
@@ -131,7 +131,7 @@ class ServiceController extends Controller
             ], 422);
         }
 
-        
+
         // Find the service and update it
         $service = Service::findOrFail($id);
         $service->update([
@@ -158,11 +158,11 @@ class ServiceController extends Controller
 
         // Detach any associated skills before deleting
         $service->skills()->detach();
-        
+
         // Delete the service
         $service->delete();
 
         // Redirect to the service index with success message
-        return redirect()->route('service.index')->with('success', 'Service deleted successfully.');
+        return redirect()->route('service.index')->with('success', 'Сервис успешно удалён.');
     }
 }

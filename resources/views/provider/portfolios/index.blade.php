@@ -27,7 +27,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-area-body">
+                <div class="content-area-body p-3">
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul class="mb-0">
@@ -47,7 +47,7 @@
                         <div class="card-body">
                             <!--! BEGIN: [Portfolio] !-->
                             <div class="card stretch stretch-full">
-                                <div class="card-body custom-card-action">
+                                <div class="card-body custom-card-action p-3">
                                     <table class="table" id="portfolioList">
                                         <thead>
                                             <tr>
@@ -60,7 +60,7 @@
                                             @forelse ($portfolios as $index => $portfolio)
                                                 <tr>
                                                     <td>
-                                                        <a href="javascript:void(0);" 
+                                                        <a href="javascript:void(0);"
                                                         data-bs-toggle="offcanvas"
                                                         data-bs-target="#portfolioProviderEditOffcanvas{{ $portfolio->id }}"
                                                         class="text-truncate-1-line">
@@ -83,7 +83,7 @@
                                                             </a>
 
                                                             <!-- Delete Button -->
-                                                            <form method="POST" 
+                                                            <form method="POST"
                                                                 onsubmit="confirmDelete(event)"
                                                                 action="{{ route('portfolios.destroy', $portfolio->id) }}">
                                                                 @csrf
@@ -107,7 +107,7 @@
                                 </div>
 
                                 <!-- Footer для кнопки добавления нового портфеля -->
-                                <a href="javascript:void(0);" 
+                                <a href="javascript:void(0);"
                                 class="card-footer fs-11 fw-bold text-uppercase text-center d-none"
                                 data-bs-toggle="offcanvas" data-bs-target="#portfolioProviderOffcanvas">
                                     Добавить новый

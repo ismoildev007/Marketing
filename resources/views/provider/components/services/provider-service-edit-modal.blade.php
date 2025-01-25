@@ -1,8 +1,44 @@
+<style>
+    .select2-selection__rendered .select2-selection__choice {
+        width: max-content;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    .fs-15 {
+        font-size: 15px !important;
+    }
+
+    .card:hover {
+        transform: translateY(0px) !important;
+        box-shadow: none !important;
+    }
+
+    .card-input-element:checked+.card::after {
+        font-size: 12px !important;
+    }
+
+    input.custom-price:checked~.custom-price2 {
+        outline: none;
+        border: 1px dashed #17c666;
+        transition: border .3s;
+    }
+
+    input.custom-price~.custom-price2 {
+        box-shadow: none;
+        border-radius: 5px;
+        border: 1px dashed #dcdee4;
+        transition: all .3s ease;
+    }
+</style>
+
 @foreach ($services as $service)
     <form action="{{ route('service.update', $service->id) }}" method="post">
         @csrf
         @method('PUT')
-    <!-- Modal for Editing Service -->
+        <!-- Modal for Editing Service -->
         <div class="offcanvas offcanvas-end w-50" id="editServiceModal{{ $service->id }}" tabindex="-1">
             <div class="offcanvas-header border-bottom" style="padding-top: 20px; padding-bottom: 20px">
                 <div class="d-flex align-items-center">
@@ -16,86 +52,92 @@
             </div>
             <div class="offcanvas-body">
 
-                    <div class="row">
-                        <!-- Service Type Selection -->
-                        <div class="col-sm-12 col-lg-12">
-                            <div class="form-group mb-4">
-                                <label class="form-label">Тип услуги:</label>
-                                <select name="service_sub_category_id" id="edit-service-type-{{ $service->id }}" class="form-control select2">
-                                    @foreach ($serviceTypes as $serviceType)
-                                        <option value="{{ $serviceType->id }}"
-                                            {{ $serviceType->id == $service->service_sub_category_id ? 'selected' : '' }}>
-                                            {{ $serviceType->name_ru }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
+                <div class="row">
+                    <!-- Service Type Selection -->
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="form-group mb-4">
+                            <label class="form-label">Тип услуги:</label>
+                            <select name="service_sub_category_id" id="edit-service-type-{{ $service->id }}"
+                                class="form-control select2">
+                                @foreach ($serviceTypes as $serviceType)
+                                    <option value="{{ $serviceType->id }}"
+                                        {{ $serviceType->id == $service->service_sub_category_id ? 'selected' : '' }}>
+                                        {{ $serviceType->name_ru }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
+                    </div>
 
-                        <!-- Skills -->
-                        <div class="col-sm-12 col-lg-12">
-                            <div class="form-group mb-4">
-                                <label class="form-label">Навыки:</label>
-                                 <select name="skills[]" id="edit-skills-list-{{ $service->id }}"
-                                    class="form-select form-control max-select" data-select2-selector="tag" multiple>
-                                    @foreach ($skills as $skill)
-                                        <option value="{{ $skill->id }}"
-                                            {{ in_array($skill->id, $service->skills->pluck('id')->toArray()) ? 'selected' : '' }}>
-                                            {{ $skill->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
+                    <!-- Skills -->
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="form-group mb-4">
+                            <label class="form-label">Навыки:</label>
+                            <select name="skills[]" id="edit-skills-list-{{ $service->id }}"
+                                class="form-select form-control max-select" data-select2-selector="tag" multiple>
+                                @foreach ($skills as $skill)
+                                    <option value="{{ $skill->id }}"
+                                        {{ in_array($skill->id, $service->skills->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                        {{ $skill->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
+                    </div>
 
-                        <!-- Starting Price -->
-                        <div class="col-sm-12 col-lg-12">
-                            <div class="form-group mb-4">
-                                <label class="form-label">Начальная цена:</label>
-                                <div class="row mt-2">
-                                    @foreach ([1000, 2000, 5000, 10000] as $price)
-                                        <div class="col d-flex align-items-center">
-                                            <label for="edit-price-{{ $price }}-{{ $service->id }}"
-                                                class="d-flex align-items-center">
-                                                <!-- Use the actual price value here instead of $service->price -->
-                                                <input type="radio"
-                                                    id="edit-price-{{ $price }}-{{ $service->id }}" name="price"
-                                                    value="{{ $price }}"
-                                                    {{ $service->price == $price ? 'checked' : '' }}>
-                                                <span class="ms-2">€{{ $price }}</span>
-                                            </label>
-                                        </div>
-                                    @endforeach
+                    <!-- Starting Price -->
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="form-group mb-4">
+                            <label class="form-label">Начальная цена:</label>
+                            <div class="row mt-2">
+                                @foreach ([1000, 2000, 5000, 10000] as $price)
                                     <div class="col d-flex align-items-center">
-                                        <label for="edit-custom-price-{{ $service->id }}"
-                                            class="d-flex align-items-center">
-                                            <input type="radio" id="edit-custom-price-{{ $service->id }}" name="price"
-                                                value="custom" {{ $service->price > 10000 ? 'checked' : '' }}>
-                                            <input type="number" class="ms-2 p-1" name="custom_price"
-                                                id="edit-custom-price-input-{{ $service->id }}"
-                                                value="{{ $service->price > 10000 ? $service->price : '' }}"
-                                                placeholder="€20000" {{ $service->price > 10000 ? '' : 'disabled' }} />
+                                        <label for="edit-price-{{ $price }}-{{ $service->id }}"
+                                            class="d-flex align-items-center w-100">
+                                            <!-- Use the actual price value here instead of $service->price -->
+                                            <input hidden class="temporaryDisabledIn card-input-element" type="radio"
+                                                id="edit-price-{{ $price }}-{{ $service->id }}" name="price"
+                                                value="{{ $price }}"
+                                                {{ $service->price == $price ? 'checked' : '' }}>
+                                            <span
+                                                class="card card-body d-flex flex-row justify-content-between align-items-center p-3">
+                                                <span class="d-block fs-13 fw-bold text-dark text-nowrap">$
+                                                    {{ $price }}</span>
+                                            </span>
                                         </label>
                                     </div>
+                                @endforeach
+                                <div class="col d-flex align-items-start">
+                                    <label for="edit-custom-price-{{ $service->id }}"
+                                        class="d-flex align-items-center w-100">
+                                        <input hidden class="custom-price" type="radio"
+                                            id="edit-custom-price-{{ $service->id }}" name="price" value="custom"
+                                            {{ !in_array($service->price, [1000, 2000, 5000, 10000]) ? 'checked' : '' }}>
+                                        <input style="width: 100px" type="number"
+                                            class="ms-2 p-1 custom-price2 bg-transparent p-3" name="custom_price"
+                                            id="edit-custom-price-input-{{ $service->id }}"
+                                            value="{{ !in_array($service->price, [1000, 2000, 5000, 10000]) ? $service->price : '' }}"
+                                            placeholder="€20000" />
+                                    </label>
                                 </div>
-                            </div>
-                        </div>
-
-
-                        <!-- Description -->
-                        <div class="col-12">
-                            <div class="form-group mb-4">
-                                <label class="form-label">Описание (необязательно):</label>
-                                <textarea class="form-control" name="description" style="height: 18em;">{{ $service->description }}</textarea>
                             </div>
                         </div>
                     </div>
 
-                    <input type="hidden" value="{{ auth()->user()->id }}" name="provider_id">
+
+                    <!-- Description -->
+                    <div class="col-12">
+                        <div class="form-group mb-4">
+                            <label class="form-label">Описание (необязательно):</label>
+                            <textarea class="form-control" name="description" style="height: 18em;">{{ $service->description }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" value="{{ auth()->user()->id }}" name="provider_id">
             </div>
         </div>
     </form>
-
 @endforeach
 
 <script>
@@ -111,7 +153,7 @@
                 url: `/api/services/${selectedServiceTypeId}/skills`, // Use the service type ID in the URL
                 method: 'GET',
                 success: function(data) {
-                      console.log(data);
+                    console.log(data);
                     skillsList.empty(); // Clear the existing skills
 
                     if (Array.isArray(data)) {
@@ -162,7 +204,63 @@
             }
         });
     });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const serviceTypeSelect = document.getElementById('service-type');
+        const temporaryDisabledElements = document.querySelectorAll('.temporaryDisabled');
+        const temporaryDisabledInElements = document.querySelectorAll('.temporaryDisabledIn');
+
+        serviceTypeSelect.addEventListener('change', function() {
+            if (serviceTypeSelect.value) {
+                // Agar biror qiymat tanlangan bo'lsa
+                temporaryDisabledElements.forEach(element => {
+                    // element.removeAttribute('disabled', 'disabled');
+                    element.style.opacity = '1';
+                });
+                temporaryDisabledInElements.forEach(element => {
+                    element.removeAttribute('disabled',
+                        'disabled'); // Agar faollashtirilishi kerak bo'lsa
+                });
+
+            } else {
+                // Agar tanlanmagan bo'lsa
+                temporaryDisabledElements.forEach(element => {
+                    // element.setAttribute('disabled', 'disabled');
+                    element.style.opacity = '0.5';
+                });
+                temporaryDisabledInElements.forEach(element => {
+                    element.setAttribute('disabled',
+                        'disabled'); // Agar faollashtirilishi kerak bo'lsa
+                });
+
+            }
+        });
 
 
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const radioButtons = document.querySelectorAll('input[name="price"]');
+        const skillslist = document.getElementById('skills-list');
+        const service_description = document.getElementById('service_description');
+        const service_btn = document.getElementById('service_btn');
 
+        function checkInputs() {
+            const isSelected = Array.from(radioButtons).some(radio => radio.checked);
+            const isSkillsListFilled = skillslist.value.trim() !== '';
+            const isServiceDescriptionFilled = service_description.value.trim() !== '';
+
+            if (isSelected && isSkillsListFilled && isServiceDescriptionFilled) {
+                service_btn.removeAttribute('disabled');
+            } else {
+                service_btn.setAttribute('disabled', 'disabled');
+            }
+        }
+
+        radioButtons.forEach(radio => radio.addEventListener('change', checkInputs));
+        skillslist.addEventListener('input', checkInputs);
+        service_description.addEventListener('input', checkInputs);
+
+        checkInputs();
+    });
 </script>

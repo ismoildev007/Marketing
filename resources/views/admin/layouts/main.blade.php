@@ -21,7 +21,7 @@
         }
 
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
-            background-color: #007bff;
+            background-color: #fff;
             border-color: #007bff;
             color: black !important; /* Text color */
         }
@@ -31,7 +31,7 @@
         }
 
         .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
-            background-color: #0056b3;
+            background-color: #fff;
             border-color: #0056b3;
             color: black !important; /* Text color */
         }
@@ -112,7 +112,7 @@
 <script>
     // Check for success message in the session
     @if(session('success'))
-        toastr.success("{{ session('success') }}", "Muvaffaqiyatli", {
+        toastr.success("{{ session('success') }}", "Успешно", {
             positionClass: "toast-bottom-right",
             closeButton: true,
             progressBar: true,
@@ -137,54 +137,54 @@
             event.preventDefault();
             var num1 = Math.floor(Math.random() * 10) + 1;
             var num2 = Math.floor(Math.random() * 10) + 1;
-            var answer = prompt(`Please solve the following to confirm deletion: ${num1} + ${num2} = ?`);
-    
+            var answer = prompt(`Пожалуйста, решите следующее для подтверждения удаления: ${num1} + ${num2} = ?`);
+
             if (answer == (num1 + num2)) {
                 event.target.submit();
             } else {
-                alert('Wrong answer. Correct answer is required to delete.');
+                alert('Требуется правильный ответ для удаления.');
             }
         }
     </script>
-    
+
     <style>
         .card {
             transition: transform 0.2s, box-shadow 0.2s;
             border: none;
         }
-    
+
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-    
+
         .card-title {
             font-size: 1.3rem;
             color: #007bff;
         }
-    
+
         .btn-primary {
             background-color: #007bff;
             border-color: #007bff;
         }
-    
+
         .btn-primary:hover {
             background-color: #0056b3;
             border-color: #0056b3;
         }
-    
+
         .pagination .page-link {
             background-color: #0f172a;
             color: #fff;
             border-color: #000;
         }
-    
+
         .pagination .page-link:hover {
             background-color: #555;
             color: #fff;
             border-color: #000;
         }
-    
+
         .pagination .page-item.active .page-link {
             background-color: #000;
             border-color: #000;
@@ -193,7 +193,7 @@
     <!--! Footer Script !-->
     <!--! ================================================================ !-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   
+
 
     <!--! BEGIN: Vendors JS !-->
     <script src="{{ asset('admin/assets/vendors/js/vendors.min.js') }}"></script>

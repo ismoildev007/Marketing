@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
@@ -19,57 +20,75 @@
             background-color: #fff;
             border: 1px solid #ced4da;
             border-radius: 4px;
-            color: black !important; /* Text color */
-            min-height: 38px; /* Adjust height as needed */
+            color: black !important;
+            /* Text color */
+            min-height: 38px;
+            /* Adjust height as needed */
         }
 
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
-            background-color: #007bff;
+            background-color: #fff;
             border-color: #007bff;
-            color: black !important; /* Text color */
+            color: black !important;
+            /* Text color */
         }
 
         .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-            color: black !important; /* Text color */
+            color: black !important;
+            /* Text color */
         }
 
         .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
-            background-color: #0056b3;
+            background-color: #fff;
             border-color: #0056b3;
-            color: black !important; /* Text color */
+            color: black !important;
+            /* Text color */
         }
 
         /* Ensure text color inside Select2 dropdown */
         .select2-container--default .select2-results__option {
-            color: black !important; /* Text color */
+            color: black !important;
+            /* Text color */
         }
+
         .star-buttons {
-            display: flex; /* Tugmalarni yonma-yon joylashtirish */
-            gap: 5px; /* Tugmalar orasida masofa */
+            display: flex;
+            /* Tugmalarni yonma-yon joylashtirish */
+            gap: 5px;
+            /* Tugmalar orasida masofa */
         }
 
         .star-button {
-            background: none; /* Orqa fonni o'chirish */
-            border: none; /* Chegara yo'q */
-            cursor: pointer; /* Kursor ko'rsatgich */
-            padding: 0; /* Padding yo'q */
-            outline: none; /* Chiqish chizig'ini o'chirish */
+            background: none;
+            /* Orqa fonni o'chirish */
+            border: none;
+            /* Chegara yo'q */
+            cursor: pointer;
+            /* Kursor ko'rsatgich */
+            padding: 0;
+            /* Padding yo'q */
+            outline: none;
+            /* Chiqish chizig'ini o'chirish */
         }
 
         .star-button i {
-            font-size: 24px; /* Ikonaning o'lchami */
-            color: #ccc; /* Yulduz rangini boshlang'ichda xira qilib belgilash */
-            transition: color 0.3s; /* Rang o'zgarishi uchun animatsiya */
+            font-size: 24px;
+            /* Ikonaning o'lchami */
+            color: #ccc;
+            /* Yulduz rangini boshlang'ichda xira qilib belgilash */
+            transition: color 0.3s;
+            /* Rang o'zgarishi uchun animatsiya */
         }
 
         .star-button:hover i {
-            color: #ffd700; /* Ustiga kelganda yulduz rangini o'zgartirish */
+            color: #ffd700;
+            /* Ustiga kelganda yulduz rangini o'zgartirish */
         }
 
         .star-button.active i {
-            color: #ffd700; /* Faol tugma yulduzi rangini belgilash */
+            color: #ffd700;
+            /* Faol tugma yulduzi rangini belgilash */
         }
-
     </style>
 
     <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
@@ -98,7 +117,7 @@
     <!--! BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/theme.min.css') }}">
     <!-- Add in your <head> section -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
 
@@ -115,13 +134,13 @@
 </head>
 
 <body>
-<!--! ================================================================ !-->
-<!--! [Start] Navigation Manu !-->
-<!--! ================================================================ !-->
-@include('provider.components.sidebar')
-<!--! ================================================================ !-->
-<!--! [End]  Navigation Manu !-->
-<!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Navigation Manu !-->
+    <!--! ================================================================ !-->
+    @include('provider.components.sidebar')
+    <!--! ================================================================ !-->
+    <!--! [End]  Navigation Manu !-->
+    <!--! ================================================================ !-->
 
     <!--! ================================================================ !-->
     <!--! [Start] Header !-->
@@ -135,44 +154,44 @@
         @include('provider.components.footer')
     </main>
     <!-- Add this in your <head> section -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-<!-- Add this before closing </body> tag -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script>
-    // Check for success message in the session
-    @if(session('success'))
-        toastr.success("{{ session('success') }}", "Muvaffaqiyatli", {
-            positionClass: "toast-bottom-right",
-            closeButton: true,
-            progressBar: true,
-            timeOut: "5000" // Duration for which the message is displayed
-        });
-    @endif
-</script>
-<script>
-    // Check for error message in the session
-    @if(session('error'))
-        toastr.error("{{ session('error') }}", "Xato", {
-            positionClass: "toast-bottom-right",
-            closeButton: true,
-            progressBar: true,
-            timeOut: "5000" // Duration for which the message is displayed
-        });
-    @endif
-</script>
+    <!-- Add this before closing </body> tag -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        // Check for success message in the session
+        @if (session('success'))
+            toastr.success("{{ session('success') }}", "Успешно", {
+                positionClass: "toast-bottom-right",
+                closeButton: true,
+                progressBar: true,
+                timeOut: "5000" // Duration for which the message is displayed
+            });
+        @endif
+    </script>
+    <script>
+        // Check for error message in the session
+        @if (session('error'))
+            toastr.error("{{ session('error') }}", "Xato", {
+                positionClass: "toast-bottom-right",
+                closeButton: true,
+                progressBar: true,
+                timeOut: "5000" // Duration for which the message is displayed
+            });
+        @endif
+    </script>
 
     <script>
         function confirmDelete(event) {
             event.preventDefault();
             var num1 = Math.floor(Math.random() * 10) + 1;
             var num2 = Math.floor(Math.random() * 10) + 1;
-            var answer = prompt(`Please solve the following to confirm deletion: ${num1} + ${num2} = ?`);
+            var answer = prompt(`Пожалуйста, решите следующее для подтверждения удаления: ${num1} + ${num2} = ?`);
 
             if (answer == (num1 + num2)) {
                 event.target.submit();
             } else {
-                alert('Wrong answer. Correct answer is required to delete.');
+                alert('Требуется правильный ответ для удаления.');
             }
         }
     </script>
@@ -233,7 +252,7 @@
     <script src="{{ asset('admin/assets/vendors/js/select2.min.js') }}"></script>
     <script src="{{ asset('admin/assets/vendors/js/select2-active.min.js') }}"></script>
     <!-- For employees JS-->
-     <!-- SweetAlert2 JS -->
+    <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admin/assets/vendors/js/quill.min.js') }}"></script>
     <script src="{{ asset('admin/assets/vendors/js/datepicker.min.js') }}"></script>
@@ -251,50 +270,50 @@
     <script src="{{ asset('admin/assets/js/theme-customizer-init.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script>
-    function confirmDelete(event) {
-        event.preventDefault();
-        var num1 = Math.floor(Math.random() * 10) + 1;
-        var num2 = Math.floor(Math.random() * 10) + 1;
-        var correctAnswer = num1 + num2;
+        function confirmDelete(event) {
+            event.preventDefault();
+            var num1 = Math.floor(Math.random() * 10) + 1;
+            var num2 = Math.floor(Math.random() * 10) + 1;
+            var correctAnswer = num1 + num2;
 
-        Swal.fire({
-            title: 'Matematik amalni bajaring',
-            text: `${num1} + ${num2} = ?`,
-            input: 'text',
-            inputPlaceholder: 'Javobni kiriting',
-            showCancelButton: true,
-            confirmButtonText: 'Tasdiqlash',
-            cancelButtonText: 'Bekor qilish',
-            preConfirm: (answer) => {
-                if (parseInt(answer) === correctAnswer) {
-                    return true;
-                } else {
-                    Swal.showValidationMessage(
-                        'Notog\'ri javob. O\'chirish uchun to\'g\'ri javob kiritilishi kerak.'
-                    );
-                    return false;
-                }
-            }
-        }).then((result) => {
-            if (result.value) { // Ensure deletion only if confirmed
-                Swal.fire({
-                    title: 'O\'chirishni tasdiqlaysizmi?',
-                    text: "Bu amalni bekor qilib bo'lmaydi!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Ha, o\'chirilsin!',
-                    cancelButtonText: 'Bekor qilish'
-                }).then((result) => {
-                    if (result.value) { // Ensure submission only if confirmed
-                        event.target.submit();
+            Swal.fire({
+                title: 'Matematik amalni bajaring',
+                text: `${num1} + ${num2} = ?`,
+                input: 'text',
+                inputPlaceholder: 'Javobni kiriting',
+                showCancelButton: true,
+                confirmButtonText: 'Tasdiqlash',
+                cancelButtonText: 'Bekor qilish',
+                preConfirm: (answer) => {
+                    if (parseInt(answer) === correctAnswer) {
+                        return true;
+                    } else {
+                        Swal.showValidationMessage(
+                            'Notog\'ri javob. O\'chirish uchun to\'g\'ri javob kiritilishi kerak.'
+                        );
+                        return false;
                     }
-                });
-            }
-        });
-    }
-</script>
+                }
+            }).then((result) => {
+                if (result.value) { // Ensure deletion only if confirmed
+                    Swal.fire({
+                        title: 'O\'chirishni tasdiqlaysizmi?',
+                        text: "Bu amalni bekor qilib bo'lmaydi!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ha, o\'chirilsin!',
+                        cancelButtonText: 'Bekor qilish'
+                    }).then((result) => {
+                        if (result.value) { // Ensure submission only if confirmed
+                            event.target.submit();
+                        }
+                    });
+                }
+            });
+        }
+    </script>
 
-<!--! END: Theme Customizer !-->
+    <!--! END: Theme Customizer !-->
 </body>
 
 </html>

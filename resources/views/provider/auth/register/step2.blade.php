@@ -67,7 +67,8 @@
                 <div class="row align-items-center py-3 ">
                     <div class="col-lg-6">
                         <div class="box-form-register">
-                            <form class="form-register row" method="post" action="{{ route('providerRegisterStep2store') }}">
+                            <form class="form-register row" method="post"
+                                action="{{ route('providerRegisterStep2store') }}">
                                 @csrf
                                 <!-- Xatolarni ko'rsatish uchun blok -->
                                 @if ($errors->any())
@@ -87,17 +88,30 @@
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label>Веб-сайт <span class="brand-1">*</span></label>
                                     <input type="text" name="company_website" id="company_website"
-                                        class="form-control text-center" placeholder="Enter your company website">
+                                        class="form-control text-center" placeholder="domain.com">
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label>Номер телефона <span class="brand-1">*</span></label>
                                     <input type="text" name="company_phone" id="company_phone"
                                         class="form-control text-center" placeholder="Enter your company phone number">
                                 </div>
-                                <div class="form-group col-lg-6 col-sm-12">
+                                {{-- <div class="form-group col-lg-6 col-sm-12">
                                     <label>Размер команды <span class="brand-1">*</span></label>
                                     <input type="text" name="teamSize" id="teamSize" class="form-control text-center"
                                         placeholder="Enter your team size">
+                                </div> --}}
+
+                                <div class="form-group col-lg-6 col-sm-12">
+                                    <label>Размер команды <span class="brand-1">*</span></label>
+                                    <select name="teamSize" id="teamSize" class="form-control text-center">
+                                        <option value="" disabled selected hidden>Select your team size</option>
+                                        <option value="1-10">1-10</option>
+                                        <option value="11-25">11-25</option>
+                                        <option value="26-50">26-50</option>
+                                        <option value="51-100">51-100</option>
+                                        <option value="101-200">101-200</option>
+                                        <option value="200+">200+</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group col-lg-12">

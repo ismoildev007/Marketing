@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('provider.layouts.layout')
 
 @section('content')
     <!-- Main Content -->
@@ -65,8 +65,20 @@
                                 <div class="tab-pane fade show active" id="profileTab" role="tabpanel">
                                     <div class="card-body personal-info">
                                         <div class="row mb-4 align-items-center">
-                                            <div class="col-lg-4 fw-semibold">Baho :</div>
-                                            <div class="col-lg-8">{{ $review->rating }}</div>
+                                            <div class="col-lg-4 fw-semibold">Hamkorlik bali :</div>
+                                            <div class="col-lg-8">{{ $review->colloboration_score }}</div>
+                                        </div>
+                                        <div class="row mb-4 align-items-center">
+                                            <div class="col-lg-4 fw-semibold">burget_score :</div>
+                                            <div class="col-lg-8">{{ $review->burget_score }}</div>
+                                        </div>
+                                        <div class="row mb-4 align-items-center">
+                                            <div class="col-lg-4 fw-semibold">schedule_score :</div>
+                                            <div class="col-lg-8">{{ $review->schedule_score }}</div>
+                                        </div>
+                                        <div class="row mb-4 align-items-center">
+                                            <div class="col-lg-4 fw-semibold">Sifat bali :</div>
+                                            <div class="col-lg-8">{{ $review->quality_score }}</div>
                                         </div>
 
                                         <div class="row mb-4 align-items-center">
@@ -112,11 +124,6 @@
                                         <div class="row mb-4 align-items-center">
                                             <div class="col-lg-4 fw-semibold">Xizmat Ko'rsatish :</div>
                                             <div class="col-lg-8">{{ $review->providing_service }}</div>
-                                        </div>
-
-                                        <div class="row mb-4 align-items-center">
-                                            <div class="col-lg-4 fw-semibold">Til :</div>
-                                            <div class="col-lg-8">{{ $review->language->name }}</div>
                                         </div>
 
                                         <div class="row mb-4 align-items-center">

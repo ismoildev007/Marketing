@@ -8,12 +8,17 @@
 
             <!-- [ Content Sidebar  ] end -->
             <!-- [ Main Area  ] start -->
+            <style>
+                textarea {
+                    resize: none;
+                }
+            </style>
             <div class="content-area" data-scrollbar-target="#psScrollbarInit">
                 <div class="content-area-header bg-white sticky-top">
                     <div class="card-header">
                         <h5 class="card-title text-black">Отзывы</h5>
                     </div>
-                    <div class="page-header-right ms-auto">
+                    {{-- <div class="page-header-right ms-auto">
                         <div class="d-flex align-items-center gap-3 page-header-right-items-wrapper">
                             <a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="offcanvas"
                                data-bs-target="#reviewProviderOffcanvas">
@@ -21,9 +26,9 @@
                                 <span>Добавить новый</span>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
-                <div class="content-area-body">
+                <div class="content-area-body p-3">
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -34,28 +39,30 @@
                         </div>
                     @endif
 
-                    <div class="card mb-0">
+                    <div class="mb-0">
                         <div class="card-body">
                             <!--! BEGIN: [Users] !-->
-                            <div class=" stretch stretch-full">
-                                <div class="table-responsive">
-                                    <div class="table-responsive" style="min-height: 500px">
-                                        <table class="table " id="reviewsList">
-                                            <thead>
+                            <div class="card stretch stretch-full">
+
+                                <div class="card-body custom-card-action p-3">
+                                    <table class="table " id="reviewsList">
+                                        <thead>
                                             <tr>
                                                 <th>{{ __('Имя клиента') }}</th>
                                                 <th>{{ __('Рейтинг') }}</th>
                                                 <th>{{ __('Опубликовано в') }}</th>
                                                 <th class="text-end">{{ __('Настройки') }}</th>
                                             </tr>
-                                            </thead>
-                                            <tbody>
+                                        </thead>
+                                        <tbody>
                                             @foreach ($reviews as $review)
                                                 <tr>
                                                     <td>
-                                                        <a href="{{ route('reviews.show', $review->id) }}" class="hstack gap-3">
+                                                        <a href="{{ route('reviews.show', $review->id) }}"
+                                                            class="hstack gap-3">
                                                             <div>
-                                                                <span class="text-truncate-1-line">{{ $review->full_name }}</span>
+                                                                <span
+                                                                    class="text-truncate-1-line">{{ $review->full_name }}</span>
                                                             </div>
                                                         </a>
                                                     </td>
@@ -63,40 +70,48 @@
                                                         <div class="rate-reviews-small">
                                                             @for ($i = 0; $i < 5; $i++)
                                                                 <span>
-                                                                        <img src="{{ asset('/assets/imgs/template/icons/star.svg') }}" alt="jobhub"
-                                                                            style="opacity: {{ $i < floor($review->average_score) ? '1' : '0.2' }};" />
+                                                                    <img src="{{ asset('/assets/imgs/template/icons/star.svg') }}"
+                                                                        alt="jobhub"
+                                                                        style="opacity: {{ $i < floor($review->average_score) ? '1' : '0.2' }};" />
                                                                 </span>
                                                             @endfor
-                                                                <span class="ml-10 text-muted text-small">
-                                                                    ({{ number_format($review->average_score, 1) }})
-                                                                </span>
+                                                            <span class="ml-10 text-muted text-small">
+                                                                ({{ number_format($review->average_score, 1) }})
+                                                            </span>
                                                         </div>
                                                     </td>
-                                                    <td><a href="">{{ $review->created_at->format('Y-m-d') }}</a></td>
+                                                    <td><a href="">{{ $review->created_at->format('d.m.Y') }}</a>
+                                                    </td>
 
-                                                  
                                                     <td>
                                                         <div class="hstack gap-2 justify-content-end">
-                                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="offcanvas"
-                                                               data-bs-target="#editReviewProviderOffcanvas{{ $review->id }}">
+                                                            {{-- <a href="javascript:void(0)" class="avatar-text avatar-md"
+                                                                data-bs-toggle="offcanvas"
+                                                                data-bs-target="#editReviewProviderOffcanvas{{ $review->id }}">
                                                                 <i class="feather feather-edit-3"></i>
+                                                            </a> --}}
+                                                            <a href="{{ route('reviews.show', $review->id) }}"
+                                                                class="avatar-text avatar-md">
+                                                                <i class="feather feather-eye"></i>
                                                             </a>
                                                             <!-- Delete Button -->
-                                                            <form class="avatar-text avatar-md" method="POST" onsubmit="confirmDelete(event)" action="{{ route('reviews.destroy', $review->id) }}">
+                                                            {{-- <form class="avatar-text avatar-md" method="POST"
+                                                                onsubmit="confirmDelete(event)"
+                                                                action="{{ route('reviews.destroy', $review->id) }}">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn text-dark p-0 border-0" style="background: none;">
+                                                                <button type="submit" class="btn text-dark p-0 border-0"
+                                                                    style="background: none;">
                                                                     <i class="feather feather-trash-2"></i>
                                                                 </button>
-                                                            </form>
+                                                            </form> --}}
                                                         </div>
                                                     </td>
                                                 </tr>
                                             @endforeach
-                                            </tbody>
+                                        </tbody>
 
-                                        </table>
-                                    </div>
+                                    </table>
                                 </div>
                             </div>
                             <!--! END: [Users] !-->

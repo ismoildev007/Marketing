@@ -11,17 +11,17 @@
 @csrf
 @method('PUT')
 
-    <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="portfolioProviderEditOffcanvas{{ $portfolio->id }}">
+    <div class="offcanvas offcanvas-end w-75" tabindex="-1" id="portfolioProviderEditOffcanvas{{ $portfolio->id }}">
         <div class="offcanvas-header border-bottom" style="padding-top: 20px; padding-bottom: 20px">
             <div class="d-flex align-items-center">
                 <div class="avatar-text avatar-md items-details-close-trigger" data-bs-dismiss="offcanvas"
                     data-bs-toggle="tooltip" data-bs-trigger="hover" title="Details Close"><i
                         class="feather-arrow-left"></i></div>
                 <span class="vr text-muted mx-4"></span>
-                <a href="javascript:void(0);">
-                    <h2 class="fs-14 fw-bold text-truncate-1-line">Редактировать портфолио</h2>
-                </a>
             </div>
+            <a href="javascript:void(0);">
+                <h2 class="fs-14 fw-bold text-truncate-1-line">Редактировать портфолио</h2>
+            </a>
 
             <button class="btn btn-primary btn-sm d-inline-block mt-2" type="submit">
                 Oбновлять  <i class="fa fa-sync-alt"></i>
