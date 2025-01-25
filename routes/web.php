@@ -1,4 +1,4 @@
- <?php
+<?php
 // admin controller
 use App\Http\Controllers\admin\auth\LoginController as AdminController;
 use App\Http\Controllers\admin\PageController as AdminPageController;

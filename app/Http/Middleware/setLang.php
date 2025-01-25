@@ -10,7 +10,7 @@ class setLang
 {
     public function handle(Request $request, Closure $next)
     {
-        $lang = session('lang', 'en');
+        $lang = session('lang', 'ru');
         App::setLocale($lang);
 
         return $next($request);

@@ -11,8 +11,8 @@ class LanguageController extends Controller
     public function changeLanguage($lang)
     {
         if (in_array($lang, ['en', 'uz', 'ru'])) {
-            App::setLocale('en');
-            Session::put('locale', 'en');
+            App::setLocale('ru');
+            Session::put('locale', 'ru');
         }
 
         return redirect()->back();
