@@ -94,7 +94,6 @@
                                         @endphp
                                         <div class="dropdown nxl-h-item">
                                             <a class="hover_user py-4 d-flex align-items-center gap-3" href="javascript:void(0);" data-bs-toggle="dropdown" role="button" data-bs-auto-close="outside">
-                                                {{ auth()->user()->name }}
                                                 <img  width="50px"  src="{{ asset('storage/' . (Auth::user()->companies->first()->logo ?? 'default.png')) }}" alt="user-image" class="img-fluid user-avtar me-0 rounded-circle">
                                             </a>
                                             <div id="user_card" class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
