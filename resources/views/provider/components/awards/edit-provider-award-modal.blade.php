@@ -54,9 +54,9 @@ if ($providerCompany) {
                         <div class="form-group mb-4">
                             <label class="form-label">Загрузить
                                 изображение:</label>
-                            <input type="file" name="image" id="image" class="form-control" required>
+                            <input type="file" name="image" id="image" class="form-control">
                         </div>
-                        <img src="{{ asset('storage/' . $award->image) }}" alt="">
+                        <img src="{{ asset('storage/' . $award->image) }}" alt="" style="width: 250px;height: 250px;">
                     </div>
                 </div>
                 <input type="hidden" name="provider_id" value="{{ auth()->user()->id }}">

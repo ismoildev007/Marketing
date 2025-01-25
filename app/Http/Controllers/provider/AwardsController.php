@@ -39,19 +39,16 @@ class AwardsController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'image' => 'nullable|image', // Rasm uchun validatsiya
-        ]);
+        $data = $request->all();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('images', 'public'); // Faylni saqlash
+            $data['image'] = $request->file('image')->store('awards', 'public'); // Faylni saqlash
         }
 
         Award::create($data);
 
         return redirect()->route('awards.index')->with('success', 'Award created successfully!');
     }
-
 
     public function show(string $id)
     {
