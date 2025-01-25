@@ -17,7 +17,7 @@ if ($providerCompany) {
     $portfolios = collect();
 }
 ?>
-<form action="{{ route('awards.store') }}" method="POST">
+<form action="{{ route('awards.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <!-- Modal HTML form -->
     <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="awardProviderOffcanvas">
