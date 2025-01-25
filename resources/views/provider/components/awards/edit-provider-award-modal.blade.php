@@ -50,6 +50,14 @@ if ($providerCompany) {
                             <input id="link" class="form-control" name="link" placeholder="Ссылка" value="{{ old('link', $award->link) }}">
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <div class="form-group mb-4">
+                            <label class="form-label">Загрузить
+                                изображение:</label>
+                            <input type="file" name="image" id="image" class="form-control" required>
+                        </div>
+                        <img src="{{ asset('storage/' . $award->image) }}" alt="">
+                    </div>
                 </div>
                 <input type="hidden" name="provider_id" value="{{ auth()->user()->id }}">
             </div>

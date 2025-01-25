@@ -16,6 +16,7 @@ class Award extends Model
         'category',
         'date',
         'link',
+        'image',
     ];
 
     protected $casts = [

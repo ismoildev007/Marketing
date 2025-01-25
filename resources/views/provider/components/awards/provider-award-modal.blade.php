@@ -26,7 +26,7 @@ if ($providerCompany) {
                 <div class="avatar-text avatar-md items-details-close-trigger" data-bs-dismiss="offcanvas" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Details Close"><i class="feather-arrow-left"></i></div>
                 <span class="vr text-muted mx-4"></span>
             </div>
-            <button type="submit" class="btn btn-primary" id="save-btn">Сохранять</button>
+            <button type="submit" class="btn btn-primary" id="save-btn" disabled>Сохранять</button>
         </div>
         <div class="offcanvas-body">
             <div class="row">
@@ -65,26 +65,22 @@ if ($providerCompany) {
 </form>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const saveBtn = document.getElementById('save-btn')
-        const form = document.querySelector("form");
-        const inputs = form.querySelectorAll("input[required]");
-        saveBtn.disabled = true;
-        function checkFields() {
-            let allFilled = Array.from(inputs).every(input => {
-                if (input.type === "file") {
-                    return input.files && input.files.length > 0;
-                }
-                return input.value.trim() !== "";
-            });
+        const saveBtn = document.getElementById('save-btn');
+        const awardName = document.getElementById("awardName");
+        const awardDate = document.getElementById("awardDate");
+        const requiredInputs = [awardName, awardDate];
 
-            submitButton.disabled = !allFilled;
+        function checkFields() {
+            let allFilled = requiredInputs.every(input => input.value.trim() !== '');
+            saveBtn.disabled = !allFilled;
         }
-        inputs.forEach(input => {
-            input.addEventListener("input", checkFields);
-            if (input.type === "file") {
-                input.addEventListener("change", checkFields);
-            }
+
+        requiredInputs.forEach(input => {
+            input.addEventListener('input', checkFields);
         });
+
         checkFields();
     });
 </script>
+
+
