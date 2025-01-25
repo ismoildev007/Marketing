@@ -12,22 +12,14 @@
                 <li class="nxl-item nxl-caption">
                     <label>Профиль</label>
                 </li>
-                <li class="nxl-item nxl-hasmenu {{ request()->is('/') ? 'active' : '' }}">
-                    <a href="javascript:void(0);" class="nxl-link">
-                        <span class="nxl-micon"><i class="feather-airplay"></i></span>
-                        <span class="nxl-mtext">Панели управления</span><span class="nxl-arrow"><i
-                                class="feather-chevron-right"></i></span>
+                <li class="nxl-item nxl-hasmenu {{ request()->is('/provider/dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('provider.dashboard') }}" class="nxl-link">
+                        <span class="nxl-micon">
+                            <i
+                                class="feather-home"></i>
+                        </span>
+                        <span class="nxl-mtext">Панель инструментов страница</span><span class="nxl-arrow"></span>
                     </a>
-                    <ul class="nxl-submenu">
-                        <li class="nxl-item {{ request()->is('/') ? 'active' : '' }}"><a class="nxl-link"
-                                href="/">Главная
-                                страница</a></li>
-                    </ul>
-                    <ul class="nxl-submenu">
-                        <li class="nxl-item {{ request()->is('/provider/dashboard') ? 'active' : '' }}"><a class="nxl-link"
-                                href="/provider/dashboard">Панель инструментов
-                                страница</a></li>
-                    </ul>
                 </li>
 
                 <li class="nxl-item nxl-hasmenu {{ request()->is('provider/providers') ? 'active' : '' }}">
