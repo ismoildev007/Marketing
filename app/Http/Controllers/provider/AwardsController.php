@@ -40,7 +40,7 @@ class AwardsController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg,gif|max:2048', // Rasm uchun validatsiya
+            'image' => 'nullable|image', // Rasm uchun validatsiya
         ]);
 
         if ($request->hasFile('image')) {
