@@ -67,7 +67,7 @@ if ($providerCompany) {
     document.addEventListener("DOMContentLoaded", function () {
         const saveBtn = document.getElementById('save-btn')
         const form = document.querySelector("form");
-        const inputs = form.querySelectorAll("form-control");
+        const inputs = form.querySelectorAll("input[required]");
         saveBtn.disabled = true;
         function checkFields() {
             let allFilled = Array.from(inputs).every(input => {
@@ -88,8 +88,3 @@ if ($providerCompany) {
         checkFields();
     });
 </script>
-
-
-
-
-
