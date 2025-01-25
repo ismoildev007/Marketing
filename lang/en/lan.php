@@ -8,6 +8,11 @@ return[
     'partners' => 'Partners',
     'contact' => 'Contact',
     'login' => 'Login',
+    'email' => 'Email',
+    'password' => 'Password',
+    'forget_password' => 'Forget password',
+    'login_to_your_account' => 'Login to your account',
+    'recommendation' => 'Thank you for get back Nelel web applications, let\'s access our the best recommendation for you.',
 
     'popular_search' => 'Popular search',
     'version' => 'Version',

@@ -8,6 +8,11 @@ return[
     'partners' => 'Hamkorlar',
     'contact' => 'Aloqa',
     'login' => 'Kirish',
+    'email' => 'Elektron pochta',
+    'password' => 'Parol',
+    'forget_password' => 'Parolni unutdingizmi',
+    'login_to_your_account' => 'Hisobingizga kiring',
+    'recommendation' => 'Nelel veb-ilovalarini qaytarib olganingiz uchun tashakkur, keling, siz uchun eng yaxshi tavsiyamizdan foydalanaylik.',
 
     'popular_search' => 'Mashhur qidiruv',
     'version' => 'Versiya',
