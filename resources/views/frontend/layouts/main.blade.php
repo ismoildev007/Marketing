@@ -92,11 +92,47 @@
                                                     break;
                                             }
                                         @endphp
+                                        <div class="dropdown nxl-h-item">
+                                            <a class="hover_user py-4 d-flex align-items-center gap-3" href="javascript:void(0);" data-bs-toggle="dropdown" role="button" data-bs-auto-close="outside">
+                                                {{ auth()->user()->name }}
+                                                <img  width="50px"  src="{{ asset('storage/' . (Auth::user()->companies->first()->logo ?? 'default.png')) }}" alt="user-image" class="img-fluid user-avtar me-0 rounded-circle">
+                                            </a>
+                                            <div id="user_card" class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
+                                                <div class="dropdown-header">
+                                                    <p class="d-flex align-items-center">
+                                                        <a href="{{ $route }}" class="p-1">
+                                                            <small style="font-size: 14px">Profile</small>
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                                @auth
+                                                    <form class="d-block" action="{{ route('logout') }}" method="post">
+                                                        @csrf
+                                                        <button type="submit" class="dropdown-item"><i class="feather-log-out"></i>
+                                                            chiqish
+                                                        </button>
+                                                    </form>
+                                                @endauth
 
-                                        <a href="{{ $route }}">
-                                            {{ Auth::user()->name }}
-                                            <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 14px;"></i>
-                                        </a>
+                                                <div class="dropdown-divider"></div>
+                                            </div>
+                                        </div>
+
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded", function() {
+                                                let hoverUser = document.querySelector('.hover_user');
+                                                let userCard = document.querySelector("#user_card");
+
+                                                hoverUser.addEventListener('mouseenter', () => {
+                                                    userCard.classList.add('show');
+                                                });
+
+                                                document.querySelector('.dropdown').addEventListener('mouseleave', () => {
+                                                    userCard.classList.remove('show');
+                                                });
+                                            });
+                                        </script>
+
                                     @else
                                         <a href="{{ route('login') }}">
                                             Вход
@@ -104,8 +140,6 @@
                                         </a>
                                     @endauth
                                 </li>
-
-
                             </ul>
 
                         </nav>
