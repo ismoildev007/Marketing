@@ -26,7 +26,7 @@ if ($providerCompany) {
                 <div class="avatar-text avatar-md items-details-close-trigger" data-bs-dismiss="offcanvas" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Details Close"><i class="feather-arrow-left"></i></div>
                 <span class="vr text-muted mx-4"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Сохранять</button>
+            <button type="submit" class="btn btn-primary" id="save-btn">Сохранять</button>
         </div>
         <div class="offcanvas-body">
             <div class="row">
@@ -41,14 +41,21 @@ if ($providerCompany) {
                 <div class="col-sm-6">
                     <div class="form-group mb-4">
                         <label for="awardDate" class="form-label">Дата</label>
-                        <input type="month" id="awardDate" name="date" class="form-control" >
+                        <input type="month" id="awardDate" name="date" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="col-sm-6">
                     <div class="form-group mb-4">
                         <label class="form-label">Ссылка на существующую работу (необязательно):</label>
-                            <input name="link" id="link" class="form-control" placeholder="Ссылка " required>
+                            <input type="text" name="link" id="link" class="form-control" placeholder="Ссылка " required>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group mb-4">
+                        <label class="form-label">Загрузить
+                            изображение:</label>
+                            <input type="file" name="image" id="image" class="form-control" required>
                     </div>
                 </div>
             </div>
@@ -56,3 +63,33 @@ if ($providerCompany) {
         </div>
     </div>
 </form>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const saveBtn = document.getElementById('save-btn')
+        const form = document.querySelector("form");
+        const inputs = form.querySelectorAll("form-control");
+        saveBtn.disabled = true;
+        function checkFields() {
+            let allFilled = Array.from(inputs).every(input => {
+                if (input.type === "file") {
+                    return input.files && input.files.length > 0;
+                }
+                return input.value.trim() !== "";
+            });
+
+            submitButton.disabled = !allFilled;
+        }
+        inputs.forEach(input => {
+            input.addEventListener("input", checkFields);
+            if (input.type === "file") {
+                input.addEventListener("change", checkFields);
+            }
+        });
+        checkFields();
+    });
+</script>
+
+
+
+
+
