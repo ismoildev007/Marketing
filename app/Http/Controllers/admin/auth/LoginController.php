@@ -15,7 +15,8 @@ class LoginController extends Controller
         return view('admin.auth.login');
     }
 
-    public function authenticate(Request $request){
+    public function authenticate(Request $request)
+    {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -23,7 +24,8 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            if(auth()->user()->role_id == 1){
+            if(auth()->user()->role_id == 1)
+            {
                 return redirect()->intended('admin/dashboard');
             }
         }

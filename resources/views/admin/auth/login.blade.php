@@ -52,16 +52,16 @@
                         <form class="w-100 mt-4 pt-2" action="{{ route('admin_authenticate')}}" method="post">
                             @csrf
                             <div class="mb-4">
-                                <input type="email" name="email" class="form-control" placeholder="@lang('lan.email')" required>
+                                <input type="email" name="email" class="form-control" placeholder="@lang('lan.email')" value="dora@dora.uz" required>
                             </div>
                             <div class="mb-3">
-                                <input type="text" name="password" class="form-control" placeholder="@lang('lan.password')" required>
+                                <input type="password" name="password" class="form-control" placeholder="@lang('lan.password')" value="dora@dora.uz" required>
                             </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div>
-                                    <a href="auth-reset-minimal.html" class="fs-11 text-primary">@lang('lan.forget_password')?</a>
-                                </div>
-                            </div>
+{{--                            <div class="d-flex align-items-center justify-content-between">--}}
+{{--                                <div>--}}
+{{--                                    <a href="auth-reset-minimal.html" class="fs-11 text-primary">@lang('lan.forget_password')?</a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="mt-5">
                                 <button type="submit" class="btn btn-lg btn-primary w-100">@lang('lan.login')</button>
                             </div>
