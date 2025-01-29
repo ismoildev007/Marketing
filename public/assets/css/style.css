@@ -2482,7 +2482,7 @@ textarea {
     padding: 10px 10px 10px 20px;
     font-size: 16px;
     width: 100%;
-    min-height: 250px;
+    min-height: 120px;
 }
 
 textarea:focus {

@@ -80,23 +80,19 @@
 
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label>Имя  <span class="brand-1">*</span></label>
-                                    <input type="text" name="name" class="form-control text-center"
-                                        placeholder="Enter manager's name" required>
+                                    <input type="text" name="name" class="form-control text-center" required>
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label>Электронная почта  <span class="brand-1">*</span></label>
-                                    <input type="email" name="email" class="form-control text-center"
-                                        placeholder="Enter manager's email" required>
+                                    <input type="email" name="email" class="form-control text-center" required>
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label>Пароль  <span class="brand-1">*</span></label>
-                                    <input type="password" name="password" class="form-control text-center"
-                                        placeholder="Enter manager's password" required>
+                                    <input type="password" name="password" class="form-control text-center" required>
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label>Подтвердите пароль  <span class="brand-1">*</span></label>
-                                    <input type="password" name="password_confirmation" class="form-control text-center"
-                                        placeholder="Confirm manager's password" required>
+                                    <input type="password" name="password_confirmation" class="form-control text-center" required>
                                 </div>
 
                                 <div class="form-group col-lg-12">

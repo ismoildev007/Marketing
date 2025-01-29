@@ -106,42 +106,35 @@
                                 <h2 class="title" style="font-size: 30px; margin-bottom: 15px;">Услуги</h2>
 
                                 <div class="accordion accordion-flush accordion-style-2" id="accordionFAQS"
-                                    style="border: 1px solid #D1D3D4; border-radius: 16px">
+                                     style="border: 1px solid #D1D3D4; border-radius: 16px">
 
-                                    @foreach ($services as $service)
+                                    @foreach ($services as $index => $service)
                                         <div class="accordion-item">
 
-                                            <h2 class="accordion-header" id="flush-headingOne">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#flush-collapseOne" aria-expanded="true"
-                                                    aria-controls="flush-collapseOne"
-                                                    style="display:flex; justify-content: space-between;">
+                                            <h2 class="accordion-header" id="flush-heading-{{ $index }}">
+                                                <button class="accordion-button {{ $index === 0 ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse"
+                                                        data-bs-target="#flush-collapse-{{ $index }}" aria-expanded="{{ $index === 0 ? 'true' : 'false' }}"
+                                                        aria-controls="flush-collapse-{{ $index }}"
+                                                        style="display:flex; justify-content: space-between;">
                                                     {{ $service->subCategory->name_ru ?? null }}
                                                     <div style="display: flex; align-items: center;">
                                                         <p class="d-none d-md-block "
-                                                            style="padding: 0 19px; font-size: 14px;">0 работа</p>
+                                                           style="padding: 0 19px; font-size: 14px;">0 работа</p>
                                                         <div class="card-rates d-none d-md-block border-start border-end "
-                                                            style="border-left:1px solid #D1D3D4; border-right: 1px solid #D1D3D4; padding: 0 20px;">
-
-                                                            <img src="/assets/imgs/template/icons/star.svg"
-                                                                alt="Nivia" />
-                                                            <img src="/assets/imgs/template/icons/star.svg"
-                                                                alt="Nivia" />
-                                                            <img src="/assets/imgs/template/icons/star.svg"
-                                                                alt="Nivia" />
-                                                            <img src="/assets/imgs/template/icons/star.svg"
-                                                                alt="Nivia" />
-                                                            <img src="/assets/imgs/template/icons/star.svg"
-                                                                alt="Nivia" />
+                                                             style="border-left:1px solid #D1D3D4; border-right: 1px solid #D1D3D4; padding: 0 20px;">
+                                                            <img src="/assets/imgs/template/icons/star.svg" alt="Nivia" />
+                                                            <img src="/assets/imgs/template/icons/star.svg" alt="Nivia" />
+                                                            <img src="/assets/imgs/template/icons/star.svg" alt="Nivia" />
+                                                            <img src="/assets/imgs/template/icons/star.svg" alt="Nivia" />
+                                                            <img src="/assets/imgs/template/icons/star.svg" alt="Nivia" />
                                                         </div>
-                                                        <p style="padding: 0 19px; font-size: 14px;">{{ $service->price }}
-                                                            UZS</p>
+                                                        <p style="padding: 0 19px; font-size: 14px;">{{ $service->price }} UZS</p>
                                                     </div>
                                                 </button>
                                             </h2>
 
-                                            <div id="flush-collapseOne" class="accordion-collapse collapse show"
-                                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFAQS">
+                                            <div id="flush-collapse-{{ $index }}" class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}"
+                                                 aria-labelledby="flush-heading-{{ $index }}" data-bs-parent="#accordionFAQS">
                                                 <div class="accordion-body">
 
                                                     <h6 style="margin-bottom: 15px;">Описание</h6>
@@ -150,14 +143,14 @@
                                                     </div>
 
                                                     <button data-target="text-content-full-5" class="show-more-button"
-                                                        style="border: none; background-color: transparent; padding: 0;">
+                                                            style="border: none; background-color: transparent; padding: 0;">
                                                         увидеть больше
                                                     </button>
 
                                                     <div class="skills-box" style="margin-top: 25px;">
                                                         <h6 style="margin-bottom: 15px;">Навыки</h6>
                                                         <div class="box-tags-sidebar">
-                                                            <p class="btn btn-neutral-100">Разработка логотиповg</p>
+                                                            <p class="btn btn-neutral-100">Разработка логотипов</p>
                                                             <p class="btn btn-neutral-100">Создание брендбуков</p>
                                                             <p class="btn btn-neutral-100">Графический дизайн</p>
                                                             <p class="btn btn-neutral-100">Цветовая идентичность бренда</p>
@@ -170,21 +163,16 @@
 
                                                         <div class="card-testimonial col-lg-4">
                                                             <div class="card-rates">
-                                                                <img src="/assets/imgs/template/icons/star.svg"
-                                                                    alt="Star">
-                                                                <img src="/assets/imgs/template/icons/star.svg"
-                                                                    alt="Star">
-                                                                <img src="/assets/imgs/template/icons/star.svg"
-                                                                    alt="Star">
-                                                                <img src="/assets/imgs/template/icons/star.svg"
-                                                                    alt="Star">
-                                                                <img src="/assets/imgs/template/icons/star.svg"
-                                                                    alt="Star">
+                                                                <img src="/assets/imgs/template/icons/star.svg" alt="Star">
+                                                                <img src="/assets/imgs/template/icons/star.svg" alt="Star">
+                                                                <img src="/assets/imgs/template/icons/star.svg" alt="Star">
+                                                                <img src="/assets/imgs/template/icons/star.svg" alt="Star">
+                                                                <img src="/assets/imgs/template/icons/star.svg" alt="Star">
                                                             </div>
                                                             <div class="card-author">
                                                                 <div class="author-info">
-                                                                    <span class="text-md author-name mr-10"
-                                                                        style="margin-top: 10px !important;">Davron</span>
+                                        <span class="text-md author-name mr-10"
+                                              style="margin-top: 10px !important;">Davron</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -278,135 +266,107 @@
                                 <h2 class="title" style="font-size: 30px; padding: 5px;">Портфолио</h2>
                                 <div class="row portfolio-padding">
 
-                                    @foreach ($portfolios as $portfolio)
-                                        <div class="col-lg-3 col-md-6" style="cursor: default;">
-                                            <div
-                                                class="h-100 card-grid-2 card-employers wow animate__animated animate__fadeIn">
+                                    @foreach ($portfolios as $index => $portfolio)
+                                        <div class="col-lg-3 col-md-6" style="cursor: pointer;">
+                                            <div class="h-100 card-grid-2 card-employers wow animate__animated animate__fadeIn"
+                                                 onclick="openModal({{ $index }})">
                                                 <div class="text-center card-grid-2-image-rd online">
                                                     <img style="object-fit: cover" height="222px" class="w-100 rounded"
-                                                        alt="jobhub"
-                                                        src="{{ asset('storage/' . $portfolio->image) }}" />
+                                                         alt="jobhub"
+                                                         src="{{ asset('storage/' . $portfolio->image) }}" />
                                                 </div>
                                                 <div class="card-block-info">
                                                     <div class="card-profile">
-                                                        <h5><a
-                                                                href="#!"><strong>{{ $portfolio->work_title }}</strong></a>
+                                                        <h5>
+                                                            <a href="#!"><strong>{{ $portfolio->work_title }}</strong></a>
                                                         </h5>
-                                                        <span
-                                                            class="text-sm">{{ $portfolio->subCategory->name_ru }}</span>
+                                                        <span class="text-sm">{{ $portfolio->subCategory->name_ru }}</span>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!-- Modal for this portfolio -->
+                                        <div id="modal-{{ $index }}" class="modal-single" style="display: none;">
+                                            <div class="modal-content">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="album">
+                                                            <div class="responsive-container-block bg " style="margin-bottom: 15px;">
+                                                                <div class="responsive-container-block img-cont">
+                                                                    <img class="img img-big img-last" src="{{ asset('storage/' . $portfolio->image) }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="modal-description gap-5 row">
+                                                            <div class="modal-description-right col-md-12">
+                                                                <div class="sidebar">
+                                                                    <h3>About</h3>
+                                                                    <div class="box-sidebar-rounded">
+                                                                        <div class="sidebar-content">
+                                                                            <div class="item-line">
+                                                                                <div class="text-date-post text-16-bold">Client</div>
+                                                                                <p class="text-date-post-value text-md neutral-500">{{ $portfolio->client_name }}</p>
+                                                                            </div>
+                                                                            <div class="item-line">
+                                                                                <div class="text-date-expire text-16-bold">Sector</div>
+                                                                                <p class="text-date-post-value text-md neutral-500">{{ $portfolio->sector }}</p>
+                                                                            </div>
+                                                                            <div class="item-line">
+                                                                                <div class="text-location text-16-bold">Location:</div>
+                                                                                <p class="text-date-post-value text-md neutral-500">{{ $portfolio->location }}</p>
+                                                                            </div>
+                                                                            <div class="item-line">
+                                                                                <div class="text-salary text-16-bold">Audience</div>
+                                                                                <p class="text-date-post-value text-md neutral-500">{{ $portfolio->audience }}</p>
+                                                                            </div>
+                                                                            <div class="item-line">
+                                                                                <div class="text-date-founded text-16-bold">Date</div>
+                                                                                <p class="text-date-post-value text-md neutral-500">{{ $portfolio->date }}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span class="image-modal-close-footer" onclick="closeModal({{ $index }})">&times;</span>
+                                        </div>
+                                        <script>
+                                            function openModal(index) {
+                                                // Modalni ochish
+                                                const modal = document.getElementById(`modal-${index}`);
+                                                modal.style.display = 'flex';
+                                                document.body.style.overflow = 'hidden';
+                                            }
+
+                                            function closeModal(index) {
+                                                // Modalni yopish
+                                                const modal = document.getElementById(`modal-${index}`);
+                                                modal.style.display = 'none';
+                                                document.body.style.overflow = '';
+                                            }
+
+                                            // Modaldan tashqarida bosilganda yopish
+                                            window.onclick = function (event) {
+                                                const modals = document.querySelectorAll('.modal-single');
+                                                modals.forEach(modal => {
+                                                    if (event.target === modal) {
+                                                        modal.style.display = 'none';
+                                                        document.body.style.overflow = '';
+                                                    }
+                                                });
+                                            };
+                                        </script>
                                     @endforeach
                                 </div>
                             </div>
-
-                            <div id="imageModal" class="image-modal-single">
-                                <span class="image-modal-close">&times;</span>
-                                <img class="image-modal-content" id="imgInImageModal">
-                                <a class="image-modal-prev">&#10094;</a>
-                                <a class="image-modal-next">&#10095;</a>
-                            </div>
-
-                            <div id="modal" class="modal-single" style="display: none;">
-                                <div class="modal-content">
-                                    <div class="album">
-                                        <div class="responsive-container-block bg " style="margin-bottom: 15px;">
-                                            <div class="responsive-container-block img-cont">
-                                                <img class="img img-small"
-                                                    src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/PP5.4.svg">
-                                                <img class="img img-small" src="/assets/imgs/image5.jpg">
-                                            </div>
-                                            <div class="responsive-container-block img-cont">
-                                                <img class="img img-big img-last" src="/assets/imgs/image3.jpg">
-                                            </div>
-                                            <div class="responsive-container-block img-cont">
-                                                <img class="img img-small" src="/assets/imgs/image2.jpg">
-                                                <img class="img img-small" src="/assets/imgs/image1.jpg">
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                    <style>
-                                        .img-cont {
-                                            width: 33%;
-                                            height: 100%;
-                                        }
-
-                                        .img-cont img {
-                                            object-fit: cover;
-                                        }
-                                    </style>
-                                    <div class="modal-description gap-5 row ">
-                                        <div class="modal-description-left col-sm-12 col-lg-8">
-                                            <h4 style="margin-bottom: 15px;">Description</h4>
-                                            <p>Harmony of Tradition and Innovation: The logo was created using
-                                                simplicity, and
-                                                the brand name also utilizes the word 'oyna' (glass). Through the
-                                                brand book,
-                                                the company emphasizes that its products attract users not only
-                                                through quality
-                                                but also through design and aesthetic aspects. The branding strategy
-                                                is based on
-                                                the principles of transparency and reliability, which give customers
-                                                confidence
-                                                in the quality of the products.</p>
-                                        </div>
-                                        <div class="modal-description-right  col-sm-12 col-lg-8">
-                                            <div class="sidebar">
-                                                <div class="box-sidebar-rounded">
-                                                    <div class="sidebar-content">
-                                                        <div class="item-line">
-                                                            <div class="text-date-post text-16-bold">Client</div>
-                                                            <p class="text-date-post-value text-md neutral-500">
-                                                                AYNEK</p>
-                                                        </div>
-                                                        <div class="item-line">
-                                                            <div class="text-date-expire text-16-bold">Sector</div>
-                                                            <p class="text-date-post-value text-md neutral-500">Home
-                                                                Services
-                                                            </p>
-                                                        </div>
-                                                        <div class="item-line">
-                                                            <div class="text-location text-16-bold">Location:</div>
-                                                            <p class="text-date-post-value text-md neutral-500">
-                                                                Tashkent,
-                                                                Uzbekistan</p>
-                                                        </div>
-                                                        <div class="item-line">
-                                                            <div class="text-salary text-16-bold">Audience</div>
-                                                            <p class="text-date-post-value text-md neutral-500">B2B,
-                                                                B2C</p>
-                                                        </div>
-                                                        <div class="item-line"
-                                                            style="display: flex; flex-direction: column;">
-                                                            <div class="text-date-lang text-16-bold">Expertise</div>
-                                                            <p class="text-date-post-value text-md neutral-500">
-                                                                Branding &
-                                                                Positioning</p>
-                                                        </div>
-                                                        <div class="item-line">
-                                                            <div class="text-date-founded text-16-bold">Date</div>
-                                                            <p class="text-date-post-value text-md neutral-500">Jan
-                                                                2023 -
-                                                                ongoing</p>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <span id="image-modal-close-footer" class="image-modal-close-footer">&times;</span>
-                            </div>
-
                         </section>
+
 
                         <section id="awards" class="awards-section" style="margin: 30px 15px 0;">
                             <div class="row">
@@ -629,7 +589,7 @@
 
                                         <button class="btn btn-brand-4-medium col-lg-6"
                                             style="justify-content: center; margin:30px 0;"
-                                            onclick="openModal()">Связаться с DORA
+                                            onclick="openContactModal()">Связаться с DORA
                                         </button>
                                         <p class="text-lg title-follow">
                                             Социальные сети
@@ -657,10 +617,10 @@
         </section>
 
         <div id="doraModal"
-            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index:999;">
+             style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index:999;">
 
             <div class="box-border-rounded p-3"
-                style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; width: 50%; max-height: 90%; overflow-y: auto; background-color: white; border-radius: 10px;">
+                 style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; width: 50%; max-height: 90%; overflow-y: auto; background-color: white; border-radius: 10px;">
 
                 <div class="my-3 p-3">
                     <h4 class="mb-3">Отправить сообщение</h4>
@@ -697,28 +657,17 @@
                         </div>
 
                     </div>
-
-                    <h6 class="my-2" style="font-size:18px;">Message</h6>
-
                     <div class="row">
-
-                        <div class="col-12 my-2">
-                            <label style="width: 100%;">
-                                Почему вы хотите связаться с DORA?
-                                <input type="text">
-                            </label>
-                        </div>
-
                         <div class="col-12 my-2">
                             <label style="width: 100%;">
                                 Ваше сообщение
-                                <textarea style="width: 100%; height: 100px;"></textarea>
+                                <textarea name="message" id="" cols="30" rows="10"></textarea>
                             </label>
                         </div>
 
                         <div class="col-12 my-2 d-flex justify-content-end">
                             <button type="button" class="btn btn-brand-4-medium"
-                                onclick="sendMessage()">Отправить</button>
+                                    onclick="sendMessage()">Отправить</button>
                         </div>
 
                     </div>
@@ -732,40 +681,46 @@
         <!-- Toast Notification -->
         <div id="toast" style="display: none;">
             <div class="bg-primary"
-                style="position: fixed; top: 100px; right: 0px; transform: translateX(-50%); color: white; padding: 10px 10px; border-radius: 5px; display: flex;  align-items: center;">
+                 style="position: fixed; top: 100px; right: 0px; transform: translateX(-50%); color: white; padding: 10px 10px; border-radius: 5px; display: flex;  align-items: center;">
                 <i class="fas fa-check-circle" style="margin-right: 10px;  font-size: 24px;"></i>
                 Сообщение отправлено!
             </div>
         </div>
 
-
         <script>
-            function openModal() {
-                document.getElementById('doraModal').style.display = 'flex';
+            function openContactModal() {
+                // Modalni ochish
+                const modal = document.getElementById('doraModal');
+                modal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
             }
 
-            function closeModal() {
-                document.getElementById('doraModal').style.display = 'none';
+            function closeContactModal() {
+                // Modalni yopish
+                const modal = document.getElementById('doraModal');
+                modal.style.display = 'none';
                 document.body.style.overflow = '';
             }
-            window.onclick = function(event) {
-                var modal = document.getElementById('doraModal');
-                if (event.target == modal) {
-                    closeModal();
+
+            // Modaldan tashqarida bosilganda yopish
+            window.onclick = function (event) {
+                const modal = document.getElementById('doraModal');
+                if (event.target === modal) {
+                    closeContactModal();
                 }
-            }
+            };
 
             function sendMessage() {
-                var toast = document.getElementById('toast');
+                const toast = document.getElementById('toast');
                 toast.style.display = 'block';
-                setTimeout(function() {
+                setTimeout(function () {
                     toast.style.display = 'none';
                 }, 3000);
 
-                closeModal();
+                closeContactModal();
             }
         </script>
+
 
     </main>
 
