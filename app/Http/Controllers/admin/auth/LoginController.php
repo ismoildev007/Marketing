@@ -22,10 +22,9 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-
             $request->session()->regenerate();
-            dd($request->session()->all());
             if(auth()->user()->role_id == 1){
+                dd($request);
                 return redirect()->intended('admin/dashboard');
             }
         }
