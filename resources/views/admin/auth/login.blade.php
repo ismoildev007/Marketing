@@ -55,7 +55,7 @@
                                 <input type="email" name="email" class="form-control" placeholder="@lang('lan.email')" required>
                             </div>
                             <div class="mb-3">
-                                <input type="text" name="phone" class="form-control" placeholder="@lang('lan.password')" required>
+                                <input type="text" name="password" class="form-control" placeholder="@lang('lan.password')" required>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
